@@ -13,12 +13,12 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
-class UserTest {
+class BidCommentTest {
 	private static EntityManagerFactory emf;
 	
 	private EntityManager em;
 	
-	private User user;
+	private BidComment bidComment;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -34,22 +34,21 @@ class UserTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		user = em.find(User.class, 1);
+		bidComment = em.find(BidComment.class, 1);
 		
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		user = null;
+		bidComment = null;
 		
 	}
 
 	@Test
 	void test() {
-		assertNotNull(user);
-		assertEquals("admin", user.getUsername());
-		assertEquals("(456)-456-4562",user.getPhone());
+		assertNotNull(bidComment);
+		assertEquals("comment", bidComment.getContent());
 		
 		
 	}
