@@ -7,6 +7,8 @@ import java.util.Objects;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -54,6 +56,7 @@ public class User {
 	@Column(name = "update_date")
 	private LocalDateTime updateDate;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "user")
 	private List<BidComment> bidComments;
 
@@ -61,9 +64,11 @@ public class User {
 	@JoinColumn(name = "address_id")
 	private Address address;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "user")
 	private List<Provider> provider;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "user")
 	private List<JobPost> jobPosts;
 

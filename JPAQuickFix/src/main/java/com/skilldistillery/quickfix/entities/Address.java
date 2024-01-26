@@ -3,6 +3,8 @@ package com.skilldistillery.quickfix.entities;
 import java.util.List;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,10 +27,11 @@ public class Address {
 	private String state;
 
 	private String zip;
-
+	@JsonIgnore
 	@OneToMany(mappedBy = "address")
 	private List<User> users;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "address")
 	private List<Provider> providers;
 

@@ -47,6 +47,7 @@ public class Trade {
 	@JoinTable(name = "provider_has_trade", joinColumns = @JoinColumn(name = "trade_id"), inverseJoinColumns = @JoinColumn(name = "provider_id"))
 	private List<Provider> providers;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "trade")
 	private List<Specialty> specialties;
 

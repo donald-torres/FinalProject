@@ -66,9 +66,11 @@ public class Provider {
 	@ManyToMany(mappedBy = "providers")
 	private List<Specialty> specialties;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "provider")
 	private List<Appointment> appointments;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "provider")
 	private List<Bid> bids;
 

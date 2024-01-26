@@ -8,6 +8,8 @@ import java.util.Objects;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -67,7 +69,8 @@ public class JobPost {
 	@ManyToMany
 	@JoinTable(name = "job_post_has_project_area", joinColumns = @JoinColumn(name = "job_post_id"), inverseJoinColumns = @JoinColumn(name = "project_area_id"))
 	private List<ProjectArea> projectAreas;
-
+	
+	@JsonIgnore
 	@OneToMany(mappedBy = "jobPost")
 	private List<Appointment> appointments;
 
@@ -79,6 +82,7 @@ public class JobPost {
 	@JoinTable(name = "focus_has_job_post", joinColumns = @JoinColumn(name = "job_post_id"), inverseJoinColumns = @JoinColumn(name = "focus_id"))
 	private List<Specialty> specialties;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "jobPost")
 	private List<Bid> bids;
 
