@@ -1,6 +1,7 @@
 package com.skilldistillery.quickfix.entities;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -11,6 +12,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class User {
@@ -49,9 +51,23 @@ public class User {
 	@UpdateTimestamp
 	@Column(name = "update_date")
 	private LocalDateTime updateDate;
+	
+	@OneToMany(mappedBy="user")
+	private List<BidComment> bidComments;
+	
+	
+	
 
 	public User() {
 		super();
+	}
+
+	public List<BidComment> getBidComments() {
+		return bidComments;
+	}
+
+	public void setBidComments(List<BidComment> bidComments) {
+		this.bidComments = bidComments;
 	}
 
 	public int getId() {

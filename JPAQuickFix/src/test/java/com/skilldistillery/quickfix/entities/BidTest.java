@@ -48,7 +48,7 @@ class BidTest {
 	@Test
 	void basic_mapping() {
 		assertNotNull(bid);
-		assertEquals("9000.0", bid.getAmount());
+		assertEquals(9000.0, bid.getAmount());
 	}
 		@Test
 		void many_to_one_mapping_for_job_post() {

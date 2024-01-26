@@ -52,5 +52,17 @@ class BidCommentTest {
 		
 		
 	}
+	@Test
+	void mto_connection_bid_table() {
+		assertNotNull(bidComment);
+		assertEquals(9000.0, bidComment.getBid().getAmount());
+		
+	}
+	@Test
+	void mto_connection_user_table() {
+		assertNotNull(bidComment);
+		assertEquals("Joe", bidComment.getUser().getFirstName());
+		
+	}
 
 }

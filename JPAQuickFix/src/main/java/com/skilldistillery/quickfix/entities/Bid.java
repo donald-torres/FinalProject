@@ -20,7 +20,7 @@ public class Bid {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	private String amount;
+	private double amount;
 
 //	@ManyToOne
 //	@JoinColumn(name="user_provider_id")
@@ -52,11 +52,19 @@ public class Bid {
 
 	private Boolean enabled;
 
-//	@OneToMany(mappedBy="bid")
-//	private List<BidComment> bidComments;
+	@OneToMany(mappedBy="bid")
+	private List<BidComment> bidComments;
 
 	public Bid() {
 		super();
+	}
+
+	public List<BidComment> getBidComments() {
+		return bidComments;
+	}
+
+	public void setBidComments(List<BidComment> bidComments) {
+		this.bidComments = bidComments;
 	}
 
 	public int getId() {
@@ -67,11 +75,11 @@ public class Bid {
 		this.id = id;
 	}
 
-	public String getAmount() {
+	public double getAmount() {
 		return amount;
 	}
 
-	public void setAmount(String amount) {
+	public void setAmount(double amount) {
 		this.amount = amount;
 	}
 
@@ -169,7 +177,7 @@ public class Bid {
 		return "Bid [id=" + id + ", amount=" + amount + ", jobPost=" + jobPost + ", bidDate=" + bidDate
 				+ ", providerNote=" + providerNote + ", accepted=" + accepted + ", ratingByUser=" + ratingByUser
 				+ ", userComment=" + userComment + ", ratingByProvider=" + ratingByProvider + ", providerComment="
-				+ providerComment + ", enabled=" + enabled + "]";
+				+ providerComment + ", enabled=" + enabled + ", bidComments=" + bidComments + "]";
 	}
 
 }

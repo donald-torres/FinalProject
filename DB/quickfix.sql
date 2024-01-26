@@ -232,7 +232,7 @@ DROP TABLE IF EXISTS `bid` ;
 
 CREATE TABLE IF NOT EXISTS `bid` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `amount` VARCHAR(45) NOT NULL,
+  `amount` DECIMAL(10,2) NOT NULL,
   `user_provider_id` INT NOT NULL,
   `post_id` INT NOT NULL,
   `bid_date` DATETIME NULL,
@@ -503,7 +503,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `quickfixdb`;
-INSERT INTO `bid` (`id`, `amount`, `user_provider_id`, `post_id`, `bid_date`, `provider_note`, `accepted`, `rating_by_user`, `user_comment`, `rating_by_provider`, `provider_comment`, `enabled`) VALUES (1, '9000.0', 1, 1, NULL, NULL, 0, NULL, NULL, NULL, NULL, 1);
+INSERT INTO `bid` (`id`, `amount`, `user_provider_id`, `post_id`, `bid_date`, `provider_note`, `accepted`, `rating_by_user`, `user_comment`, `rating_by_provider`, `provider_comment`, `enabled`) VALUES (1, 9000.0, 1, 1, NULL, NULL, 0, NULL, NULL, NULL, NULL, 1);
 
 COMMIT;
 
