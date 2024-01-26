@@ -8,6 +8,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Appointment {
@@ -21,15 +23,31 @@ public class Appointment {
 	@Column(name = "appointment_date")
 	private Date appointmentDate;
 
-//	@ManyToOne
-//  @JoinColumn(name = "provider_id")
-//	private Provider provider;
+	@ManyToOne
+	@JoinColumn(name = "provider_id")
+	private Provider provider;
 
-//	@ManyToOne
-//  @JoinColumn(name = "job_post_id")
-//  private JobPost jobPost;
+	@ManyToOne
+	@JoinColumn(name = "job_post_id")
+	private JobPost jobPost;
+
+	public JobPost getJobPost() {
+		return jobPost;
+	}
+
+	public void setJobPost(JobPost jobPost) {
+		this.jobPost = jobPost;
+	}
 
 	public Appointment() {
+	}
+
+	public Provider getProvider() {
+		return provider;
+	}
+	
+	public void setProvider(Provider provider) {
+		this.provider = provider;
 	}
 
 	public int getId() {

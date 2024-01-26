@@ -12,6 +12,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
 @Entity
@@ -51,12 +53,19 @@ public class User {
 	@UpdateTimestamp
 	@Column(name = "update_date")
 	private LocalDateTime updateDate;
-	
-	@OneToMany(mappedBy="user")
+
+	@OneToMany(mappedBy = "user")
 	private List<BidComment> bidComments;
-	
-	
-	
+
+	@ManyToOne
+	@JoinColumn(name = "address_id")
+	private Address address;
+
+	@OneToMany(mappedBy = "user")
+	private List<Provider> provider;
+
+	@OneToMany(mappedBy = "user")
+	private List<JobPost> jobPosts;
 
 	public User() {
 		super();
@@ -172,6 +181,38 @@ public class User {
 
 	public void setRole(String role) {
 		this.role = role;
+	}
+
+	public Address getAdress() {
+		return address;
+	}
+
+	public void setAdress(Address address) {
+		this.address = address;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	public List<Provider> getProvider() {
+		return provider;
+	}
+
+	public void setProvider(List<Provider> provider) {
+		this.provider = provider;
+	}
+
+	public List<JobPost> getJobPosts() {
+		return jobPosts;
+	}
+
+	public void setJobPosts(List<JobPost> jobPosts) {
+		this.jobPosts = jobPosts;
 	}
 
 	@Override

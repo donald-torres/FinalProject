@@ -2,6 +2,7 @@ package com.skilldistillery.quickfix.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -49,6 +50,18 @@ class AppointmentTest {
 	void test() {
 		assertNotNull(appointment);
 		assertEquals("kitchen estimate", appointment.getDescription());
+	}
+	
+	@Test
+	void MTO_Providers() {
+		assertNotNull(appointment);
+		assertEquals("Gills Handy Service",appointment.getProvider().getCompany());
+	}
+	
+	@Test
+	void MTO_JobPost() {
+		assertNotNull(appointment);
+		assertEquals("Kitchen Remodel",appointment.getJobPost().getTitle());
 	}
 
 }

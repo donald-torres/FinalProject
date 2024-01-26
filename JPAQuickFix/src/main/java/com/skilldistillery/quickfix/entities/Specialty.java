@@ -1,12 +1,19 @@
 package com.skilldistillery.quickfix.entities;
 
+import java.util.List;
 import java.util.Objects;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Specialty {
@@ -20,6 +27,18 @@ public class Specialty {
 
 	@Column(name = "image_url")
 	private String imageUrl;
+
+	@JsonIgnore
+	@ManyToMany(mappedBy = "specialties")
+	private List<JobPost> jobPosts;
+
+	@ManyToMany
+	@JoinTable(name = "provider_has_focus", joinColumns = @JoinColumn(name = "focus_id"), inverseJoinColumns = @JoinColumn(name = "provider_id"))
+	private List<Provider> providers;
+	
+	@ManyToOne
+	@JoinColumn(name = "trade_id")
+	private Trade trade;
 
 	public Specialty() {
 		super();
@@ -55,6 +74,30 @@ public class Specialty {
 
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
+	}
+
+	public List<JobPost> getJobPosts() {
+		return jobPosts;
+	}
+
+	public void setJobPosts(List<JobPost> jobPosts) {
+		this.jobPosts = jobPosts;
+	}
+
+	public List<Provider> getProviders() {
+		return providers;
+	}
+
+	public void setProviders(List<Provider> providers) {
+		this.providers = providers;
+	}
+
+	public Trade getTrade() {
+		return trade;
+	}
+
+	public void setTrade(Trade trade) {
+		trade = trade;
 	}
 
 	@Override

@@ -56,7 +56,7 @@ public class JobPost {
 
 	@ManyToOne
 	@JoinColumn(name = "user_id")
-	private User User;
+	private User user;
 
 	@Column(name = "budget_max")
 	private Double budgetMax;
@@ -68,20 +68,20 @@ public class JobPost {
 	@JoinTable(name = "job_post_has_project_area", joinColumns = @JoinColumn(name = "job_post_id"), inverseJoinColumns = @JoinColumn(name = "project_area_id"))
 	private List<ProjectArea> projectAreas;
 
-//	@OneToMany(mappedBy="jobPost")
-//	private List<Appointment> appointments;
-	
-//	@ManyToMany
-//	@JoinTable(name = "job_post_has_trade", joinColumns = @JoinColumn(name = "job_post_id"), inverseJoinColumns = @JoinColumn(name = "trade_id"))
-//	private List<Trade> trades;
+	@OneToMany(mappedBy = "jobPost")
+	private List<Appointment> appointments;
 
-//	@ManyToMany
-//	@JoinTable(name = "focus_has_job_post", joinColumns = @JoinColumn(name = "job_post_id"), inverseJoinColumns = @JoinColumn(name = "focus_id"))
-//	private List<Specialty> specialties;
-	
-	@OneToMany(mappedBy="jobPost")
+	@ManyToMany
+	@JoinTable(name = "job_post_has_trade", joinColumns = @JoinColumn(name = "job_post_id"), inverseJoinColumns = @JoinColumn(name = "trade_id"))
+	private List<Trade> trades;
+
+	@ManyToMany
+	@JoinTable(name = "focus_has_job_post", joinColumns = @JoinColumn(name = "job_post_id"), inverseJoinColumns = @JoinColumn(name = "focus_id"))
+	private List<Specialty> specialties;
+
+	@OneToMany(mappedBy = "jobPost")
 	private List<Bid> bids;
-	
+
 	public JobPost() {
 		super();
 	}
@@ -175,11 +175,11 @@ public class JobPost {
 	}
 
 	public User getUser() {
-		return User;
+		return user;
 	}
 
 	public void setUser(User user) {
-		User = user;
+		user = user;
 	}
 
 	public Double getBudgetMax() {
@@ -214,6 +214,30 @@ public class JobPost {
 		this.bids = bids;
 	}
 
+	public List<Appointment> getAppointments() {
+		return appointments;
+	}
+
+	public void setAppointments(List<Appointment> appointments) {
+		this.appointments = appointments;
+	}
+
+	public List<Trade> getTrades() {
+		return trades;
+	}
+
+	public void setTrades(List<Trade> trades) {
+		this.trades = trades;
+	}
+
+	public List<Specialty> getSpecialties() {
+		return specialties;
+	}
+
+	public void setSpecialties(List<Specialty> specialties) {
+		this.specialties = specialties;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -236,7 +260,7 @@ public class JobPost {
 		return "JobPost [id=" + id + ", title=" + title + ", description=" + description + ", createDate=" + createDate
 				+ ", updateDate=" + updateDate + ", complete=" + complete + ", enabled=" + enabled + ", startDate="
 				+ startDate + ", specialInstructions=" + specialInstructions + ", materialsProvided="
-				+ materialsProvided + ", imageUrl=" + imageUrl + ", User=" + User + ", budgetMax=" + budgetMax
+				+ materialsProvided + ", imageUrl=" + imageUrl + ", User=" + user + ", budgetMax=" + budgetMax
 				+ ", bidBy=" + bidBy + ", projectAreas=" + projectAreas + ", bids=" + bids + "]";
 	}
 

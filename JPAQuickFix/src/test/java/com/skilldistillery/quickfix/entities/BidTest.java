@@ -2,6 +2,7 @@ package com.skilldistillery.quickfix.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -15,9 +16,9 @@ import jakarta.persistence.Persistence;
 
 class BidTest {
 	private static EntityManagerFactory emf;
-	
+
 	private EntityManager em;
-	
+
 	private Bid bid;
 
 	@BeforeAll
@@ -28,21 +29,21 @@ class BidTest {
 	@AfterAll
 	static void tearDownAfterClass() throws Exception {
 		emf.close();
-		
+
 	}
 
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
 		bid = em.find(Bid.class, 1);
-		
+
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
 		bid = null;
-		
+
 	}
 
 	@Test
@@ -50,10 +51,23 @@ class BidTest {
 		assertNotNull(bid);
 		assertEquals(9000.0, bid.getAmount());
 	}
-		@Test
-		void many_to_one_mapping_for_job_post() {
-			assertNotNull(bid);
-			assertEquals(1, bid.getJobPost().getId());
+
+	@Test
+	void many_to_one_mapping_for_job_post() {
+		assertNotNull(bid);
+		assertEquals(1, bid.getJobPost().getId());
+	}
+
+	@Test
+	void MTO_Provider() {
+		assertNotNull(bid);
+		assertEquals("Gills Handy Service", bid.getProvider().getCompany());
+	}
+
+	@Test
+	void OTM_BidComment() {
+		assertNotNull(bid);
+		assertTrue(bid.getBidComments().size() > 0);
 	}
 
 }

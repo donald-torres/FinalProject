@@ -50,8 +50,12 @@ class UserTest {
 		assertNotNull(user);
 		assertEquals("admin", user.getUsername());
 		assertEquals("(456)-456-4562",user.getPhone());
-		
-		
+	}
+	
+	@Test
+	void ManyToOne_Address_User() {
+		assertNotNull(user);
+		assertEquals("Denver", user.getAdress().getCity());
 	}
 
 }

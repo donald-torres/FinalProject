@@ -2,6 +2,7 @@ package com.skilldistillery.quickfix.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -49,6 +50,18 @@ class TradeTest {
 	void test() {
 		assertNotNull(trade);
 		assertEquals("General", trade.getName());
+	}
+
+	@Test
+	void MTM_Provider() {
+		assertNotNull(trade);
+		assertTrue(trade.getProviders().size() > 0);
+	}
+	
+	@Test
+	void OTM_Specialties() {
+		assertNotNull(trade);
+		assertTrue(trade.getSpecialties().size() > 0);
 	}
 
 }

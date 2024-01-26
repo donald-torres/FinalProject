@@ -2,6 +2,7 @@ package com.skilldistillery.quickfix.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -49,8 +50,19 @@ class AddressTest {
 	void test() {
 		assertNotNull(address);
 		assertEquals("1428 Elms St", address.getStreet());
-		
-		
+	}
+	
+	@Test
+	void OTM_Users() {
+		assertNotNull(address);
+		assertTrue(address.getUsers().size() > 0);
+	}
+	
+	@Test
+	void OTM_Providers() {
+		address = em.find(Address.class, 2);
+		assertNotNull(address);
+		assertTrue(address.getProviders().size() > 0);
 	}
 
 }

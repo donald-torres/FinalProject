@@ -1,34 +1,39 @@
 package com.skilldistillery.quickfix.entities;
 
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Address {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
-	private String street;
-	
-	private String street2;
-	
-	private String city;
-	
-	private String state;
-	
-	private String zip;
-	
-	//OneToMany User
 
-	//OneToMany Provider
-	
-	public Address() {}
+	private String street;
+
+	private String street2;
+
+	private String city;
+
+	private String state;
+
+	private String zip;
+
+	@OneToMany(mappedBy = "address")
+	private List<User> users;
+
+	@OneToMany(mappedBy = "address")
+	private List<Provider> providers;
+
+	public Address() {
+	}
 
 	public int getId() {
 		return id;
@@ -78,6 +83,22 @@ public class Address {
 		this.zip = zip;
 	}
 
+	public List<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
+
+	public List<Provider> getProviders() {
+		return providers;
+	}
+
+	public void setProviders(List<Provider> providers) {
+		this.providers = providers;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -100,5 +121,5 @@ public class Address {
 		return "Address [id=" + id + ", street=" + street + ", street2=" + street2 + ", city=" + city + ", state="
 				+ state + ", zip=" + zip + "]";
 	}
-	
+
 }

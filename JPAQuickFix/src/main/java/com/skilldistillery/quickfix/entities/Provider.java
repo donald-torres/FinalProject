@@ -1,10 +1,13 @@
 package com.skilldistillery.quickfix.entities;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -12,7 +15,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Provider {
@@ -40,25 +45,40 @@ public class Provider {
 
 	private boolean enabled = true;
 
-//	@ManyToOne
-//	@JoinColumn(name="address_id")
-//	private Address address;
+	@ManyToOne
+	@JoinColumn(name = "address_id")
+	private Address address;
 
-//	@ManyToOne
-//  @JoinColumn(name = "user_id")
-//  private User user;
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User user;
 
 	private String description;
 
 	@Column(name = "logo_url")
 	private String logoUrl;
 
-	// ManyToMany Trade
+	@JsonIgnore
+	@ManyToMany(mappedBy = "providers")
+	private List<Trade> trades;
 
-	// ManyToMany Specialty
+	@JsonIgnore
+	@ManyToMany(mappedBy = "providers")
+	private List<Specialty> specialties;
 
-//	@OneToMany(mappedBy = "provider")
-//  private List<Appointment> appointments;
+	@OneToMany(mappedBy = "provider")
+	private List<Appointment> appointments;
+
+	@OneToMany(mappedBy = "provider")
+	private List<Bid> bids;
+
+	public List<Appointment> getAppointments() {
+		return appointments;
+	}
+
+	public void setAppointments(List<Appointment> appointments) {
+		this.appointments = appointments;
+	}
 
 	public Provider() {
 	}
@@ -141,6 +161,46 @@ public class Provider {
 
 	public void setLogoUrl(String logoUrl) {
 		this.logoUrl = logoUrl;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public List<Bid> getBids() {
+		return bids;
+	}
+
+	public void setBids(List<Bid> bids) {
+		this.bids = bids;
+	}
+
+	public List<Trade> getTrades() {
+		return trades;
+	}
+
+	public void setTrades(List<Trade> trades) {
+		this.trades = trades;
+	}
+
+	public List<Specialty> getSpecialties() {
+		return specialties;
+	}
+
+	public void setSpecialties(List<Specialty> specialties) {
+		this.specialties = specialties;
 	}
 
 	@Override

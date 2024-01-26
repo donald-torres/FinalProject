@@ -22,9 +22,9 @@ public class Bid {
 
 	private double amount;
 
-//	@ManyToOne
-//	@JoinColumn(name="user_provider_id")
-//	private UserProvider userProvider;
+	@ManyToOne
+	@JoinColumn(name="user_provider_id")
+	private Provider provider;
 
 	@ManyToOne
 	@JoinColumn(name = "post_id")
@@ -153,6 +153,14 @@ public class Bid {
 
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
+	}
+
+	public Provider getProvider() {
+		return provider;
+	}
+
+	public void setProvider(Provider provider) {
+		this.provider = provider;
 	}
 
 	@Override

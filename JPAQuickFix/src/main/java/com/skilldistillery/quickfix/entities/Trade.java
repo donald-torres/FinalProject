@@ -1,20 +1,27 @@
 package com.skilldistillery.quickfix.entities;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Trade {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -32,21 +39,16 @@ public class Trade {
 	@Column(name = "image_url")
 	private String imageUrl;
 
-	// ManyToMany JobPost
-//	@ManyToMany
-//	@JoinTable(name = "job_post_has_trade", 
-//			joinColumns = @JoinColumn(name = "trade_id"), 
-//			inverseJoinColumns = @JoinColumn(name = "job_post_id"))
-//	private List<JobPost> jobPosts;
+	@JsonIgnore
+	@ManyToMany(mappedBy = "trades")
+	private List<JobPost> jobPosts;
 
-	// ManyToMany Provider
-//	@ManyToMany
-//	@JoinTable(name = "job_post_has_trade", 
-//			joinColumns = @JoinColumn(name = "trade_id"), 
-//			inverseJoinColumns = @JoinColumn(name = "provider_id"))
-//	private List<Provider> providers;
-	
-	//OneToMany Speciality
+	@ManyToMany
+	@JoinTable(name = "provider_has_trade", joinColumns = @JoinColumn(name = "trade_id"), inverseJoinColumns = @JoinColumn(name = "provider_id"))
+	private List<Provider> providers;
+
+	@OneToMany(mappedBy = "trade")
+	private List<Specialty> specialties;
 
 	public Trade() {
 	}
@@ -89,6 +91,30 @@ public class Trade {
 
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
+	}
+
+	public List<JobPost> getJobPosts() {
+		return jobPosts;
+	}
+
+	public void setJobPosts(List<JobPost> jobPosts) {
+		this.jobPosts = jobPosts;
+	}
+
+	public List<Provider> getProviders() {
+		return providers;
+	}
+
+	public void setProviders(List<Provider> providers) {
+		this.providers = providers;
+	}
+
+	public List<Specialty> getSpecialties() {
+		return specialties;
+	}
+
+	public void setSpecialties(List<Specialty> specialties) {
+		this.specialties = specialties;
 	}
 
 	@Override
