@@ -104,7 +104,7 @@ DROP TABLE IF EXISTS `trade` ;
 CREATE TABLE IF NOT EXISTS `trade` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
-  `create_date` TEXT NULL,
+  `create_date` DATETIME NULL,
   `update_date` DATETIME NULL,
   `image_url` VARCHAR(2000) NULL,
   PRIMARY KEY (`id`))
