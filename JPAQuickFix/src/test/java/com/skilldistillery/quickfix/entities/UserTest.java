@@ -55,7 +55,7 @@ class UserTest {
 	@Test
 	void ManyToOne_Address_User() {
 		assertNotNull(user);
-		assertEquals("Denver", user.getAdress().getCity());
+		assertEquals("Denver", user.getAddress().getCity());
 	}
 
 }

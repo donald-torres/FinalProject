@@ -60,6 +60,7 @@ public class User {
 	@OneToMany(mappedBy = "user")
 	private List<BidComment> bidComments;
 
+
 	@ManyToOne
 	@JoinColumn(name = "address_id")
 	private Address address;
@@ -186,14 +187,6 @@ public class User {
 
 	public void setRole(String role) {
 		this.role = role;
-	}
-
-	public Address getAdress() {
-		return address;
-	}
-
-	public void setAdress(Address address) {
-		this.address = address;
 	}
 
 	public Address getAddress() {

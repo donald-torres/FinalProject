@@ -44,7 +44,8 @@ public class Provider {
 	private LocalDateTime updateDate;
 
 	private boolean enabled = true;
-
+	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "address_id")
 	private Address address;
@@ -58,7 +59,7 @@ public class Provider {
 	@Column(name = "logo_url")
 	private String logoUrl;
 
-	@JsonIgnore
+
 	@ManyToMany(mappedBy = "providers")
 	private List<Trade> trades;
 

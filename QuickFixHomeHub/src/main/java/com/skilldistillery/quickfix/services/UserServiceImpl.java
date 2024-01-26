@@ -11,28 +11,41 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserRepository userRepo;
-	
+
 	@Override
-	public User show(String username) {
-		return userRepo.findByUsername(username);
+	public User show(String username, int id) {
+		return userRepo.findByUsernameAndId(username, id);
 	}
 
 	@Override
 	public User create(String username, User user) {
-		// TODO Auto-generated method stub
-		return null;
+		return userRepo.saveAndFlush(user);
 	}
 
 	@Override
 	public User update(String username, int id, User user) {
-		// TODO Auto-generated method stub
-		return null;
+		User updated = userRepo.findById(id);
+		updated.setFirstName(user.getFirstName());
+		updated.setLastName(user.getLastName());
+		updated.setEmail(user.getEmail());
+		updated.setPhone(user.getPhone());
+		updated.setBiography(user.getBiography());
+		updated.setImageUrl(user.getImageUrl());
+		updated.setAddress(user.getAddress());
+		userRepo.save(updated);
+		return updated;
 	}
 
 	@Override
 	public boolean destroy(String username, int id) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean success = false;
+		User deleted = userRepo.findById(id);
+		if (deleted != null) {
+			deleted.setEnabled(false);
+			userRepo.save(deleted);
+			success = true;
+		}
+		return success;
 	}
 
 }
