@@ -1,1 +1,14 @@
-<p>register works!</p>
+<form >
+  <input class = "form-control" type="text" name="username" placeholder="Username" [(ngModel)]="newUser.username"><br><br>
+  <input class = "form-control" type="password" name="password" placeholder="Password" [(ngModel)]="newUser.password"><br><br>
+  <input class = "form-control" type="text" name="firstName" placeholder="First Name" [(ngModel)]="newUser.firstName"><br><br>
+  <input class = "form-control" type="text" name="lastName" placeholder="Last Name" [(ngModel)]="newUser.lastName"><br><br>
+  <input class = "form-control" type="text" name="email" placeholder="Email" [(ngModel)]="newUser.email"><br><br>
+  <input class = "form-control" type="text" name="phone" placeholder="Phone" [(ngModel)]="newUser.phone"><br><br>
+  <input class = "form-control" type="text" name="street" placeholder="Street" [(ngModel)]="newUser.address.street"><br><br>
+  <input class = "form-control" type="text" name="street2" placeholder="Street2" [(ngModel)]="newUser.address.street2"><br><br>
+  <input class = "form-control" type="text" name="city" placeholder="City" [(ngModel)]="newUser.address.city"><br><br>
+  <input class = "form-control" type="text" name="state" placeholder="State" [(ngModel)]="newUser.address.state"><br><br>
+  <input class = "form-control" type="text" name="zip" placeholder="Zip" [(ngModel)]="newUser.address.zip"><br><br>
+  <button (click)="register(newUser)" class=" btn btn-primary " name="submit" type="submit">Sign In</button>
+</form>
