@@ -15,11 +15,11 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
         <a class="nav-link disabled" [routerLink]="['/about']">About</a>
-        <a class="nav-link" [routerLink]="['/login']">Login</a>
-        <a class="nav-link" [routerLink]="['/logout']">logout</a>
-        <!-- <a  class="nav-link"><app-logout></app-logout></a> -->
+        <a class="nav-link" *ngIf="!loggedIn()" [routerLink]="['/login']">Login</a>
+        <!-- <a class="nav-link" [routerLink]="['/logout']">logout</a> -->
+        <app-logout *ngIf="loggedIn()"></app-logout>
 
-        <a class="nav-link" [routerLink]="['/register']">Register</a>
+        <a class="nav-link" *ngIf="!loggedIn()" [routerLink]="['/register']">Register</a>
       </div>
     </div>
   </div>
