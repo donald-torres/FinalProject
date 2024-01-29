@@ -1,1 +1,9 @@
-/* You can add global styles to this file, and also import other style files */
+#indexBlockquote {
+  background-color: #d7d5d5; /* Highlighted background color */
+}
+#middlePart {
+  background-color: #d7d5d5;
+}
+#firstImage {
+  background-color: #d7d5d5;
+}
