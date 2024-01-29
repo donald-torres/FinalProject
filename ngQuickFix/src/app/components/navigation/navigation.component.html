@@ -64,10 +64,13 @@
       <div class="navbar-nav">
 
 
+
         <!-- Move Services About Contact to side nav -->
         <!-- <a class="nav-link" [routerLink]="['/search']">Services</a> -->
         <a class="nav-link" [routerLink]="['/about']">About</a>
         <a class="nav-link" [routerLink]="['/contact']">Contact</a>
+        <a class="nav-link" *ngIf="loggedIn()" [routerLink]="['/dashboard']">Dashboard</a>
+
         <a class="nav-link" *ngIf="!loggedIn()" [routerLink]="['/login']">Login</a>
         <a class="nav-link" *ngIf="!loggedIn()" [routerLink]="['/register']">Sign Up</a>
 

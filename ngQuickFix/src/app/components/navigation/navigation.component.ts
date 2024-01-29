@@ -8,6 +8,8 @@ import { LogoutComponent } from '../logout/logout.component';
 import { RegisterComponent } from '../register/register.component';
 import { AuthService } from '../../services/auth.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { DashboardComponent } from '../dashboard/dashboard.component';
+
 
 @Component({
   selector: 'app-navigation',
@@ -20,7 +22,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     CommonModule,
     FormsModule,
     RouterLink,
-    NgbModule
+    NgbModule,
+    DashboardComponent,
   ],
   templateUrl: './navigation.component.html',
   styleUrl: './navigation.component.css',

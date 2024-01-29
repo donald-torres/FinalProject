@@ -7,6 +7,7 @@ import { AboutComponent } from './components/about/about.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { SearchComponent } from './components/search/search.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 
   export const routes: Routes = [
@@ -18,7 +19,8 @@ import { SearchComponent } from './components/search/search.component';
     { path: 'login', component: LoginComponent },
     { path: 'logout', component: LogoutComponent },
     { path: 'search', component: SearchComponent },
-    { path: '**', component: NotFoundComponent }
+    { path: '**', component: NotFoundComponent },
+    { path: 'dashboard', component: DashboardComponent },
   ];
 
 
