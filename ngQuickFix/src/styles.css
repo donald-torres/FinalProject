@@ -1,1 +1,43 @@
-/* You can add global styles to this file, and also import other style files */
+.navbar {
+  background-color: #E6E0DA;
+}
+
+.navbar-nav {
+ align-items: flex-end;
+}
+
+.nav-link {
+  color: #2C251E;
+  transition: all 0.2s;
+}
+
+.nav-link:hover {
+  color: #2C251E;
+ text-decoration: underline;
+}
+
+.btn-search {
+  color: #2C251E;
+  border-color: #2C251E;
+}
+
+.btn-search:hover {
+  color: #2C251E;
+  background-color: #C4BCB4;
+}
+
+.btn-logout {
+  border-color: #2C251E;
+  color: #2C251E;
+}
+
+.btn-logout:hover {
+  color: #2C251E;
+  background-color: #C4BCB4;
+}
+
+.navbar-brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: xx-large;
+}
+
