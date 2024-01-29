@@ -1,3 +1,4 @@
+import { Provider } from './provider';
 import { User } from './user';
 
 export class Address {
@@ -8,6 +9,7 @@ export class Address {
   state: string;
   zip: string;
   users: User[];
+  providers: Provider[];
 
   constructor(
     id: number = 0,
@@ -16,7 +18,8 @@ export class Address {
     city: string = '',
     state: string = '',
     zip: string = '',
-    users: User[] = []
+    users: User[] = [],
+    providers: Provider[] = []
   ) {
     this.id = id;
     this.street = street;
@@ -25,6 +28,7 @@ export class Address {
     this.state = state;
     this.zip = zip;
     this.users = users;
+    this.providers = providers;
   }
 
 
