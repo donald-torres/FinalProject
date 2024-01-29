@@ -3,6 +3,7 @@ import { IndexComponent } from './components/index/index.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 
   export const routes: Routes = [
@@ -12,6 +13,7 @@ import { LogoutComponent } from './components/logout/logout.component';
     // { path: 'contact', component: ContactComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'login', component: LoginComponent },
+    { path: 'dashboard', component: DashboardComponent },
     { path: 'logout', component: LogoutComponent }
     // { path: '**', component: NotFoundComponent }
   ];
