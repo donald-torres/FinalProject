@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { JobPost } from '../../models/job-post';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,6 +10,15 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit{
+  jobPosts: JobPost[] = [];
+
+  getPostCount(): number {
+    return this.jobPosts.length;
+  }
+
+  ngOnInit(): void {
+    throw new Error('Method not implemented.');
+  }
 
 }
