@@ -1,4 +1,7 @@
 import { Address } from "./address";
+import { BidComment } from "./bid-comment";
+import { JobPost } from "./job-post";
+import { Provider } from "./provider";
 
 export class User {
   id: number;
@@ -10,10 +13,14 @@ export class User {
   lastName: string;
   email: string;
   phone: string;
+  biography: string;
   imageUrl: string;
   createDate: string;
   updateDate: string;
+  bidComments: BidComment[];
   address: Address;
+  provider: Provider[];
+  jobPosts: JobPost[];
 
   constructor(
     id: number = 0,
@@ -25,10 +32,15 @@ export class User {
     lastName: string = '',
     email: string = '',
     phone: string = '',
+    biography: string = '',
     imageUrl: string = '',
     createDate: string = '',
     updateDate: string = '',
-    address: Address = new Address()
+    bidComments: Array<BidComment> = new Array(),
+    address: Address = new Address(),
+    provider: Array<Provider> = new Array(),
+    jobPosts: Array<JobPost> = new Array()
+
   ) {
     this.id = id;
     this.username = username;
@@ -39,10 +51,14 @@ export class User {
     this.lastName = lastName;
     this.email = email;
     this.phone = phone;
+    this.biography = biography;
     this.imageUrl = imageUrl;
     this.createDate = createDate;
     this.updateDate = updateDate;
+    this.bidComments = bidComments;
     this.address = address;
+    this.provider = provider;
+    this.jobPosts = jobPosts;
   }
 
 

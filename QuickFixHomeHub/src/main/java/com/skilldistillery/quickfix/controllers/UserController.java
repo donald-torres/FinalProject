@@ -41,7 +41,7 @@ public class UserController {
 	}
 
 	@PutMapping(path = "users/{id}")
-	public User show(@PathVariable("id") Integer id, @RequestBody User user, HttpServletResponse res,
+	public User update(@PathVariable("id") Integer id, @RequestBody User user, HttpServletResponse res,
 			HttpServletRequest req, Principal principal) {
 		User updateUser = null;
 		try {

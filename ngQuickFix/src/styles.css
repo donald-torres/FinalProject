@@ -1,9 +1,44 @@
-#indexBlockquote {
-  background-color: #d7d5d5; /* Highlighted background color */
+
+.navbar {
+  background-color: #E6E0DA;
 }
-#middlePart {
-  background-color: #d7d5d5;
+
+.navbar-nav {
+ align-items: flex-end;
 }
-#firstImage {
-  background-color: #d7d5d5;
+
+.nav-link {
+  color: #2C251E;
+  transition: all 0.2s;
 }
+
+.nav-link:hover {
+  color: #2C251E;
+ text-decoration: underline;
+}
+
+.btn-search {
+  color: #2C251E;
+  border-color: #2C251E;
+}
+
+.btn-search:hover {
+  color: #2C251E;
+  background-color: #C4BCB4;
+}
+
+.btn-logout {
+  border-color: #2C251E;
+  color: #2C251E;
+}
+
+.btn-logout:hover {
+  color: #2C251E;
+  background-color: #C4BCB4;
+}
+
+.navbar-brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: xx-large;
+}
+
