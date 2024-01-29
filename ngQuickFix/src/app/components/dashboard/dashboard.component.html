@@ -9,7 +9,7 @@
 
                 <div class="col-lg-4 card mb-3 gx-5">
                     <img class="bd-placeholder-img rounded-circle mx-auto my-auto" width="140" height="140"
-                        src="https://img.freepik.com/free-photo/vertical-shot-wooden-passage-reflective-small-lake-mountain-range-horizon_181624-37099.jpg?w=826&t=st=1702602022~exp=1702602622~hmac=d4f363079c3e740b18c54476ea434020fe5ce016d9b95ba02b3ca1245b51f41d"
+                        src={{user.imageUrl}}
                         role="img" aria-label="Placeholder">
                 </div>
                 <div class="col-lg-8 card mb-3">
@@ -87,11 +87,17 @@
 
 
     </div>
-
-    <!---->
     <div class="row">
         <div class="col-lg-7 card mb-3">
             <h1>Active Posts<span class="badge bg-warning">{{getPostCount()}}</span></h1>
+            <div class="card" *ngFor="let post of jobPosts">
+                <div class="card-body">
+                    <h6><u>{{post.title}}</u></h6>
+                    <hr>
+                    <p>{{post.description}}</p>
+                </div>
+            </div>
+
         </div>
         <div class="col-lg-5 card mb-3" style="height: 20rem">
             <p>Reviews </p>

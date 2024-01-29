@@ -7,6 +7,7 @@ import { User } from "./user";
 
 export class JobPost {
     id: number;
+    title: string;
     description: string;
     createDate: string;
     updateDate: string;
@@ -26,6 +27,7 @@ export class JobPost {
 
     constructor(
         id: number = 0,
+        title: string = '',
         description: string = '',
         createDate: string = '',
         updateDate: string ='', 
@@ -44,6 +46,7 @@ export class JobPost {
         bids: Array<Bid> = new Array()
     ){
         this.id = id;
+        this.title = title;
         this.description = description;
         this.createDate = createDate;
         this.updateDate = updateDate;
