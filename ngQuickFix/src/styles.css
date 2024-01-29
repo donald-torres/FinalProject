@@ -1,3 +1,21 @@
+.navbar {
+  background-color: #E6E0DA;
+}
+
+.navbar-nav {
+ align-items: flex-end;
+}
+
+.nav-link {
+  color: #2C251E;
+  transition: all 0.2s;
+}
+
+.nav-link:hover {
+  color: #2C251E;
+ text-decoration: underline;
+}
+
 .btn-search {
   color: #2C251E;
   border-color: #2C251E;
@@ -17,3 +35,9 @@
   color: #2C251E;
   background-color: #C4BCB4;
 }
+
+.navbar-brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: xx-large;
+}
+

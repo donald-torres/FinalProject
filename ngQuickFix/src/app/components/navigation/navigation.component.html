@@ -1,4 +1,4 @@
-<nav class="navbar navbar-light bg-light">
+<nav class="navbar">
   <div class="container-fluid">
     <a class="navbar-brand" [routerLink]="['/index']">
       <img src="assets/50x50 logo quickfix homehub.png" width="60" height="60" class="d-inline-block align-center" alt="Logo">
@@ -11,9 +11,39 @@
       <button class="btn btn-search" type="submit">Submit</button>
     </form>
 
-    <a class="nav-link" *ngIf="loggedIn()" [routerLink]="['/posts']">Posts</a>
+    <!-- <a class="nav-link" *ngIf="loggedIn()" [routerLink]="['/posts']">Posts</a>
     <a class="nav-link" *ngIf="loggedIn()" [routerLink]="['/jobs']">Jobs</a>
-    <a class="nav-link" *ngIf="loggedIn()" [routerLink]="['/profile']">Profile</a>
+    <a class="nav-link" *ngIf="loggedIn()" [routerLink]="['/profile']">Profile</a> -->
+
+    <ul class="nav justify-content-end">
+      <li class="nav-nav">
+        <a class="nav-link" *ngIf="!loggedIn()" [routerLink]="['/login']">Login</a>
+      </li>
+      <li class="nav-nav">
+        <a class="nav-link" *ngIf="!loggedIn()" [routerLink]="['/register']">Sign Up</a>
+      </li>
+    </ul>
+
+    <ul class="nav justify-content-end">
+      <li class="nav-nav">
+        <a class="nav-link" *ngIf="loggedIn()" [routerLink]="['/profile']">Profile</a>
+      </li>
+      <li class="nav-nav">
+        <a class="nav-link" *ngIf="loggedIn()" [routerLink]="['/posts']">Posts</a>
+      </li>
+      <li class="nav-nav">
+        <a class="nav-link" *ngIf="loggedIn()" [routerLink]="['/jobs']">Jobs</a>
+      </li>
+    </ul>
+
+
+
+
+
+
+
+
+
 
     <button
       class="navbar-toggler"
@@ -42,7 +72,7 @@
         <a class="nav-link" *ngIf="!loggedIn()" [routerLink]="['/register']">Sign Up</a>
 
         <!-- if user "posts" / if provider "jobs" -->
-        <a class="nav-link disabled" *ngIf="loggedIn()" [routerLink]="['/posts']">Posts</a>
+        <a class="nav-link disabled mx-" *ngIf="loggedIn()" [routerLink]="['/posts']">Posts</a>
         <a class="nav-link disabled" *ngIf="loggedIn()" [routerLink]="['/jobs']">Jobs</a>
         <a class="nav-link disabled" *ngIf="loggedIn()" [routerLink]="['/profile']">Profile</a>
 
