@@ -12,26 +12,27 @@
     <div class="col-md-4">
       <div class="text-center">
         <h5>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
+          Daily dose of inspiration !
         </h5>
         <p class="lead text-muted">
-          Let's find the right person for your project
+          {{ getRandomQuote() }}
         </p>
       </div>
       <div class="row">
         <div id="indexBlockquote" class="card">
           <div class="card-body">
-            <h5 class="card-title">Card title</h5>
+            <h5 class="card-title">Lets get started !</h5>
             <h6 class="card-subtitle mb-2 text-body-secondary">
-              Card subtitle
+
             </h6>
             <p class="card-text">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
+              Every service provider has been verified by our community and is guaranteed to treat your home like their own.
             </p>
-            <a href="#" class="card-link">Card link</a>
-            <a href="#" class="card-link">Another link</a>
+            <a *ngIf="!loggedIn()" [routerLink]="['/login']" class="card-link">Find A Service Provider </a>
+            <a *ngIf="loggedIn()" [routerLink]="['/search']" class="card-link">Find A Service Provider </a>
+
+            <a *ngIf="!loggedIn()" [routerLink]="['/login']" class="card-link">Post a Project</a>
+            <a *ngIf="loggedIn()" [routerLink]="['/dashboard']" class="card-link">Post a Project</a>
           </div>
         </div>
       </div>
