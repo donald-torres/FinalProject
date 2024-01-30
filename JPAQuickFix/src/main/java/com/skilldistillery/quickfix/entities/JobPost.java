@@ -183,7 +183,7 @@ public class JobPost {
 	}
 
 	public void setUser(User user) {
-		user = user;
+		this.user = user;
 	}
 
 	public Double getBudgetMax() {

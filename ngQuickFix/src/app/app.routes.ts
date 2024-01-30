@@ -19,8 +19,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     { path: 'login', component: LoginComponent },
     { path: 'logout', component: LogoutComponent },
     { path: 'search', component: SearchComponent },
-    { path: '**', component: NotFoundComponent },
     { path: 'dashboard', component: DashboardComponent },
+    { path: '**', component: NotFoundComponent },
   ];
 
 

@@ -18,6 +18,7 @@ export class JobPost {
     materialsProvided: boolean;
     imageUrl: string;
     user: User;
+    budgetMax: number;
     bidBy: string;
     projectAreas: ProjectArea[];
     appointments: Appointment[];
@@ -38,6 +39,7 @@ export class JobPost {
         materialsProvided: boolean = false,
         imageUrl: string = '',
         user: User = new User(),
+        budgetMax: number = 0,
         bidBy: string = '',
         projectAreas: Array<ProjectArea> = new Array(),
         appointments: Array<Appointment> = new Array(),
@@ -57,6 +59,7 @@ export class JobPost {
         this.materialsProvided = materialsProvided;
         this.imageUrl = imageUrl;
         this.user = user;
+        this.budgetMax = budgetMax;
         this.bidBy = bidBy;
         this.projectAreas = projectAreas;
         this.appointments = appointments;
