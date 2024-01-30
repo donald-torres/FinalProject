@@ -48,6 +48,7 @@ public class JobPostController {
 	public JobPost create(HttpServletRequest req, HttpServletResponse res, @RequestBody JobPost jobPost, Principal principal) {
 		JobPost newJobPost;
 		try {
+			System.out.println("********************************************** " + jobPost);
 			newJobPost = jobPostService.create(principal.getName(), jobPost);
 			res.setStatus(201);
 			res.setHeader("Location", "http://localhost:8090/api/jobPosts/" + newJobPost.getId());

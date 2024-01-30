@@ -24,8 +24,8 @@ export class UserService {
   }
 
   
-  show(): Observable<User> {
-    return this.http.get<User>(this.url, this.getHttpOptions()).pipe(
+  show(id: number): Observable<User> {
+    return this.http.get<User>(this.url +'/'+ id, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError(

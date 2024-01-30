@@ -38,5 +38,14 @@ export class JobPostService {
         })
         );
       }
-
+      create(newPost: JobPost): Observable<JobPost> {
+        return this.http.post<JobPost>(this.url, newPost, this.getHttpOptions()).pipe(
+          catchError((err: any) => {
+            console.log(err);
+            return throwError(
+              () => new Error('JobPostService.create(): error creating Post: ' + err)
+            );
+          })
+        );
+      }
 }

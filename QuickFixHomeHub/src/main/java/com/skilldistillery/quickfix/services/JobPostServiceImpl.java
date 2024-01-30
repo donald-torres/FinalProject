@@ -33,7 +33,8 @@ public class JobPostServiceImpl implements JobPostService {
 		User user = userRepo.findByUsername(username);
 		if (user != null) {
 			jobPost.setUser(user);
-			return jpRepo.saveAndFlush(jobPost);
+			JobPost jp = jpRepo.saveAndFlush(jobPost);
+			return jp;
 		}
 		return null;
 	}
