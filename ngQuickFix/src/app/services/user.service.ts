@@ -29,7 +29,7 @@ export class UserService {
       catchError((err: any) => {
         console.log(err);
         return throwError(
-          () => new Error('TodoService.index(): error retrieving Todo: ' + err)
+          () => new Error('UserService.show(): error retrieving User: ' + err)
           );
         })
         );

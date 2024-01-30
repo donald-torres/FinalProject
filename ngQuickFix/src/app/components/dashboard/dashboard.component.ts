@@ -25,8 +25,21 @@ export class DashboardComponent implements OnInit{
 
   ngOnInit(): void {
    this.reload();
+   this.currentUser();
   }
-
+  currentUser(){
+    this.userService.show().subscribe(
+      {
+        next: (data) => {
+          this.user = data;
+        },
+        error: (problem) => {
+          console.error('UserComponent.reload(): error reloading user:');
+          console.error(problem);
+        }
+      }
+    );
+  }
 
   reload(){
     this.jobPostService.index().subscribe(
