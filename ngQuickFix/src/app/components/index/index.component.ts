@@ -45,5 +45,16 @@ export class IndexComponent implements OnInit {
   getRandomQuote(): string {
     return this.quotes[Math.floor(Math.random() * this.quotes.length)];
   }
+  images: string[] = [
+    "assets/randomarray1.webp",
+    "assets/randomarray2.jpeg",
+    "assets/randomarray3.webp",
+    "assets/randomarray4.webp",
+    // Add more image paths as needed
+  ];
+
+  getRandomImage(): string {
+    return this.images[Math.floor(Math.random() * this.images.length)];
+  }
 
 }

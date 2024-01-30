@@ -1,57 +1,68 @@
-
 .navbar {
-  background-color: #E6E0DA;
+  background-color: #e6e0da;
 }
 
 .navbar-nav {
- align-items: flex-end;
+  align-items: flex-end;
 }
 
 .nav-link {
-  color: #2C251E;
+  color: #2c251e;
   transition: all 0.2s;
 }
 
 .nav-link:hover {
-  color: #2C251E;
- text-decoration: underline;
+  color: #2c251e;
+  text-decoration: underline;
 }
 
 .btn-search {
-  color: #2C251E;
-  border-color: #2C251E;
+  color: #2c251e;
+  border-color: #2c251e;
 }
 
 .btn-search:hover {
-  color: #2C251E;
-  background-color: #C4BCB4;
+  color: #2c251e;
+  background-color: #c4bcb4;
 }
 
 .btn-logout {
-  border-color: #2C251E;
-  color: #2C251E;
+  border-color: #2c251e;
+  color: #2c251e;
 }
 
 .btn-logout:hover {
-  color: #2C251E;
-  background-color: #C4BCB4;
+  color: #2c251e;
+  background-color: #c4bcb4;
 }
 
 .navbar-brand {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: "Cormorant Garamond", serif;
   font-size: xx-large;
 }
-#middleBand{
-  background-color:#d7d7d7;
+#middleBand {
+  background-color: #d7d7d7;
   padding: 1%;
+  border: none;
 }
-#firstImage{
+#firstImage {
   background-color: #d7d7d7;
   padding: 2%;
 }
-#indexBlockquote{
+#indexBlockquote {
   background-color: #d7d7d7;
   border-color: #d7d7d7;
-
 }
-
+#firstImage {
+  width: auto;
+  height: auto;
+}
+#achortext {
+  color: inherit; /* Inherits the color from the parent element */
+  text-decoration: none; /* Removes the underline */
+}
+#achortext:hover {
+  /* Optional: Style for hover state if needed */
+  color: dimgray;
+  text-decoration: none;
+}

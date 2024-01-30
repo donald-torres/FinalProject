@@ -1,19 +1,18 @@
-<br>
+<br />
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-8">
       <img
         id="firstImage"
-        src="https://www.warnerroofinginc.com/wp-content/uploads/Dollarphotoclub_95604724.jpg"
+        [src]="getRandomImage()"
         class="img-fluid"
+        style="width: 100%"
         alt="Image 1"
       />
     </div>
     <div class="col-md-4">
       <div class="text-center">
-        <h5>
-          Daily dose of inspiration !
-        </h5>
+        <h5>Daily dose of inspiration !</h5>
         <p class="lead text-muted">
           {{ getRandomQuote() }}
         </p>
@@ -22,17 +21,40 @@
         <div id="indexBlockquote" class="card">
           <div class="card-body">
             <h5 class="card-title">Lets get started !</h5>
-            <h6 class="card-subtitle mb-2 text-body-secondary">
-
-            </h6>
+            <h6 class="card-subtitle mb-2 text-body-secondary"></h6>
             <p class="card-text">
-              Every service provider has been verified by our community and is guaranteed to treat your home like their own.
+              Every service provider has been verified by our community and is
+              guaranteed to treat your home like their own.
             </p>
-            <a *ngIf="!loggedIn()" [routerLink]="['/login']" class="card-link">Find A Service Provider </a>
-            <a *ngIf="loggedIn()" [routerLink]="['/search']" class="card-link">Find A Service Provider </a>
+            <a
+              id="achortext"
+              *ngIf="!loggedIn()"
+              [routerLink]="['/login']"
+              class="card-link"
+              >Find A Service Provider
+            </a>
+            <a
+              id="achortext"
+              *ngIf="loggedIn()"
+              [routerLink]="['/search']"
+              class="card-link"
+              >Find a Service
+            </a>
 
-            <a *ngIf="!loggedIn()" [routerLink]="['/login']" class="card-link">Post a Project</a>
-            <a *ngIf="loggedIn()" [routerLink]="['/dashboard']" class="card-link">Post a Project</a>
+            <a
+              id="achortext"
+              *ngIf="!loggedIn()"
+              [routerLink]="['/login']"
+              class="card-link"
+              >Post a Project</a
+            >
+            <a
+              id="achortext"
+              *ngIf="loggedIn()"
+              [routerLink]="['/dashboard']"
+              class="card-link"
+              >Post a Project</a
+            >
           </div>
         </div>
       </div>
@@ -74,7 +96,7 @@
         alt="Painted Wall"
       />
     </div>
-    <a href="www.google">see All</a>
+    <a id="achortext" href="www.google.com">See All</a>
   </div>
 
   <br />
