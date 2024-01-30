@@ -1,3 +1,4 @@
+
 .navbar {
   background-color: #E6E0DA;
 }
@@ -39,5 +40,18 @@
 .navbar-brand {
   font-family: 'Cormorant Garamond', serif;
   font-size: xx-large;
+}
+#middleBand{
+  background-color:#d7d7d7;
+  padding: 1%;
+}
+#firstImage{
+  background-color: #d7d7d7;
+  padding: 2%;
+}
+#indexBlockquote{
+  background-color: #d7d7d7;
+  border-color: #d7d7d7;
+
 }
 
