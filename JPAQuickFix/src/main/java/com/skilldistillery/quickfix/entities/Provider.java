@@ -59,7 +59,7 @@ public class Provider {
 	@Column(name = "logo_url")
 	private String logoUrl;
 
-
+	@JsonIgnore
 	@ManyToMany(mappedBy = "providers")
 	private List<Trade> trades;
 
