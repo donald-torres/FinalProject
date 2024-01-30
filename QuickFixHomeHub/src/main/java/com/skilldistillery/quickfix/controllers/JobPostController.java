@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.skilldistillery.quickfix.entities.Bid;
 import com.skilldistillery.quickfix.entities.JobPost;
+import com.skilldistillery.quickfix.services.BidService;
 import com.skilldistillery.quickfix.services.JobPostService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -25,6 +27,8 @@ public class JobPostController {
 
 	@Autowired
 	private JobPostService jobPostService;
+	
+	
 
 	@GetMapping(path = { "jobPosts", "jobPosts/" })
 	public List<JobPost> index(HttpServletRequest req, HttpServletResponse res, Principal principal) {
@@ -43,6 +47,8 @@ public class JobPostController {
 		}
 		return jobPost;
 	}
+	
+	
 
 	@PostMapping(path = "jobPosts")
 	public JobPost create(HttpServletRequest req, HttpServletResponse res, @RequestBody JobPost jobPost, Principal principal) {
