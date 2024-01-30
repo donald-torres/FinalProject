@@ -27,16 +27,16 @@
                     <p>Project Pictures</p>
                     <a href="#">See all</a>
 
-                    <div class="col mx-auto">
+                    <div class="col mx-auto" *ngFor="let post of jobPosts">
 
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxLUoRP-EsorqQXwYkilua-i9jixhTOJG7y0UBSiLfOfum15LfWx-XJAuwNgX_6qYZDlY&usqp=CAU"
-                            class="img-thumbnail me-3" style="max-width: 150px;" alt="Cinque Terre">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxLUoRP-EsorqQXwYkilua-i9jixhTOJG7y0UBSiLfOfum15LfWx-XJAuwNgX_6qYZDlY&usqp=CAU"
-                            class="img-thumbnail me-3" style="max-width: 150px;" alt="Cinque Terre">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxLUoRP-EsorqQXwYkilua-i9jixhTOJG7y0UBSiLfOfum15LfWx-XJAuwNgX_6qYZDlY&usqp=CAU"
-                            class="img-thumbnail me-3" style="max-width: 150px;" alt="Cinque Terre">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxLUoRP-EsorqQXwYkilua-i9jixhTOJG7y0UBSiLfOfum15LfWx-XJAuwNgX_6qYZDlY&usqp=CAU"
-                            class="img-thumbnail me-3" style="max-width: 150px;" alt="Cinque Terre">
+                        <img src={{jobPosts[0].imageUrl}}
+                            class="img-thumbnail me-3" style="max-width: 150px;" alt="https://www.svgrepo.com/show/340721/no-image.svg">
+                        <img src={{jobPosts[1].imageUrl}}
+                            class="img-thumbnail me-3" style="max-width: 150px;" alt="https://www.svgrepo.com/show/340721/no-image.svg">
+                        <img src={{jobPosts[2].imageUrl}}
+                            class="img-thumbnail me-3" style="max-width: 150px;" alt="https://www.svgrepo.com/show/340721/no-image.svg">
+                        <img src={{jobPosts[3].imageUrl}}
+                            class="img-thumbnail me-3" style="max-width: 150px;" alt="https://www.svgrepo.com/show/340721/no-image.svg">
                     </div>
 
                 </div>
@@ -104,4 +104,3 @@
             <p>Reviews </p>
         </div>
     </div>
-</div>
