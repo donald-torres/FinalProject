@@ -1,1 +1,105 @@
-<p>search works!</p>
+<div class="search-container">
+  <div class="column column-30">
+    <!-- Content for the first column (30% width) -->
+    <h4>Sort By</h4>
+    <select [(ngModel)]="selectedSortOption" (ngModelChange)="sortResults()">
+      <option value="company">Company</option>
+      <option value="rate">Rate</option>
+      <option value="username">Username</option>
+    </select>
+    <h4>Budget</h4>
+    <input type="number" [(ngModel)]="minBudget" placeholder="Min Budget">
+    <input type="number" [(ngModel)]="maxBudget" placeholder="Max Budget">
+    <button (click)="applyBudgetFilter()">Apply</button>
+    <!-- Placeholder Filter Group 1 -->
+    <div class="filter-group">
+      <h4>Project Location</h4>
+      <div *ngFor="let i of [1, 2, 3, 4, 5]">
+        <label>
+          <input type="checkbox" name="filter1-{{ i }}" />
+          Option {{ i }}
+        </label>
+      </div>
+    </div>
+    <!-- Placeholder Filter Group 2 -->
+    <div class="filter-group">
+      <h4>Job Type</h4>
+      <div *ngFor="let i of [1, 2, 3, 4, 5]">
+        <label>
+          <input type="checkbox" name="filter2-{{ i }}" />
+          Option {{ i }}
+        </label>
+      </div>
+    </div>
+    <!-- Placeholder Filter Group 2 -->
+    <div class="filter-group">
+      <h4>Focus Areas</h4>
+      <div *ngFor="let i of [1, 2, 3, 4, 5]">
+        <label>
+          <input type="checkbox" name="filter2-{{ i }}" />
+          Option {{ i }}
+        </label>
+      </div>
+    </div>
+    <!-- Placeholder Filter Group 2 -->
+    <div class="filter-group">
+      <h4>Materials Provided</h4>
+      <label>
+        <input type="radio" name="materialsProvided" value="true" [(ngModel)]="materialsProvidedFilter" (ngModelChange)="applyMaterialsProvidedFilter()">
+        Yes
+      </label>
+      <label>
+        <input type="radio" name="materialsProvided" value="false" [(ngModel)]="materialsProvidedFilter" (ngModelChange)="applyMaterialsProvidedFilter()">
+        No
+      </label>
+      <label>
+        <input type="radio" name="materialsProvided" value="all" [(ngModel)]="materialsProvidedFilter" (ngModelChange)="applyMaterialsProvidedFilter()" checked>
+        All
+      </label>
+    </div>
+  </div>
+
+  <div class="column column-70">
+    <div *ngIf="searchResults && searchResults.length > 0">
+      <div *ngFor="let item of searchResults" class="result-item">
+        <!-- Display properties of the item based on the searchType -->
+        <div *ngIf="searchType === 'providers'">
+          <h3>{{ item.company }}</h3>
+          <p>Description: {{ item.description }}</p>
+          <p>Trade:  </p>
+          <div *ngIf="item.trades && item.trades.length > 0">
+            <h4>Trades:</h4>
+            <ul>
+              <li *ngFor="let trade of item.trades">{{ trade.name }}</li>
+            </ul>
+          </div>
+          <p>Phone: {{ item.phone }}</p>
+          <p>Email: {{ item.email }}</p>
+          <p>Bid Ratings:</p>
+          <p>Hourly Rate: {{ item.ratePerHour | currency }}</p>
+        </div>
+        <div *ngIf="searchType === 'jobposts'">
+          <h3>{{ item.title }}</h3>
+          <p>Posted By: {{ item.user.firstName }} {{ item.user.lastName }}</p>
+          <p>Projected Budget: ${{ item.budgetMax }}</p>
+          <p>Description: {{ item.description }}</p>
+          <p>Focus Area: </p>
+          <p>Phone: {{ item.user.phone }}</p>
+          <p>Email: {{ item.user.email }}</p>
+          <p>Materials Provided: {{ item.materialsProvided }}</p>
+        </div>
+        <div *ngIf="searchType === 'users'">
+          <!-- *ngIf div for user data -->
+          <h3>{{ item.firstName }} {{ item.lastName }}</h3>
+          <p>Username: {{ item.username }}</p>
+          <p>Description: {{ item.biography }}</p>
+          <p>Phone: {{ item.phone }}</p>
+          <p>Email: {{ item.email }}</p>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="searchResults && searchResults.length === 0" class="no-results">
+      <p>No results found.</p>
+    </div>
+  </div>
+</div>

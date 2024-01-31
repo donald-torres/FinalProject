@@ -10,6 +10,7 @@ import com.skilldistillery.quickfix.entities.ProjectArea;
 import com.skilldistillery.quickfix.entities.Specialty;
 import com.skilldistillery.quickfix.entities.Trade;
 import com.skilldistillery.quickfix.entities.User;
+import com.skilldistillery.quickfix.repositories.BidRepository;
 import com.skilldistillery.quickfix.repositories.JobPostRepository;
 import com.skilldistillery.quickfix.repositories.ProjectAreaRepository;
 import com.skilldistillery.quickfix.repositories.SpecialtyRepository;
@@ -23,6 +24,8 @@ public class JobPostServiceImpl implements JobPostService {
 	private JobPostRepository jpRepo;
 	@Autowired
 	private UserRepository userRepo;
+	@Autowired
+	private BidRepository bidRepo;
 	@Autowired
 	private TradeRepository tradeRepo;
 	@Autowired
@@ -56,6 +59,10 @@ public class JobPostServiceImpl implements JobPostService {
 	@Override
 	public JobPost show(String username, int id) {
 		return jpRepo.findByUser_UsernameAndId(username, id);
+	}
+	@Override
+	public JobPost showOne(String username) {
+		return jpRepo.searchByUser_Username(username);
 	}
 
 	@Override

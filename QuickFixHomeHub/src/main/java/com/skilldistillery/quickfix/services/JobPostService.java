@@ -18,6 +18,8 @@ public interface JobPostService {
 	public JobPost create(String username, JobPost jobPost);
 
 	public JobPost update(String username, int id, JobPost jobPost);
+	    
+    public JobPost showOne(String username);
 
 	public boolean destroy(String username, int id, JobPost jobPost);
 

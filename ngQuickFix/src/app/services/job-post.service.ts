@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
 import { Observable, catchError, throwError } from 'rxjs';
-import { environment } from '../../environments/environment.development';
+import { environment } from '../../environments/environment';
 import { JobPost } from '../models/job-post';
 import { Trade } from '../models/trade';
 import { ProjectArea } from '../models/project-area';
@@ -30,7 +30,7 @@ export class JobPostService {
     return options;
   }
 
-  
+
   index(): Observable<JobPost[]> {
     return this.http.get<JobPost[]>(this.url, this.getHttpOptions()).pipe(
       catchError((err: any) => {

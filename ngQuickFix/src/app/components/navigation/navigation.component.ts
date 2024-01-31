@@ -9,6 +9,7 @@ import { RegisterComponent } from '../register/register.component';
 import { AuthService } from '../../services/auth.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DashboardComponent } from '../dashboard/dashboard.component';
+import { SearchService } from '../../services/search.service';
 
 
 @Component({
@@ -34,6 +35,9 @@ export class NavigationComponent implements OnInit {
 
   public isCollapsed: boolean = false;
 
+  searchQuery: string = '';
+  searchType: 'providers' | 'users' | 'jobposts' = 'providers';
+
   constructor(
     private authService: AuthService,
     private router: Router
@@ -44,6 +48,14 @@ export class NavigationComponent implements OnInit {
   loggedIn(){
     this.account = this.authService.checkLogin();
    return this.account;
+  }
+
+  // Method to perform the search
+  performSearch(): void {
+    console.log('Search Query:', this.searchQuery, 'Search Type:', this.searchType);
+    if (this.searchQuery) {
+      this.router.navigate(['/search'], { queryParams: { query: this.searchQuery, type: this.searchType } });
+    }
   }
 
 }

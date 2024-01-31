@@ -11,6 +11,10 @@ public interface JobPostRepository extends JpaRepository<JobPost, Integer> {
 	List<JobPost> findByUser_Username(String username);
 	
 	JobPost findByUser_UsernameAndId(String username,int id);
+	
+	JobPost searchById(int id);
+	
+	JobPost searchByUser_Username(String username);
 
 	List<JobPost> findByTitleContainingIgnoreCase(String title);
 	
