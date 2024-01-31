@@ -33,6 +33,7 @@ export class SearchComponent implements OnInit {
   unfilteredResults?: any[];
   materialsProvidedFilter: string = 'all';
   projectAreas: ProjectArea[] = [];
+  trades: Trade [] = [];
   account: boolean = false;
 
 
@@ -89,7 +90,6 @@ export class SearchComponent implements OnInit {
           break;
       }
     }
-    this.searchType = '';
   }
 
   sortResults(): void {
