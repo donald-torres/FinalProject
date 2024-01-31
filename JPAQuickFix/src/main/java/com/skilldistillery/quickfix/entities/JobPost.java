@@ -229,6 +229,7 @@ public class JobPost {
 
 		}
 	}
+
 	public void addSpecialty(Specialty specialty) {
 		if (specialties == null) {
 			specialties = new ArrayList<>();
@@ -237,16 +238,17 @@ public class JobPost {
 			specialties.add(specialty);
 			specialty.addJobPost(this);
 		}
-		
+
 	}
-	
+
 	public void removeSpecialty(Specialty specialty) {
 		if (specialties != null && specialties.contains(specialty)) {
 			specialties.remove(specialty);
 			specialty.removeJobPost(this);
-			
+
 		}
 	}
+
 	public void addTrade(Trade trade) {
 		if (trades == null) {
 			trades = new ArrayList<>();
@@ -255,20 +257,21 @@ public class JobPost {
 			trades.add(trade);
 			trade.addJobPost(this);
 		}
-		
+
 	}
-	
+
 	public void removeTrade(Trade trade) {
 		if (trades != null && trades.contains(trade)) {
 			trades.remove(trade);
 			trade.removeJobPost(this);
-			
+
 		}
 	}
+
 	public void addBid(Bid bid) {
 		if (bids == null) {
 			bids = new ArrayList<>();
-		
+
 		}
 		if (!bids.contains(bid)) {
 			bids.add(bid);
@@ -285,10 +288,11 @@ public class JobPost {
 			bid.setJobPost(null);
 		}
 	}
+
 	public void addAppointment(Appointment appointment) {
 		if (appointments == null) {
 			appointments = new ArrayList<>();
-			
+
 		}
 		if (!appointments.contains(appointment)) {
 			appointments.add(appointment);
@@ -296,9 +300,9 @@ public class JobPost {
 				appointment.getJobPost().removeAppointment(appointment);
 			}
 		}
-		
+
 	}
-	
+
 	public void removeAppointment(Appointment appointment) {
 		if (appointments != null && appointments.contains(appointment)) {
 			appointments.remove(appointment);
