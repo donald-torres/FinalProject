@@ -24,14 +24,14 @@ public class ProviderServiceImpl implements ProviderService {
 	@Override
 	public Provider update(String username, int id, Provider provider) {
 		Provider updated = proRepo.findById(id);
-//		updated.setFirstName(user.getFirstName());
-//		updated.setLastName(user.getLastName());
-//		updated.setEmail(user.getEmail());
-//		updated.setPhone(user.getPhone());
-//		updated.setBiography(user.getBiography());
-//		updated.setImageUrl(user.getImageUrl());
-//		updated.setAddress(user.getAddress());
-//		userRepo.save(updated);
+		updated.setCompany(provider.getCompany());;
+		updated.setEmail(provider.getEmail());
+		updated.setPhone(provider.getPhone());
+		updated.setRatePerHour(provider.getRatePerHour());
+		updated.setDescription(provider.getDescription());
+		updated.setLogoUrl(provider.getLogoUrl());
+		updated.setAddress(provider.getAddress());
+		proRepo.save(updated);
 		return updated;
 	}
 
