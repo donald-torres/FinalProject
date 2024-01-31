@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { environment } from '../../environments/environment.development';
+import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from './auth.service';
 import { Observable, catchError, throwError } from 'rxjs';
@@ -23,7 +23,7 @@ export class UserService {
     return options;
   }
 
-  
+
   show(id: number): Observable<User> {
     return this.http.get<User>(this.url +'/'+ id, this.getHttpOptions()).pipe(
       catchError((err: any) => {

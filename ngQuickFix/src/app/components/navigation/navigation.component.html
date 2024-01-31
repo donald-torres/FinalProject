@@ -6,8 +6,16 @@
     </a>
 
     <!-- Centered Search Bar -->
-    <form class="d-flex mx-auto" style="width: 500px;" >
-      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+    <form class="d-flex mx-auto" style="width: 500px;" (ngSubmit)="performSearch()">
+      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" [(ngModel)]="searchQuery" name="searchQuery">
+
+      <!-- Dropdown for selecting search type -->
+      <select [(ngModel)]="searchType" name="searchType" class="form-control me-2">
+        <option value="providers">Providers</option>
+        <option value="users">Users</option>
+        <option value="jobposts">Job Posts</option>
+      </select>
+
       <button class="btn btn-search" type="submit">Submit</button>
     </form>
 
