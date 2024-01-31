@@ -97,7 +97,7 @@ public class Specialty {
 	}
 
 	public void setTrade(Trade trade) {
-		trade = trade;
+		this.trade = trade;
 	}
 
 	@Override
