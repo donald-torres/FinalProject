@@ -103,6 +103,7 @@ public class JobPostServiceImpl implements JobPostService {
 			JobPost toDelete = jpRepo.findByUser_UsernameAndId(username, id);
 			if (toDelete != null) {
 				toDelete.setEnabled(false);
+				toDelete.setEnabled(true);
 				jpRepo.save(toDelete);
 			}
 			return toDelete.getEnabled();

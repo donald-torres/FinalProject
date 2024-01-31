@@ -118,10 +118,11 @@ public class Trade {
 	public void setSpecialties(List<Specialty> specialties) {
 		this.specialties = specialties;
 	}
+
 	public void addSpecialties(Specialty specialty) {
 		if (specialties == null) {
 			specialties = new ArrayList<>();
-		
+
 		}
 		if (!specialties.contains(specialty)) {
 			specialties.add(specialty);
@@ -138,6 +139,7 @@ public class Trade {
 			specialty.setTrade(null);
 		}
 	}
+
 	public void addProvider(Provider provider) {
 		if (providers == null) {
 			providers = new ArrayList<>();
@@ -145,14 +147,16 @@ public class Trade {
 		if (!providers.contains(provider)) {
 			providers.add(provider);
 			provider.addTrade(this);
-		}	}
-	
+		}
+	}
+
 	public void removeProvider(Provider provider) {
 		if (providers != null && providers.contains(provider)) {
 			providers.remove(provider);
 			provider.removeTrade(this);
 		}
 	}
+
 	public void addJobPost(JobPost jobPost) {
 		if (jobPosts == null) {
 			jobPosts = new ArrayList<>();
@@ -160,7 +164,8 @@ public class Trade {
 		if (!jobPosts.contains(jobPost)) {
 			jobPosts.add(jobPost);
 			jobPost.addTrade(this);
-		}	}
+		}
+	}
 
 	public void removeJobPost(JobPost jobPost) {
 		if (jobPosts != null && jobPosts.contains(jobPost)) {
@@ -168,7 +173,6 @@ public class Trade {
 			jobPost.removeTrade(this);
 		}
 	}
-	
 
 	@Override
 	public int hashCode() {

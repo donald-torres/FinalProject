@@ -36,7 +36,7 @@ public class Specialty {
 	@ManyToMany
 	@JoinTable(name = "provider_has_focus", joinColumns = @JoinColumn(name = "focus_id"), inverseJoinColumns = @JoinColumn(name = "provider_id"))
 	private List<Provider> providers;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "trade_id")
 	private Trade trade;
@@ -100,6 +100,7 @@ public class Specialty {
 	public void setTrade(Trade trade) {
 		this.trade = trade;
 	}
+
 	public void addJobPost(JobPost jobPost) {
 		if (jobPosts == null) {
 			jobPosts = new ArrayList<>();
@@ -107,7 +108,8 @@ public class Specialty {
 		if (!jobPosts.contains(jobPost)) {
 			jobPosts.add(jobPost);
 			jobPost.addSpecialty(this);
-		}	}
+		}
+	}
 
 	public void removeJobPost(JobPost jobPost) {
 		if (jobPosts != null && jobPosts.contains(jobPost)) {
@@ -115,6 +117,7 @@ public class Specialty {
 			jobPost.removeSpecialty(this);
 		}
 	}
+
 	public void addProvider(Provider provider) {
 		if (providers == null) {
 			providers = new ArrayList<>();
@@ -122,15 +125,16 @@ public class Specialty {
 		if (!providers.contains(provider)) {
 			providers.add(provider);
 			provider.addSpecialty(this);
-		}	}
-	
+		}
+	}
+
 	public void removeProvider(Provider provider) {
 		if (providers != null && providers.contains(provider)) {
 			providers.remove(provider);
 			provider.removeSpecialty(this);
 		}
+
 	}
-	
 
 	@Override
 	public int hashCode() {

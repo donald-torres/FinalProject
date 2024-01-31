@@ -106,10 +106,28 @@ export class SinglePostComponent implements OnInit {
     return this.editPost.projectAreas.some(area => {return area.id === areaId;}) ;
   }
 
-  toggleArea(event: any, areaId: number){
+  toggleArea(event: any, tradeId: number){
     // TODO event.target.checked
     console.log(event);
-    console.log(areaId);
+    console.log(tradeId);
+  }
+  postHasTrade(tradeId: number) {
+    return this.editPost.trades.some(trade => {return trade.id === tradeId;}) ;
+  }
+
+  toggleTrade(event: any, tradeId: number){
+    // TODO event.target.checked
+    console.log(event);
+    console.log(tradeId);
+  }
+  postHasSpecailty(specId: number) {
+    return this.editPost.specialties.some(spec => {return spec.id === specId;}) ;
+  }
+
+  toggleSpecialty(event: any, specId: number){
+    // TODO event.target.checked
+    console.log(event);
+    console.log(specId);
   }
 
   reload() {
