@@ -2,6 +2,7 @@ package com.skilldistillery.quickfix.entities;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -69,7 +70,7 @@ public class JobPost {
 	@ManyToMany
 	@JoinTable(name = "job_post_has_project_area", joinColumns = @JoinColumn(name = "job_post_id"), inverseJoinColumns = @JoinColumn(name = "project_area_id"))
 	private List<ProjectArea> projectAreas;
-	
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "jobPost")
 	private List<Appointment> appointments;
@@ -208,6 +209,105 @@ public class JobPost {
 
 	public void setProjectAreas(List<ProjectArea> projectAreas) {
 		this.projectAreas = projectAreas;
+	}
+
+	public void addProjectArea(ProjectArea projectArea) {
+		if (projectAreas == null) {
+			projectAreas = new ArrayList<>();
+		}
+		if (!projectAreas.contains(projectArea)) {
+			projectAreas.add(projectArea);
+			projectArea.addJobPost(this);
+		}
+
+	}
+
+	public void removeProjectArea(ProjectArea projectArea) {
+		if (projectAreas != null && projectAreas.contains(projectArea)) {
+			projectAreas.remove(projectArea);
+			projectArea.removeJobPost(this);
+
+		}
+	}
+
+	public void addSpecialty(Specialty specialty) {
+		if (specialties == null) {
+			specialties = new ArrayList<>();
+		}
+		if (!specialties.contains(specialty)) {
+			specialties.add(specialty);
+			specialty.addJobPost(this);
+		}
+
+	}
+
+	public void removeSpecialty(Specialty specialty) {
+		if (specialties != null && specialties.contains(specialty)) {
+			specialties.remove(specialty);
+			specialty.removeJobPost(this);
+
+		}
+	}
+
+	public void addTrade(Trade trade) {
+		if (trades == null) {
+			trades = new ArrayList<>();
+		}
+		if (!trades.contains(trade)) {
+			trades.add(trade);
+			trade.addJobPost(this);
+		}
+
+	}
+
+	public void removeTrade(Trade trade) {
+		if (trades != null && trades.contains(trade)) {
+			trades.remove(trade);
+			trade.removeJobPost(this);
+
+		}
+	}
+
+	public void addBid(Bid bid) {
+		if (bids == null) {
+			bids = new ArrayList<>();
+
+		}
+		if (!bids.contains(bid)) {
+			bids.add(bid);
+			if (bid.getJobPost() != null) {
+				bid.getJobPost().removeBid(bid);
+			}
+		}
+
+	}
+
+	public void removeBid(Bid bid) {
+		if (bids != null && bids.contains(bid)) {
+			bids.remove(bid);
+			bid.setJobPost(null);
+		}
+	}
+
+	public void addAppointment(Appointment appointment) {
+		if (appointments == null) {
+			appointments = new ArrayList<>();
+
+		}
+		if (!appointments.contains(appointment)) {
+			appointments.add(appointment);
+			if (appointment.getJobPost() != null) {
+				appointment.getJobPost().removeAppointment(appointment);
+			}
+		}
+
+	}
+
+	public void removeAppointment(Appointment appointment) {
+		if (appointments != null && appointments.contains(appointment)) {
+			appointments.remove(appointment);
+			appointment.setJobPost(null);
+		}
 	}
 
 	public List<Bid> getBids() {

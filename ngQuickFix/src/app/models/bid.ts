@@ -4,6 +4,7 @@ import { Provider } from "./provider";
 export class Bid {
 
     id: number;
+    amount: number;
     provider: Provider;
     jobPost: JobPost;
     bidDate: string;
@@ -17,6 +18,7 @@ export class Bid {
 
     constructor(
         id: number = 0,
+        amount: number = 0,
         provider: Provider = new Provider(),
         jobPost: JobPost = new JobPost(),
         bidDate: string = '',
@@ -29,6 +31,7 @@ export class Bid {
         enabled: boolean = true
     ){
         this.id = id;
+        this.amount = amount;
         this.provider = provider;
         this.jobPost = jobPost;
         this.bidDate = bidDate;
