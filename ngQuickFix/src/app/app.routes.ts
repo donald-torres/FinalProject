@@ -8,6 +8,7 @@ import { ContactComponent } from './components/contact/contact.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { SearchComponent } from './components/search/search.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { SinglePostComponent } from './components/single-post/single-post.component';
 
 
   export const routes: Routes = [
@@ -20,6 +21,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     { path: 'logout', component: LogoutComponent },
     { path: 'search', component: SearchComponent },
     { path: 'dashboard', component: DashboardComponent },
+    { path: 'singlePost/:postId', component: SinglePostComponent },
     { path: '**', component: NotFoundComponent },
   ];
 
