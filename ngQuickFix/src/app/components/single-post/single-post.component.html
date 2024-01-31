@@ -1,0 +1,89 @@
+<div class="card" *ngIf="editPost">
+    <h3>{{editPost.title}}</h3>
+    <div class="card-body">
+        <h6>{{editPost.description}}</h6>
+        <li>{{editPost.enabled}}</li>
+        <li>{{editPost.complete}}</li>
+    </div>
+</div>
+<div class="container-fluid" *ngIf="editPost">
+    <form>
+        <label>Title: </label>
+        <input class="form-control" type="text" name="title" placeholder="Title" 
+            [(ngModel)]="editPost!.title"><br><br>
+
+        <label>Description: </label>
+        <textarea class="form-control" type="text" name="description" placeholder="Description"
+            value={{selected?.description}} [(ngModel)]="editPost!.description"></textarea><br><br>
+
+        <label>Start Date: </label>
+        <input class="form-control" type="date" name="startDate" placeholder="Start Date" 
+            [(ngModel)]="editPost!.startDate"><br><br>
+
+        <label>Special Instructions: </label>
+        <textarea class="form-control" type="text" name="specialInstructions" placeholder="Special Instructions"
+            [(ngModel)]="editPost!.specialInstructions"></textarea><br><br>
+
+        <label>Image Url: </label>
+        <input class="form-control" type="text" name="imageUrl" placeholder="Image URL"
+            [(ngModel)]="editPost!.imageUrl"><br><br>
+
+        <label>Max Budget: </label>
+        <input class="form-control" type="number" name="budgetMax" placeholder="Max Budget"
+          [(ngModel)]="editPost!.budgetMax"><br><br>
+
+        <label>Bid By: </label>
+        <input class="form-control" type="datetime-local" name="bidBy" placeholder="Bid By" 
+            [(ngModel)]="editPost!.bidBy"><br><br>
+        <div class="container">
+            <div class="card"
+                style="display: grid; grid-template-columns: repeat(5,1fr); max-width: 100%; align-items: stretch;">
+                <label>Project Areas:</label>
+                <div *ngFor="let area of projectAreas">
+                    <div class="card-body">
+                        <label>{{area.name}}</label>
+                        <input type="checkbox" name="name" placeholder="Project Area Name"
+                            [(ngModel)]="area.id"><br><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="card"
+                style="display: grid; grid-template-columns: repeat(5,1fr); max-width: 100%; align-items: stretch;">
+                <label>Trades:</label>
+                <div *ngFor="let trade of trades" class="checkbox">
+                    <div class="card-body">
+                        <label>{{trade.name}}</label>
+                        <input type="checkbox" name="name" placeholder="Trade Name" [(ngModel)]="trade.id">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="card"
+                style="display: grid; grid-template-columns: repeat(5,1fr); max-width: 100%; align-items: stretch;">
+                <label>Specialties:</label>
+                <div *ngFor="let spec of specialties">
+                    <div class="col">
+                        <label>{{spec.name}} </label>
+                        <input type="checkbox" name="name" placeholder="Specailty Name" [(ngModel)]="spec.id"><br><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <label>Complete: </label>
+        <input type="checkbox" name="complete" [(ngModel)]="editPost!.complete"><br><br>
+
+
+        <input type="button" value="Bid">
+        <input type="button" (click)="updatePost(editPost)" value="Edit">
+        <input type="button" (click)="deletePost(editPost.id)" value="Delete">
+
+    </form>
+</div>
+
+<div class="container-fluid">
+
+</div>

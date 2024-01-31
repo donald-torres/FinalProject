@@ -17,5 +17,10 @@ public interface JobPostRepository extends JpaRepository<JobPost, Integer> {
 	JobPost searchByUser_Username(String username);
 
 	List<JobPost> findByTitleContainingIgnoreCase(String title);
+	
+	List<JobPost> findByUser_UsernameAndCompleteFalse(String username);
+
+	boolean existsByEnabledAndId(JobPost jobPost, int id);
+	
 
 }

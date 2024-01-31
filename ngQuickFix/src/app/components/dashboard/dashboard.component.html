@@ -2,21 +2,64 @@
     <div class="row">
         <div class="col-7">
             <div class="row">
-               
-                <div class="col-lg-12 card mb-3" style="height: 5rem">
-                    <p>Banner</p>
+
+                <div class="col-lg-12 card mb-3 " style="min-height: 5rem">
+                    <h1 class="mx-auto my-auto">{{loggedInUser.biography}}</h1>
+                    <h3 class="mx-auto my-auto" style="color: red;" *ngIf="editUser">--------Edit your account
+                        here-------</h3>
+                    <div class="container-fluid" *ngIf="editUser">
+                        <form>
+                            <label>First Name: </label>
+                            <input class="form-control" type="text" name="firstName" placeholder="First Name"
+                                [(ngModel)]="editUser.firstName"><br><br>
+                            <label>Last Name: </label>
+                            <input class="form-control" type="text" name="lastName" placeholder="Last Name"
+                                [(ngModel)]="editUser.lastName"><br><br>
+                            <label>Biography: </label>
+                            <textarea class="form-control" name="biography" placeholder="Biography"
+                                [(ngModel)]="editUser.biography"></textarea><br><br>
+                            <label>Email: </label>
+                            <input class="form-control" type="text" name="email" placeholder="Email"
+                                [(ngModel)]="editUser.email"><br><br>
+                            <label>Image URL: </label>
+                            <input class="form-control" type="text" name="imageUrl" placeholder="Image URL"
+                                [(ngModel)]="editUser.imageUrl"><br><br>
+                            <label>Phone Number: </label>
+                            <input class="form-control" type="text" name="phone" placeholder="Phone"
+                                [(ngModel)]="editUser.phone"><br><br>
+                            <label>Street: </label>
+                            <input class="form-control" type="text" name="street" placeholder="Street"
+                                [(ngModel)]="editUser.address.street"><br><br>
+                            <label>Street 2: </label>
+                            <input class="form-control" type="text" name="street2" placeholder="Street2"
+                                [(ngModel)]="editUser.address.street2"><br><br>
+                            <label>City: </label>
+                            <input class="form-control" type="text" name="city" placeholder="City"
+                                [(ngModel)]="editUser.address.city"><br><br>
+                            <label>State: </label>
+                            <input class="form-control" type="text" name="state" placeholder="State"
+                                [(ngModel)]="editUser.address.state"><br><br>
+                            <label>Zip Code: </label>
+                            <input class="form-control" type="text" name="zip" placeholder="Zip"
+                                [(ngModel)]="editUser.address.zip"><br><br>
+                            <button (click)="updateUser(editUser)" class=" btn btn-primary " name="submit"
+                                type="submit">Finish Edit</button>
+                            <button (click)="editUser = null" class=" btn btn-danger " name="submit"
+                                type="submit">Cancel</button>
+                        </form>
+
+                    </div>
                 </div>
 
                 <div class="col-lg-4 card mb-3 gx-5">
                     <img class="bd-placeholder-img rounded-circle mx-auto my-auto" width="140" height="140"
-                        src={{loggedInUser.imageUrl}}
-                        role="img" aria-label="Placeholder">
+                        src={{loggedInUser.imageUrl}} role="img" aria-label="Placeholder" (click)="setEditUser()">
                 </div>
                 <div class="col-lg-8 card mb-3">
                     <div class="card-body">
                         <h5 class="card-title"> {{loggedInUser.firstName}} {{loggedInUser.lastName}}</h5>
                         <h6 class="card-subtitle mb-2 text-body-secondary">Rating</h6>
-                        <p class="card-text">{{loggedInUser.biography}}</p>
+                        <p class="card-text">{{loggedInUser.email}}</p>
                         <button class="btn btn-dark col-lg-4 me-5">Message</button>
                         <button class="btn btn-dark col-lg-4">Share</button>
 
@@ -24,19 +67,24 @@
                 </div>
 
                 <div class="col-lg-12 card mb-3" style="height: 15rem; overflow-x: auto;">
-                    <p>Project Pictures</p>
+                    <h2 *ngIf="loggedInUser.role === 'Client'">Post History</h2>
+                <h2 *ngIf="loggedInUser.role === 'Provider'">Job History</h2>
                     <a href="#">See all</a>
 
-                    <div class="col mx-auto" *ngFor="let post of jobPosts">
-
-                        <img src={{jobPosts[0].imageUrl}}
-                            class="img-thumbnail me-3" style="max-width: 150px;" alt="https://www.svgrepo.com/show/340721/no-image.svg">
-                        <img src={{jobPosts[1].imageUrl}}
-                            class="img-thumbnail me-3" style="max-width: 150px;" alt="https://www.svgrepo.com/show/340721/no-image.svg">
-                        <img src={{jobPosts[2].imageUrl}}
-                            class="img-thumbnail me-3" style="max-width: 150px;" alt="https://www.svgrepo.com/show/340721/no-image.svg">
-                        <img src={{jobPosts[3].imageUrl}}
-                            class="img-thumbnail me-3" style="max-width: 150px;" alt="https://www.svgrepo.com/show/340721/no-image.svg">
+                    <div class="col mx-auto">
+                        <div class="container">
+                            <div class="card"
+                                style="display: grid; grid-template-columns: repeat(4,1fr); max-width: 100%; align-items: stretch;">
+                              
+                                <div *ngFor="let post of jobPosts">
+                                    <div *ngIf="post.enabled">
+                                        <img (click)="viewPost(post)" src={{post.imageUrl}} class="img-thumbnail me-3" style="max-width: 150px; max-height: 150px;"
+                                        alt="No Image">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
@@ -49,7 +97,8 @@
             <form>
                 <p>Post A Job</p>
                 <div class="form-floating">
-                    <input type="text" name="name" class="form-control" id="floatingInput" placeholder="title" [(ngModel)]="newPost.title"> <br>
+                    <input type="text" name="name" class="form-control" id="floatingInput" placeholder="title"
+                        [(ngModel)]="newPost.title"> <br>
                     <label for="floatingInput">Title</label>
                 </div>
                 <div class="form-floating">
@@ -58,7 +107,8 @@
                     <label for="floatingInput">Description</label>
                 </div>
                 <div class="form-floating">
-                    <input type="date" name="startDate" class="form-control" id="floatingInput" placeholder="startDate" [(ngModel)]="newPost.startDate">
+                    <input type="date" name="startDate" class="form-control" id="floatingInput" placeholder="startDate"
+                        [(ngModel)]="newPost.startDate">
                     <br>
                     <label for="floatingInput">Start Date</label>
                 </div>
@@ -68,12 +118,14 @@
                     <label for="floatingInput">Special Instructions</label>
                 </div>
                 <div class="form-floating">
-                    <input type="text" name="imageUrl" class="form-control" id="floatingInput" placeholder="imageUrl" [(ngModel)]="newPost.imageUrl">
+                    <input type="text" name="imageUrl" class="form-control" id="floatingInput" placeholder="imageUrl"
+                        [(ngModel)]="newPost.imageUrl">
                     <br>
                     <label for="floatingInput">Job Image</label>
                 </div>
                 <div class="form-floating">
-                    <input type="text" name="budgetMax" class="form-control" id="floatingInput" placeholder="budgetMax" [(ngModel)]="newPost.budgetMax">
+                    <input type="text" name="budgetMax" class="form-control" id="floatingInput" placeholder="budgetMax"
+                        [(ngModel)]="newPost.budgetMax">
                     <br>
                     <label for="floatingInput">Max Budget</label>
                 </div>
@@ -87,15 +139,17 @@
     </div>
     <div class="row">
         <div class="col-lg-7 card mb-3" style="max-height: 20rem; overflow-y: auto;">
-            <h1 *ngIf="loggedInUser.role === 'Client'">Active Posts<span class="badge bg-warning">{{getPostCount()}}</span></h1>
-            <h1 *ngIf="loggedInUser.role === 'Provider'">Active Jobs<span class="badge bg-warning">{{getPostCount()}}</span></h1>
-            <div class="card" *ngFor="let post of jobPosts">
-                <img src={{post.imageUrl}}
-                class="img-thumbnail me-3" style="max-width: 150px;" alt="Cinque Terre">
-                <div class="card-body">
-                    <h6><u>{{post.title}}</u></h6>
-                    <hr>
-                    <p>{{post.description}}</p>
+            <h1 *ngIf="loggedInUser.role === 'Client'">Active Posts</h1>
+            <h1 *ngIf="loggedInUser.role === 'Provider'">Active Jobs</h1>
+            <div class="card"let count = 0 *ngFor="let post of jobPosts">
+                <div *ngIf="post.complete === false">
+                    <img src={{post.imageUrl}} class="img-thumbnail me-3" style="max-width: 150px;" alt="No Image"
+                        (click)="viewPost(post)">
+                    <div class="card-body">
+                        <h6 class="nav-link" (click)="viewPost(post)"><u>{{post.title}}</u></h6>
+                        <hr>
+                        <p>{{post.description}}</p>
+                    </div>
                 </div>
             </div>
 

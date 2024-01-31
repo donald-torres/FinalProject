@@ -6,11 +6,13 @@ import { UserService } from '../../services/user.service';
 import { User } from '../../models/user';
 import { JobPostService } from '../../services/job-post.service';
 import { AuthService } from '../../services/auth.service';
+import { SinglePostComponent } from '../single-post/single-post.component';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, SinglePostComponent, RouterLink],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css',
 })
@@ -18,11 +20,15 @@ export class DashboardComponent implements OnInit {
   jobPosts: JobPost[] = [];
   loggedInUser: User = new User();
   newPost: JobPost = new JobPost();
+  editUser: User | null = null;
+  selected: JobPost | null = null;
 
   constructor(
     private userService: UserService,
     private jobPostService: JobPostService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   getPostCount(): number {
@@ -31,8 +37,6 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.reload();
-  
-
     this.getCurrentUser();
   }
   getCurrentUser() {
@@ -59,6 +63,29 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+  setEditUser(){
+    this.editUser = Object.assign({}, this.loggedInUser);
+  }
+
+  updateUser(editUser : User){
+    this.userService.update(editUser).subscribe({
+      next: (result) => {
+        this.getCurrentUser();
+        this.editUser = null;
+      },
+      error: (problem) => {
+        console.error('DashboardComponent.updateUser(): error updateing User:');
+          console.error(problem);
+      },
+    });
+  }
+
+  viewPost(post: JobPost) {
+    this.router.navigateByUrl('singlePost/' + post.id);
+  }
+
+
+
   reload() {
     this.jobPostService.index().subscribe({
       next: (data) => {
@@ -70,4 +97,10 @@ export class DashboardComponent implements OnInit {
       },
     });
   }
+
+
+
+
+
+  
 }
