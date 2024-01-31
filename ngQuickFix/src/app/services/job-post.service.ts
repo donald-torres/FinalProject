@@ -7,6 +7,7 @@ import { JobPost } from '../models/job-post';
 import { Trade } from '../models/trade';
 import { ProjectArea } from '../models/project-area';
 import { Specialty } from '../models/specialty';
+import { Bid } from '../models/bid';
 
 @Injectable({
   providedIn: 'root'
@@ -75,6 +76,16 @@ export class JobPostService {
       }
   indexSpecs(): Observable<Specialty[]> {
     return this.http.get<Specialty[]>(environment.baseUrl +'api/specialties', this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () => new Error('JobPostService.indexSpecs(): error retrieving Specialties: ' + err)
+          );
+        })
+        );
+      }
+  indexBids(postId: number): Observable<Bid[]> {
+    return this.http.get<Bid[]>(this.url +'/'+ postId + '/bids', this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError(

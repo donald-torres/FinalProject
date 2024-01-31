@@ -6,18 +6,18 @@
         <li>{{editPost.complete}}</li>
     </div>
 </div>
+
 <div class="container-fluid" *ngIf="editPost">
     <form>
         <label>Title: </label>
-        <input class="form-control" type="text" name="title" placeholder="Title" 
-            [(ngModel)]="editPost!.title"><br><br>
+        <input class="form-control" type="text" name="title" placeholder="Title" [(ngModel)]="editPost!.title"><br><br>
 
         <label>Description: </label>
         <textarea class="form-control" type="text" name="description" placeholder="Description"
             value={{selected?.description}} [(ngModel)]="editPost!.description"></textarea><br><br>
 
         <label>Start Date: </label>
-        <input class="form-control" type="date" name="startDate" placeholder="Start Date" 
+        <input class="form-control" type="date" name="startDate" placeholder="Start Date"
             [(ngModel)]="editPost!.startDate"><br><br>
 
         <label>Special Instructions: </label>
@@ -30,10 +30,10 @@
 
         <label>Max Budget: </label>
         <input class="form-control" type="number" name="budgetMax" placeholder="Max Budget"
-          [(ngModel)]="editPost!.budgetMax"><br><br>
+            [(ngModel)]="editPost!.budgetMax"><br><br>
 
         <label>Bid By: </label>
-        <input class="form-control" type="datetime-local" name="bidBy" placeholder="Bid By" 
+        <input class="form-control" type="datetime-local" name="bidBy" placeholder="Bid By"
             [(ngModel)]="editPost!.bidBy"><br><br>
         <div class="container">
             <div class="card"
@@ -77,13 +77,25 @@
         <input type="checkbox" name="complete" [(ngModel)]="editPost!.complete"><br><br>
 
 
-        <input type="button" value="Bid">
-        <input type="button" (click)="updatePost(editPost)" value="Edit">
-        <input type="button" (click)="deletePost(editPost.id)" value="Delete">
+        <input type="button" class="btn btn-outline-success" (click)="updatePost(editPost)" value="Edit">
+        <input type="button" class="btn btn-outline-danger" (click)="deletePost(editPost.id)" value="Delete">
+        <button type="button" class="btn btn-outline-warning" (click)="collapse.toggle()"
+            [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+            Bids
+        </button>
+        <div style="min-height: 100px">
+            <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed" [horizontal]="true" style="max-width: 300px">
+                <div class="container-fluid" *ngFor="let bid of bids">
+                    <div class="card" style="width: 300px;">
+                        <p>Bid: ${{bid.amount}}</p>
+                        <div class="card-body">
+                            <li>Bid Date: {{bid.bidDate | date: 'shortDate'}}</li>
+                            <li>Bid By: {{bid.provider.company}}</li>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </form>
-</div>
-
-<div class="container-fluid">
-
 </div>

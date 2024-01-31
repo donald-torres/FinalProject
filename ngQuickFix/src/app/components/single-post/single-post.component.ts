@@ -7,11 +7,13 @@ import { ProjectArea } from '../../models/project-area';
 import { Trade } from '../../models/trade';
 import { Specialty } from '../../models/specialty';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { Bid } from '../../models/bid';
+import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-single-post',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, NgbCollapseModule],
   templateUrl: './single-post.component.html',
   styleUrl: './single-post.component.css',
 })
@@ -21,6 +23,8 @@ export class SinglePostComponent implements OnInit {
   trades: Trade[] = [];
   projectAreas: ProjectArea[] = [];
   specialties: Specialty[] = [];
+  bids: Bid[] = [];
+  isCollapsed = true;
 
   constructor(
     private jobPostService: JobPostService,
@@ -51,6 +55,7 @@ export class SinglePostComponent implements OnInit {
     this.jobPostService.show(postId).subscribe({
       next: (result) => {
         this.editPost = result;
+        this.getBids(postId);
       },
       error: (problem) => {
         console.error('SinglePostComponent.getPost(): error retreiving Post:');
@@ -79,6 +84,19 @@ export class SinglePostComponent implements OnInit {
       },
       error: (problem) => {
         console.error('SinglePostComponent.deletePost(): error deleting Post:');
+        console.error(problem);
+      },
+    });
+  }
+  getBids(postId: number){
+    this.jobPostService.indexBids(postId).subscribe({
+      next: (data) => {
+        this.bids = data;
+      },
+      error: (problem) => {
+        console.error(
+          'SinglePostComponent.reload(): error reloading projectAreas:'
+        );
         console.error(problem);
       },
     });
@@ -116,5 +134,6 @@ export class SinglePostComponent implements OnInit {
         console.error(problem);
       },
     });
+    
   }
 }
