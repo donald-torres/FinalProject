@@ -54,6 +54,15 @@ public class ProjectArea {
 		this.jobPosts = jobPosts;
 	}
 
+	public void addJobPost(JobPost jobPost) {
+		// FIXME
+	}
+
+	public void removeJobPost(JobPost jobPost) {
+		// FIXME
+
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);

@@ -14,9 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.skilldistillery.quickfix.entities.Bid;
 import com.skilldistillery.quickfix.entities.JobPost;
-import com.skilldistillery.quickfix.services.BidService;
 import com.skilldistillery.quickfix.services.JobPostService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -93,11 +91,11 @@ public class JobPostController {
 	}
 	
 	@DeleteMapping(path = "jobPosts/{id}")
-	public void destroy(HttpServletRequest req, HttpServletResponse res, @PathVariable("id") int id, @RequestBody JobPost jobPost, Principal principal) {
+	public void destroy(HttpServletRequest req, HttpServletResponse res, @PathVariable("id") int id, Principal principal) {
 		JobPost toDelete = jobPostService.show(principal.getName(), id);
 		try {
 			if (toDelete.getEnabled() == true) {
-					jobPostService.destroy(principal.getName(), id, jobPost);
+					jobPostService.destroy(principal.getName(), id);
 				res.setStatus(204);
 			} else {
 				res.setStatus(404);

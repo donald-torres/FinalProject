@@ -210,6 +210,13 @@ public class JobPost {
 		this.projectAreas = projectAreas;
 	}
 
+	public void addProjectArea(ProjectArea projectArea) {
+		// FIXME
+	}
+	public void removeProjectArea(ProjectArea projectArea) {
+		// FIXME
+	}
+	
 	public List<Bid> getBids() {
 		return bids;
 	}
