@@ -10,5 +10,7 @@
   <input class = "form-control" type="text" name="city" placeholder="City" [(ngModel)]="newUser.address.city"><br><br>
   <input class = "form-control" type="text" name="state" placeholder="State" [(ngModel)]="newUser.address.state"><br><br>
   <input class = "form-control" type="text" name="zip" placeholder="Zip" [(ngModel)]="newUser.address.zip"><br><br>
-  <button (click)="register(newUser)" class=" btn btn-primary " name="submit" type="submit">Sign In</button>
+  <input  type="radio" name="role" placeholder="Phone" value="Client" [(ngModel)]="newUser.role">Client
+  <input  type="radio" name="role" placeholder="Phone" value="Provider" [(ngModel)]="newUser.role">Provider<br><br>
+  <button (click)="register(newUser)" class=" btn btn-primary " name="submit" type="submit">Sign Up</button>
 </form>

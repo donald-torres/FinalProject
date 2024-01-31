@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { JobPost } from '../../models/job-post';
 import { UserService } from '../../services/user.service';
 import { User } from '../../models/user';
+import { Provider } from '../../models/provider';
 import { JobPostService } from '../../services/job-post.service';
 import { AuthService } from '../../services/auth.service';
 import { SinglePostComponent } from '../single-post/single-post.component';
@@ -23,6 +24,7 @@ export class DashboardComponent implements OnInit {
   loggedInUser: User = new User();
   newPost: JobPost = new JobPost();
   editUser: User | null = null;
+  editProvider: Provider | null = null;
   selected: JobPost | null = null;
   bids: Bid[] = []
 
