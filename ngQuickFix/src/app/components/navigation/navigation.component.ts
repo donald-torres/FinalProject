@@ -36,7 +36,7 @@ export class NavigationComponent implements OnInit {
   public isCollapsed: boolean = false;
 
   searchQuery: string = '';
-  searchType: 'providers' | 'users' | 'jobposts' = 'providers';
+  searchType: 'providers' | 'users' | 'jobposts' | '' = '';
 
   constructor(
     private authService: AuthService,
