@@ -13,13 +13,17 @@ public interface JobPostService {
 
 	public List<JobPost> indexNotComplete(String username);
 
-	public JobPost show(String username, int id);
+	public JobPost show(String username, int id); 
 
 	public JobPost create(String username, JobPost jobPost);
 
+	public List<JobPost> getAllJobPostsWithProjectAreas();
+
+	public JobPost getJobPostWithProjectAreas(int id);
+
 	public JobPost update(String username, int id, JobPost jobPost);
-	    
-    public JobPost showOne(String username);
+
+	public JobPost showOne(String username);
 
 	public boolean destroy(String username, int id);
 

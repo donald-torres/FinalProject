@@ -22,6 +22,7 @@ public class JobPostServiceImpl implements JobPostService {
 
 	@Autowired
 	private JobPostRepository jpRepo;
+	
 	@Autowired
 	private UserRepository userRepo;
 	@Autowired
@@ -108,6 +109,16 @@ public class JobPostServiceImpl implements JobPostService {
 			}
 			return toDelete.getEnabled();
 
+	}
+
+	@Override
+	public List<JobPost> getAllJobPostsWithProjectAreas() {
+		return jpRepo.findAllWithProjectAreas();
+	}
+
+	@Override
+	public JobPost getJobPostWithProjectAreas(int id) {
+		return jpRepo.findByIdWithProjectAreas(id).orElse(null);
 	}
 
 }
