@@ -1,25 +1,108 @@
-
-<div class="container-sm my-5">
+<br />
+<div class="container-fluid">
   <div class="row">
-    <div class="col-8">
+    <div class="col-md-8">
       <img
         id="firstImage"
-        src="https://www.warnerroofinginc.com/wp-content/uploads/Dollarphotoclub_95604724.jpg"
-        style="max-width: 800px; max-height: 600px"
+        [src]="getRandomImage()"
+        class="img-fluid"
+        style="width: 100%"
         alt="Image 1"
       />
     </div>
-    <div class="col-4">
+    <div class="col-md-4">
       <div class="text-center">
-        <h5>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </h5>
+        <h5>Daily dose of inspiration !</h5>
         <p class="lead text-muted">
-          Lets find the right person for your project
+          {{ getRandomQuote() }}
         </p>
       </div>
       <div class="row">
+        <div id="indexBlockquote" class="card">
+          <div class="card-body">
+            <h5 class="card-title">Lets get started !</h5>
+            <h6 class="card-subtitle mb-2 text-body-secondary"></h6>
+            <p class="card-text">
+              Every service provider has been verified by our community and is
+              guaranteed to treat your home like their own.
+            </p>
+            <a
+              id="achortext"
+              *ngIf="!loggedIn()"
+              [routerLink]="['/login']"
+              class="card-link"
+              >Find A Service Provider
+            </a>
+            <a
+              id="achortext"
+              *ngIf="loggedIn()"
+              [routerLink]="['/search']"
+              class="card-link"
+              >Find a Service
+            </a>
+
+            <a
+              id="achortext"
+              *ngIf="!loggedIn()"
+              [routerLink]="['/login']"
+              class="card-link"
+              >Post a Project</a
+            >
+            <a
+              id="achortext"
+              *ngIf="loggedIn()"
+              [routerLink]="['/dashboard']"
+              class="card-link"
+              >Post a Project</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br />
+<div class="container-fluid">
+  <div class="row" id="middleBand">
+    <div class="col-3">
+      <img
+        src="assets/firepit.jpeg"
+        class="img-thumbnail me-3"
+        style="max-width: 250px; height: 200px"
+        alt="Fire Pit"
+      />
+    </div>
+    <div class="col-3">
+      <img
+        src="assets/gazebo.jpeg"
+        class="img-thumbnail me-3"
+        style="max-width: 250px; height: 200px"
+        alt="Gazebo"
+      />
+    </div>
+    <div class="col-3">
+      <img
+        src="assets/livingspace.jpeg"
+        class="img-thumbnail me-3"
+        style="max-width: 250px; height: 200px"
+        alt="Living Space"
+      />
+    </div>
+    <div class="col-3">
+      <img
+        src="assets/paintedWall.jpeg"
+        class="img-thumbnail me-3"
+        style="max-width: 250px; height: 200px"
+        alt="Painted Wall"
+      />
+    </div>
+    <a id="achortext" href="www.google.com">See All</a>
+  </div>
+
+  <br />
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-4">
         <div id="indexBlockquote" class="card">
           <div class="card-body">
             <h5 class="card-title">Card title</h5>
@@ -30,64 +113,9 @@
               Some quick example text to build on the card title and make up the
               bulk of the card's content.
             </p>
-            <a href="#" class="card-link">Card link</a>
-            <a href="#" class="card-link">Another link</a>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-  <br />
-  <div class="row" id="middleBand">
-    <div class="col-3">
-      <img
-        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxLUoRP-EsorqQXwYkilua-i9jixhTOJG7y0UBSiLfOfum15LfWx-XJAuwNgX_6qYZDlY&usqp=CAU"
-        class="img-thumbnail me-3"
-        style="max-width: 150px"
-        alt="Cinque Terre"
-      />
-    </div>
-    <div class="col-3">
-      <img
-        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxLUoRP-EsorqQXwYkilua-i9jixhTOJG7y0UBSiLfOfum15LfWx-XJAuwNgX_6qYZDlY&usqp=CAU"
-        class="img-thumbnail me-3"
-        style="max-width: 150px"
-        alt="Cinque Terre"
-      />
-    </div>
-    <div class="col-3">
-      <img
-        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxLUoRP-EsorqQXwYkilua-i9jixhTOJG7y0UBSiLfOfum15LfWx-XJAuwNgX_6qYZDlY&usqp=CAU"
-        class="img-thumbnail me-3"
-        style="max-width: 150px"
-        alt="Cinque Terre"
-      />
-    </div>
-    <div class="col-3">
-      <img
-        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxLUoRP-EsorqQXwYkilua-i9jixhTOJG7y0UBSiLfOfum15LfWx-XJAuwNgX_6qYZDlY&usqp=CAU"
-        class="img-thumbnail me-3"
-        style="max-width: 150px"
-        alt="Cinque Terre"
-      />
-    </div>
-    <a href="www.google">see All</a>
-  </div>
-  <br>
-  <div class="container">
-  <div class="row">
-    <div class="col-4">
-      <div id="indexBlockquote" class="card">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <h6 class="card-subtitle mb-2 text-body-secondary">Card subtitle</h6>
-          <p class="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
-        </div>
-      </div>
-    </div>
       <div class="col-8">
         <div id="indexBlockquote" class="card">
           <div class="card-body">
@@ -99,14 +127,14 @@
               Some quick example text to build on the card title and make up the
               bulk of the card's content.
             </p>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
   <section class="bg-light mt-5">
-    <div class="container-lg">
+    <div class="container-fluid">
       <div class="text-center">
         <h5>
           Some quick example text to build on the card title and make up the
