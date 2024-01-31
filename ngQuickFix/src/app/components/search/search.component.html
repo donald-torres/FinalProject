@@ -13,7 +13,7 @@
     <button (click)="applyBudgetFilter()">Apply</button>
     <!-- Placeholder Filter Group 1 -->
     <div class="filter-group">
-      <h4>Project Location</h4>
+      <h4>Trade</h4>
       <div *ngFor="let i of [1, 2, 3, 4, 5]">
         <label>
           <input type="checkbox" name="filter1-{{ i }}" />
@@ -33,7 +33,7 @@
     </div>
     <!-- Placeholder Filter Group 2 -->
     <div class="filter-group">
-      <h4>Focus Areas</h4>
+      <h4>Project Area</h4>
       <div *ngFor="let i of [1, 2, 3, 4, 5]">
         <label>
           <input type="checkbox" name="filter2-{{ i }}" />
@@ -83,7 +83,13 @@
           <p>Posted By: {{ item.user.firstName }} {{ item.user.lastName }}</p>
           <p>Projected Budget: ${{ item.budgetMax }}</p>
           <p>Description: {{ item.description }}</p>
-          <p>Focus Area: </p>
+          <p>Job Type: </p>
+          <p>Project Area: </p>
+          <div *ngIf="item.projectAreas && item.projectAreas.length > 0">
+            <ul>
+                <li *ngFor="let projectArea of item.projectAreas">{{ projectArea.name }}</li>
+            </ul>
+          </div>
           <p>Phone: {{ item.user.phone }}</p>
           <p>Email: {{ item.user.email }}</p>
           <p>Materials Provided: {{ item.materialsProvided }}</p>
@@ -98,8 +104,12 @@
         </div>
       </div>
     </div>
-    <div *ngIf="searchResults && searchResults.length === 0" class="no-results">
+    <div *ngIf="searchResults && searchResults.length === 0 && loggedIn()" class="no-results">
       <p>No results found.</p>
+    </div>
+    <div *ngIf="searchResults && searchResults.length === 0 && !loggedIn()" class="login-prompt">
+      <p>You must be logged in to view search results.</p>
+      <a [routerLink]="['/login']">Login</a>
     </div>
   </div>
 </div>

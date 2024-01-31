@@ -11,6 +11,7 @@
 
       <!-- Dropdown for selecting search type -->
       <select [(ngModel)]="searchType" name="searchType" class="form-control me-2">
+        <option value="" disabled>Select Type</option>
         <option value="providers">Providers</option>
         <option value="users">Users</option>
         <option value="jobposts">Job Posts</option>

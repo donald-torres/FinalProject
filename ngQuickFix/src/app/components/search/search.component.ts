@@ -1,12 +1,15 @@
+import { ProjectArea } from './../../models/project-area';
+import { Trade } from './../../models/trade';
+import { SearchService } from './../../services/search.service';
 import { Component, OnInit } from '@angular/core';
 import { JobPost } from '../../models/job-post';
 import { User } from '../../models/user';
-import { SearchService } from '../../services/search.service';
 import { Provider } from '../../models/provider';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-search',
@@ -14,7 +17,8 @@ import { ActivatedRoute, Router } from '@angular/router';
   imports: [
     FormsModule,
     CommonModule,
-    NgbModule
+    NgbModule,
+    RouterLink
   ],
   templateUrl: './search.component.html',
   styleUrl: './search.component.css'
@@ -22,19 +26,21 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class SearchComponent implements OnInit {
   searchQuery: string = '';
   searchResults: Provider[] | User[] | JobPost[] | any = [];
-  searchType: 'providers' | 'users' | 'jobposts' = 'providers';
+  searchType: 'providers' | 'users' | 'jobposts' | '' = '';
   selectedSortOption: string = 'company';
   minBudget: number = 0;
   maxBudget: number = Infinity;
   unfilteredResults?: any[];
   materialsProvidedFilter: string = 'all';
-
+  projectAreas: ProjectArea[] = [];
+  account: boolean = false;
 
 
   constructor(
     private searchService: SearchService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private authService: AuthService
     ) { }
 
     ngOnInit(): void {
@@ -50,6 +56,10 @@ export class SearchComponent implements OnInit {
 
 
   search(): void {
+    if (!this.loggedIn()) {
+      this.router.navigate(['/login']);
+      return;
+    }
     if (this.searchQuery) {
       switch (this.searchType) {
         case 'providers':
@@ -79,6 +89,7 @@ export class SearchComponent implements OnInit {
           break;
       }
     }
+    this.searchType = '';
   }
 
   sortResults(): void {
@@ -116,6 +127,12 @@ export class SearchComponent implements OnInit {
       }
     }
   }
+
+  loggedIn(){
+    this.account = this.authService.checkLogin();
+   return this.account;
+  }
+
 
 
 

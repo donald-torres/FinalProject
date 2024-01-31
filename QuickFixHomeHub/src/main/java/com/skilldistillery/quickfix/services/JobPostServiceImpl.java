@@ -15,6 +15,7 @@ public class JobPostServiceImpl implements JobPostService {
 	
 	@Autowired
 	private JobPostRepository jpRepo;
+	
 	@Autowired
 	private UserRepository userRepo;
 
@@ -49,6 +50,16 @@ public class JobPostServiceImpl implements JobPostService {
 	public boolean destroy(String username, int id) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public List<JobPost> getAllJobPostsWithProjectAreas() {
+		return jpRepo.findAllWithProjectAreas();
+	}
+
+	@Override
+	public JobPost getJobPostWithProjectAreas(int id) {
+		return jpRepo.findByIdWithProjectAreas(id).orElse(null);
 	}
 
 }

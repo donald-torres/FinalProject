@@ -15,4 +15,8 @@ public interface JobPostService {
 	    public JobPost update(String username, int id, JobPost jobPost);
 
 	    public boolean destroy(String username, int id);
+	    
+	    public List<JobPost> getAllJobPostsWithProjectAreas();
+	    
+	    public JobPost getJobPostWithProjectAreas(int id);
 }
