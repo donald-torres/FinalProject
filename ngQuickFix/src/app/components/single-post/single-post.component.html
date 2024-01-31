@@ -43,7 +43,7 @@
                     <div class="card-body">
                         <label>{{area.name}}</label>
                         <input type="checkbox" name="name" placeholder="Project Area Name"
-                            [(ngModel)]="area.id"><br><br>
+                            [checked]="postHasArea(area.id)" (change)="toggleArea($event, area.id)"><br><br>
                     </div>
                 </div>
             </div>

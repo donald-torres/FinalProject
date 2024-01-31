@@ -8,6 +8,7 @@ import { JobPostService } from '../../services/job-post.service';
 import { AuthService } from '../../services/auth.service';
 import { SinglePostComponent } from '../single-post/single-post.component';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { Bid } from '../../models/bid';
 
 @Component({
   selector: 'app-dashboard',
@@ -17,11 +18,13 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
   styleUrl: './dashboard.component.css',
 })
 export class DashboardComponent implements OnInit {
+
   jobPosts: JobPost[] = [];
   loggedInUser: User = new User();
   newPost: JobPost = new JobPost();
   editUser: User | null = null;
   selected: JobPost | null = null;
+  bids: Bid[] = []
 
   constructor(
     private userService: UserService,
@@ -83,8 +86,24 @@ export class DashboardComponent implements OnInit {
   viewPost(post: JobPost) {
     this.router.navigateByUrl('singlePost/' + post.id);
   }
+  getBids(postId: number){
+    this.jobPostService.indexBids(postId).subscribe({
+      next: (data) => {
+        this.bids = data;
+      },
+      error: (problem) => {
+        console.error(
+          'SinglePostComponent.reload(): error reloading projectAreas:'
+        );
+        console.error(problem);
+      },
+    });
+  }
 
-
+  showBids(post: JobPost) {
+   this.getBids(post.id);
+   console.log(this.bids);
+    }
 
   reload() {
     this.jobPostService.index().subscribe({

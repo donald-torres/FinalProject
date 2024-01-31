@@ -144,17 +144,25 @@
             <div class="card"let count = 0 *ngFor="let post of jobPosts">
                 <div *ngIf="post.complete === false">
                     <img src={{post.imageUrl}} class="img-thumbnail me-3" style="max-width: 150px;" alt="No Image"
-                        (click)="viewPost(post)">
-                    <div class="card-body">
-                        <h6 class="nav-link" (click)="viewPost(post)"><u>{{post.title}}</u></h6>
+                        >
+                    <div class="card-body" (click)="showBids(post)">
+                        <h6 class="nav-link" ><u>{{post.title}}</u></h6>
                         <hr>
                         <p>{{post.description}}</p>
                     </div>
                 </div>
+                <button class="btn btn-warning" value="edit" (click)="viewPost(post)"> View Post</button>
             </div>
 
         </div>
-        <div class="col-lg-5 card mb-3" style="height: 20rem">
-            <p>Reviews </p>
+        <div class="col-lg-5 card mb-3" style="height: 20rem" >
+            <p>Bids </p>
+            <div class="card">
+                <div class="card-body" *ngFor="let bid of bids" >
+                    
+                        <li>Bid: {{bid.amount}}</li>
+                    </div>
+                </div>
+                
         </div>
     </div>

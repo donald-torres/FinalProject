@@ -18,7 +18,7 @@ import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
   styleUrl: './single-post.component.css',
 })
 export class SinglePostComponent implements OnInit {
-  editPost: JobPost | null = null;
+  editPost: JobPost = new JobPost();
   @Input() selected: JobPost | null = null;
   trades: Trade[] = [];
   projectAreas: ProjectArea[] = [];
@@ -67,7 +67,7 @@ export class SinglePostComponent implements OnInit {
   updatePost(editPost: JobPost) {
     this.jobPostService.update(editPost).subscribe({
       next: (result) => {
-        this.editPost = null;
+        this.editPost = result;
         this.router.navigateByUrl('dashboard');
       },
       error: (problem) => {
@@ -100,6 +100,16 @@ export class SinglePostComponent implements OnInit {
         console.error(problem);
       },
     });
+  }
+
+  postHasArea(areaId: number) {
+    return this.editPost.projectAreas.some(area => {return area.id === areaId;}) ;
+  }
+
+  toggleArea(event: any, areaId: number){
+    // TODO event.target.checked
+    console.log(event);
+    console.log(areaId);
   }
 
   reload() {
