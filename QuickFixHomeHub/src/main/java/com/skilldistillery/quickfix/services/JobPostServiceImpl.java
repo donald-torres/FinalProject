@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.skilldistillery.quickfix.entities.JobPost;
 import com.skilldistillery.quickfix.entities.User;
+import com.skilldistillery.quickfix.repositories.BidRepository;
 import com.skilldistillery.quickfix.repositories.JobPostRepository;
 import com.skilldistillery.quickfix.repositories.UserRepository;
 
@@ -17,6 +18,8 @@ public class JobPostServiceImpl implements JobPostService {
 	private JobPostRepository jpRepo;
 	@Autowired
 	private UserRepository userRepo;
+	@Autowired
+	private BidRepository bidRepo;
 
 	@Override
 	public List<JobPost> index(String username) {
@@ -26,6 +29,10 @@ public class JobPostServiceImpl implements JobPostService {
 	@Override
 	public JobPost show(String username, int id) {
 		return jpRepo.findByUser_UsernameAndId(username, id);
+	}
+	@Override
+	public JobPost showOne(String username) {
+		return jpRepo.searchByUser_Username(username);
 	}
 
 	@Override
