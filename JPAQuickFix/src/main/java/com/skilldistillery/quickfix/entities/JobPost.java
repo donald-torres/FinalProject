@@ -247,6 +247,64 @@ public class JobPost {
 			
 		}
 	}
+	public void addTrade(Trade trade) {
+		if (trades == null) {
+			trades = new ArrayList<>();
+		}
+		if (!trades.contains(trade)) {
+			trades.add(trade);
+			trade.addJobPost(this);
+		}
+		
+	}
+	
+	public void removeTrade(Trade trade) {
+		if (trades != null && trades.contains(trade)) {
+			trades.remove(trade);
+			trade.removeJobPost(this);
+			
+		}
+	}
+	public void addBid(Bid bid) {
+		if (bids == null) {
+			bids = new ArrayList<>();
+		
+		}
+		if (!bids.contains(bid)) {
+			bids.add(bid);
+			if (bid.getJobPost() != null) {
+				bid.getJobPost().removeBid(bid);
+			}
+		}
+
+	}
+
+	public void removeBid(Bid bid) {
+		if (bids != null && bids.contains(bid)) {
+			bids.remove(bid);
+			bid.setJobPost(null);
+		}
+	}
+	public void addAppointment(Appointment appointment) {
+		if (appointments == null) {
+			appointments = new ArrayList<>();
+			
+		}
+		if (!appointments.contains(appointment)) {
+			appointments.add(appointment);
+			if (appointment.getJobPost() != null) {
+				appointment.getJobPost().removeAppointment(appointment);
+			}
+		}
+		
+	}
+	
+	public void removeAppointment(Appointment appointment) {
+		if (appointments != null && appointments.contains(appointment)) {
+			appointments.remove(appointment);
+			appointment.setJobPost(null);
+		}
+	}
 
 	public List<Bid> getBids() {
 		return bids;

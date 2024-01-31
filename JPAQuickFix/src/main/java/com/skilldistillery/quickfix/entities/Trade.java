@@ -153,6 +153,21 @@ public class Trade {
 			provider.removeTrade(this);
 		}
 	}
+	public void addJobPost(JobPost jobPost) {
+		if (jobPosts == null) {
+			jobPosts = new ArrayList<>();
+		}
+		if (!jobPosts.contains(jobPost)) {
+			jobPosts.add(jobPost);
+			jobPost.addTrade(this);
+		}	}
+
+	public void removeJobPost(JobPost jobPost) {
+		if (jobPosts != null && jobPosts.contains(jobPost)) {
+			jobPosts.remove(jobPost);
+			jobPost.removeTrade(this);
+		}
+	}
 	
 
 	@Override
