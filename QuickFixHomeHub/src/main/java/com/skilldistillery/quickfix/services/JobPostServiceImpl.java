@@ -99,7 +99,7 @@ public class JobPostServiceImpl implements JobPostService {
 	}
 
 	@Override
-	public boolean destroy(String username, int id, JobPost jobPost) {
+	public boolean destroy(String username, int id) {
 			JobPost toDelete = jpRepo.findByUser_UsernameAndId(username, id);
 			if (toDelete != null) {
 				toDelete.setEnabled(false);

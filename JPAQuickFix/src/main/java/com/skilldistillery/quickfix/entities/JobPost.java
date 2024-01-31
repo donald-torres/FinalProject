@@ -2,6 +2,7 @@ package com.skilldistillery.quickfix.entities;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -69,7 +70,7 @@ public class JobPost {
 	@ManyToMany
 	@JoinTable(name = "job_post_has_project_area", joinColumns = @JoinColumn(name = "job_post_id"), inverseJoinColumns = @JoinColumn(name = "project_area_id"))
 	private List<ProjectArea> projectAreas;
-	
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "jobPost")
 	private List<Appointment> appointments;
@@ -208,6 +209,25 @@ public class JobPost {
 
 	public void setProjectAreas(List<ProjectArea> projectAreas) {
 		this.projectAreas = projectAreas;
+	}
+
+	public void addProjectArea(ProjectArea projectArea) {
+		if (projectAreas == null) {
+			projectAreas = new ArrayList<>();
+		}
+		if (!projectAreas.contains(projectArea)) {
+			projectAreas.add(projectArea);
+			projectArea.addJobPost(this);
+		}
+
+	}
+
+	public void removeProjectArea(ProjectArea projectArea) {
+		if (projectAreas != null && projectAreas.contains(projectArea)) {
+			projectAreas.remove(projectArea);
+			projectArea.removeJobPost(this);
+
+		}
 	}
 
 	public List<Bid> getBids() {

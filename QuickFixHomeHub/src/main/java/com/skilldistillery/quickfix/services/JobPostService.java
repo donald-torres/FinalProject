@@ -21,7 +21,7 @@ public interface JobPostService {
 	    
     public JobPost showOne(String username);
 
-	public boolean destroy(String username, int id, JobPost jobPost);
+	public boolean destroy(String username, int id);
 
 	List<Trade> indexTrade();
 
