@@ -4,7 +4,8 @@
             <div class="row">
 
                 <div class="col-lg-12 card mb-3 " style="min-height: 5rem">
-                    <h1 class="mx-auto my-auto">{{loggedInUser.biography}}</h1>
+                    <h1 *ngIf="loggedInUser.role === 'Client'" class="mx-auto my-auto">{{loggedInUser.biography}}</h1>
+                    <!-- <h1 *ngIf="loggedInUser.role === 'Provider'" class="mx-auto my-auto">{{loggedInUser.provider[0].description}}</h1> -->
                     <h3 class="mx-auto my-auto" style="color: red;" *ngIf="editUser">--------Edit your account
                         here-------</h3>
                     <div class="container-fluid" *ngIf="editUser">
@@ -160,8 +161,8 @@
             <div class="card">
                 <div class="card-body" *ngFor="let bid of bids" >
                     
-                        <li>Bid: {{bid.amount}}</li>
-                        <li>Bid: {{bid.ratingByProvider}}</li>
+                        <li>Bid: ${{bid.amount}}</li>
+                        <li>From: {{bid.provider.company}}</li>
                         <li>Comment: {{bid.userComment}}</li>
                     </div>
                 </div>
