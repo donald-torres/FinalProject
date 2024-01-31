@@ -120,5 +120,47 @@ public class JobPostServiceImpl implements JobPostService {
 	public JobPost getJobPostWithProjectAreas(int id) {
 		return jpRepo.findByIdWithProjectAreas(id).orElse(null);
 	}
+	@Override
+	public boolean addProjectAreatoPost(String username, int postId, int areaId) {
+		ProjectArea area = paRepo.searchById(areaId);
+		JobPost post = jpRepo.findByUser_UsernameAndId(username, postId);
+		if (area != null && post != null ) {
+			post.addProjectArea(area);
+			jpRepo.saveAndFlush(post);
+			return true;
+		}
+		return false;
+	}
+	@Override
+	public boolean removeProjectAreatoPost(String username, int postId, int areaId) {
+		ProjectArea area = paRepo.searchById(areaId);
+		JobPost post = jpRepo.findByUser_UsernameAndId(username, postId);
+		if (area != null && post != null ) {
+			post.removeProjectArea(area);
+			jpRepo.saveAndFlush(post);
+			return true;
+		}
+		return false;
+	}
+	@Override
+	public boolean addTradetoPost(String username, int postId, int tradeId) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public boolean removeTradetoPost(String username, int postId, int tradeId) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public boolean addSpecialtytoPost(String username, int postId, int specId) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public boolean removeSpecialtytoPost(String username, int postId, int specId) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
 }

@@ -104,6 +104,26 @@ export class JobPostService {
           })
         );
       }
+      createArea(postId: number, areaId: number): Observable<void> {
+        return this.http.post<void>(`${this.url}/${postId}/projectAreas/${areaId}`, null, this.getHttpOptions()).pipe(
+          catchError((err: any) => {
+            console.log(err);
+            return throwError(
+              () => new Error('JobPostService.create(): error creating Post: ' + err)
+            );
+          })
+        );
+      }
+      deleteArea(postId: number, areaId: number): Observable<void> {
+        return this.http.delete<void>(`${this.url}/${postId}/projectAreas/${areaId}`, this.getHttpOptions()).pipe(
+          catchError((err: any) => {
+            console.log(err);
+            return throwError(
+              () => new Error('JobPostService.create(): error creating Post: ' + err)
+            );
+          })
+        );
+      }
       update(post: JobPost): Observable<JobPost> {
         return this.http.put<JobPost>(this.url +'/'+ post.id, post, this.getHttpOptions());
       }

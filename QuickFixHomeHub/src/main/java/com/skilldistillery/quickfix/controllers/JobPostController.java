@@ -27,8 +27,6 @@ public class JobPostController {
 
 	@Autowired
 	private JobPostService jobPostService;
-	
-	
 
 	@GetMapping(path = { "jobPosts", "jobPosts/" })
 	public List<JobPost> index(HttpServletRequest req, HttpServletResponse res, Principal principal) {
@@ -38,6 +36,7 @@ public class JobPostController {
 		}
 		return jobPosts;
 	}
+
 	@GetMapping(path = { "activeJobPosts", "activeJobPosts/" })
 	public List<JobPost> indexNotCompleted(HttpServletRequest req, HttpServletResponse res, Principal principal) {
 		List<JobPost> jobPosts = jobPostService.indexNotComplete(principal.getName());
@@ -48,18 +47,18 @@ public class JobPostController {
 	}
 
 	@GetMapping(path = "jobPosts/{id}")
-	public JobPost show(HttpServletRequest req, HttpServletResponse res, @PathVariable("id") int id, Principal principal) {
+	public JobPost show(HttpServletRequest req, HttpServletResponse res, @PathVariable("id") int id,
+			Principal principal) {
 		JobPost jobPost = jobPostService.show(principal.getName(), id);
 		if (jobPost == null) {
 			res.setStatus(404);
 		}
 		return jobPost;
 	}
-	
-	
 
 	@PostMapping(path = "jobPosts")
-	public JobPost create(HttpServletRequest req, HttpServletResponse res, @RequestBody JobPost jobPost, Principal principal) {
+	public JobPost create(HttpServletRequest req, HttpServletResponse res, @RequestBody JobPost jobPost,
+			Principal principal) {
 		JobPost newJobPost;
 		try {
 			newJobPost = jobPostService.create(principal.getName(), jobPost);
@@ -89,13 +88,14 @@ public class JobPostController {
 		}
 		return updatePost;
 	}
-	
+
 	@DeleteMapping(path = "jobPosts/{id}")
-	public void destroy(HttpServletRequest req, HttpServletResponse res, @PathVariable("id") int id, Principal principal) {
+	public void destroy(HttpServletRequest req, HttpServletResponse res, @PathVariable("id") int id,
+			Principal principal) {
 		JobPost toDelete = jobPostService.show(principal.getName(), id);
 		try {
 			if (toDelete.getEnabled() == true) {
-					jobPostService.destroy(principal.getName(), id);
+				jobPostService.destroy(principal.getName(), id);
 				res.setStatus(204);
 			} else {
 				res.setStatus(404);
@@ -106,6 +106,20 @@ public class JobPostController {
 		}
 	}
 
+	@PostMapping(path = "jobPosts/{postId}/projectAreas/{areaId}")
+	public void addProjectArea(HttpServletResponse res, @PathVariable("postId") int postId,
+			@PathVariable("areaId") int areaId, Principal principal) {
+		if (!jobPostService.addProjectAreatoPost(principal.getName(), postId, areaId)) {
+			res.setStatus(404);
+		}
+	}
 
-	
+	@DeleteMapping(path = "jobPosts/{postId}/projectAreas/{areaId}")
+	public void removeProjectArea(HttpServletResponse res, @PathVariable("postId") int postId,
+			@PathVariable("areaId") int areaId, Principal principal) {
+		if (!jobPostService.removeProjectAreatoPost(principal.getName(), postId, areaId)) {
+			res.setStatus(404);
+		}
+	}
+
 }
