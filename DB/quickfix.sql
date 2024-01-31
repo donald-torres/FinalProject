@@ -516,6 +516,24 @@ COMMIT;
 START TRANSACTION;
 USE `quickfixdb`;
 INSERT INTO `project_area` (`id`, `name`) VALUES (1, 'Counter Tops');
+INSERT INTO `project_area` (`id`, `name`) VALUES (2, 'Basement');
+INSERT INTO `project_area` (`id`, `name`) VALUES (3, 'Master Bathroom');
+INSERT INTO `project_area` (`id`, `name`) VALUES (4, 'Master Bedroom');
+INSERT INTO `project_area` (`id`, `name`) VALUES (5, 'Attic ');
+INSERT INTO `project_area` (`id`, `name`) VALUES (6, 'Guest Bedroom');
+INSERT INTO `project_area` (`id`, `name`) VALUES (7, 'Guest Bathroom');
+INSERT INTO `project_area` (`id`, `name`) VALUES (8, 'Garage');
+INSERT INTO `project_area` (`id`, `name`) VALUES (9, 'Front Deck ');
+INSERT INTO `project_area` (`id`, `name`) VALUES (10, 'Rear Deck');
+INSERT INTO `project_area` (`id`, `name`) VALUES (11, 'Crawl Space');
+INSERT INTO `project_area` (`id`, `name`) VALUES (12, 'Master Bed-Closet');
+INSERT INTO `project_area` (`id`, `name`) VALUES (13, 'Guest Bed-Closet');
+INSERT INTO `project_area` (`id`, `name`) VALUES (14, 'Front Yard');
+INSERT INTO `project_area` (`id`, `name`) VALUES (15, 'Back Yard');
+INSERT INTO `project_area` (`id`, `name`) VALUES (16, 'Kitchen');
+INSERT INTO `project_area` (`id`, `name`) VALUES (17, 'Bonus Room');
+INSERT INTO `project_area` (`id`, `name`) VALUES (18, 'Living Room');
+INSERT INTO `project_area` (`id`, `name`) VALUES (19, 'Other');
 
 COMMIT;
 
@@ -554,6 +572,7 @@ COMMIT;
 START TRANSACTION;
 USE `quickfixdb`;
 INSERT INTO `bid` (`id`, `amount`, `user_provider_id`, `post_id`, `bid_date`, `provider_note`, `accepted`, `rating_by_user`, `user_comment`, `rating_by_provider`, `provider_comment`, `enabled`) VALUES (1, 9000.0, 1, 1, NULL, NULL, 0, NULL, NULL, NULL, NULL, 1);
+INSERT INTO `bid` (`id`, `amount`, `user_provider_id`, `post_id`, `bid_date`, `provider_note`, `accepted`, `rating_by_user`, `user_comment`, `rating_by_provider`, `provider_comment`, `enabled`) VALUES (2, 800, 1, 3, NULL, 'I am willing to do it for you Neo . Accept my bid so we can get started', 0, 4, 'Gill is the man with the camera and the drill!', 3, 'Great working for Neo he is pretty cool', 1);
 
 COMMIT;
 
@@ -626,6 +645,8 @@ COMMIT;
 START TRANSACTION;
 USE `quickfixdb`;
 INSERT INTO `job_post_has_project_area` (`job_post_id`, `project_area_id`) VALUES (1, 1);
+INSERT INTO `job_post_has_project_area` (`job_post_id`, `project_area_id`) VALUES (2, 14);
+INSERT INTO `job_post_has_project_area` (`job_post_id`, `project_area_id`) VALUES (3, 19);
 
 COMMIT;
 
