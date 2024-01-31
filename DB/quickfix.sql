@@ -487,7 +487,7 @@ INSERT INTO `job_post` (`id`, `title`, `description`, `create_date`, `update_dat
 INSERT INTO `job_post` (`id`, `title`, `description`, `create_date`, `update_date`, `complete`, `enabled`, `start_date`, `special_instructions`, `materials_provided`, `image_url`, `user_id`, `budget_max`, `bid_by`) VALUES (5, 'Exterior Home Re-Paint ', 'I\'m on a mission to spruce up my place! Looking to give my home a fresh new vibe – time for a change!', NULL, NULL, 0, 1, NULL, NULL, 1, 'https://www.nelsongreerpainting.com/wp-content/uploads/2021/05/paint-old-house.jpg', 4, 3000, NULL);
 INSERT INTO `job_post` (`id`, `title`, `description`, `create_date`, `update_date`, `complete`, `enabled`, `start_date`, `special_instructions`, `materials_provided`, `image_url`, `user_id`, `budget_max`, `bid_by`) VALUES (6, 'Septic Tank Drain', '\nHey, I\'ve got a septic tank that needs some attention. Looking for someone to help drain it – gotta keep things running smoothly around here!', NULL, NULL, 1, 1, NULL, NULL, 1, 'https://www.septicdesign.com/wp-content/uploads/2008/10/septictank.jpg', 3, 6000, NULL);
 INSERT INTO `job_post` (`id`, `title`, `description`, `create_date`, `update_date`, `complete`, `enabled`, `start_date`, `special_instructions`, `materials_provided`, `image_url`, `user_id`, `budget_max`, `bid_by`) VALUES (7, 'Light Fixture Installation', '\nEager to refresh the ambiance of my residence, I am on the lookout for an opportunity to revitalize the lighting arrangements throughout my house. Seeking to infuse a fresh aesthetic, I am keen on making thoughtful adjustments to enhance the overall atmosphere and give my home a renewed sense of style.', NULL, NULL, 0, 1, NULL, NULL, 1, 'https://www.oldhouseonline.com/oho-html/wp-content/uploads/sites/2/2021/06/opener.jpg', 3, 500, NULL);
-INSERT INTO `job_post` (`id`, `title`, `description`, `create_date`, `update_date`, `complete`, `enabled`, `start_date`, `special_instructions`, `materials_provided`, `image_url`, `user_id`, `budget_max`, `bid_by`) VALUES (8, 'Garage Addition ', 'Hey everyone! Considering adding a garage to my home and could use some advice. Any recommendations for skilled contractors or tips on navigating the process would be greatly appreciated. Drop your suggestions below – looking forward to transforming my space!', NULL, NULL, 0, 1, NULL, NULL, 0, 'https://behmdesign.com/wp-content/uploads/2019/08/864-2PS-600x463.jpg', 3, 8000, NULL);
+INSERT INTO `job_post` (`id`, `title`, `description`, `create_date`, `update_date`, `complete`, `enabled`, `start_date`, `special_instructions`, `materials_provided`, `image_url`, `user_id`, `budget_max`, `bid_by`) VALUES (8, 'Garage Addition ', 'Hey everyone! Considering adding a garage to my home and could use some advice. Any recommendations for skilled contractors or tips on navigating the process would be greatly appreciated. Drop your suggestions below – looking forward to transforming my space!', NULL, NULL, 0, 1, NULL, NULL, 0, 'https://i.pinimg.com/736x/17/3e/0e/173e0ea7ca5847641ce43a3cd5815afc.jpg', 3, 8000, NULL);
 
 COMMIT;
 
@@ -511,6 +511,15 @@ COMMIT;
 START TRANSACTION;
 USE `quickfixdb`;
 INSERT INTO `job_post_has_trade` (`job_post_id`, `trade_id`) VALUES (1, 1);
+INSERT INTO `job_post_has_trade` (`job_post_id`, `trade_id`) VALUES (2, 1);
+INSERT INTO `job_post_has_trade` (`job_post_id`, `trade_id`) VALUES (3, 16);
+INSERT INTO `job_post_has_trade` (`job_post_id`, `trade_id`) VALUES (4, 8);
+INSERT INTO `job_post_has_trade` (`job_post_id`, `trade_id`) VALUES (5, 8);
+INSERT INTO `job_post_has_trade` (`job_post_id`, `trade_id`) VALUES (6, 2);
+INSERT INTO `job_post_has_trade` (`job_post_id`, `trade_id`) VALUES (7, 3);
+INSERT INTO `job_post_has_trade` (`job_post_id`, `trade_id`) VALUES (8, 1);
+INSERT INTO `job_post_has_trade` (`job_post_id`, `trade_id`) VALUES (8, 5);
+INSERT INTO `job_post_has_trade` (`job_post_id`, `trade_id`) VALUES (8, 15);
 
 COMMIT;
 
@@ -577,6 +586,10 @@ START TRANSACTION;
 USE `quickfixdb`;
 INSERT INTO `bid` (`id`, `amount`, `user_provider_id`, `post_id`, `bid_date`, `provider_note`, `accepted`, `rating_by_user`, `user_comment`, `rating_by_provider`, `provider_comment`, `enabled`) VALUES (1, 9000.0, 1, 1, NULL, NULL, 0, NULL, NULL, NULL, NULL, 1);
 INSERT INTO `bid` (`id`, `amount`, `user_provider_id`, `post_id`, `bid_date`, `provider_note`, `accepted`, `rating_by_user`, `user_comment`, `rating_by_provider`, `provider_comment`, `enabled`) VALUES (2, 800, 1, 3, NULL, 'I am willing to do it for you Neo . Accept my bid so we can get started', 0, 4, 'Gill is the man with the camera and the drill!', 3, 'Great working for Neo he is pretty cool', 1);
+INSERT INTO `bid` (`id`, `amount`, `user_provider_id`, `post_id`, `bid_date`, `provider_note`, `accepted`, `rating_by_user`, `user_comment`, `rating_by_provider`, `provider_comment`, `enabled`) VALUES (3, 5000, 2, 6, NULL, NULL, 0, NULL, NULL, NULL, NULL, 1);
+INSERT INTO `bid` (`id`, `amount`, `user_provider_id`, `post_id`, `bid_date`, `provider_note`, `accepted`, `rating_by_user`, `user_comment`, `rating_by_provider`, `provider_comment`, `enabled`) VALUES (4, 1200, 5, 7, NULL, NULL, 0, NULL, NULL, NULL, NULL, 1);
+INSERT INTO `bid` (`id`, `amount`, `user_provider_id`, `post_id`, `bid_date`, `provider_note`, `accepted`, `rating_by_user`, `user_comment`, `rating_by_provider`, `provider_comment`, `enabled`) VALUES (5, 9500, 3, 8, NULL, NULL, 0, NULL, NULL, NULL, NULL, 1);
+INSERT INTO `bid` (`id`, `amount`, `user_provider_id`, `post_id`, `bid_date`, `provider_note`, `accepted`, `rating_by_user`, `user_comment`, `rating_by_provider`, `provider_comment`, `enabled`) VALUES (6, 9300, 1, 8, NULL, NULL, 0, NULL, NULL, NULL, NULL, 1);
 
 COMMIT;
 
@@ -604,6 +617,13 @@ COMMIT;
 START TRANSACTION;
 USE `quickfixdb`;
 INSERT INTO `focus_has_job_post` (`focus_id`, `job_post_id`) VALUES (1, 1);
+INSERT INTO `focus_has_job_post` (`focus_id`, `job_post_id`) VALUES (16, 2);
+INSERT INTO `focus_has_job_post` (`focus_id`, `job_post_id`) VALUES (14, 3);
+INSERT INTO `focus_has_job_post` (`focus_id`, `job_post_id`) VALUES (12, 4);
+INSERT INTO `focus_has_job_post` (`focus_id`, `job_post_id`) VALUES (13, 5);
+INSERT INTO `focus_has_job_post` (`focus_id`, `job_post_id`) VALUES (7, 6);
+INSERT INTO `focus_has_job_post` (`focus_id`, `job_post_id`) VALUES (18, 7);
+INSERT INTO `focus_has_job_post` (`focus_id`, `job_post_id`) VALUES (2, 8);
 
 COMMIT;
 
@@ -657,6 +677,7 @@ INSERT INTO `job_post_has_project_area` (`job_post_id`, `project_area_id`) VALUE
 INSERT INTO `job_post_has_project_area` (`job_post_id`, `project_area_id`) VALUES (7, 16);
 INSERT INTO `job_post_has_project_area` (`job_post_id`, `project_area_id`) VALUES (7, 18);
 INSERT INTO `job_post_has_project_area` (`job_post_id`, `project_area_id`) VALUES (2, 15);
+INSERT INTO `job_post_has_project_area` (`job_post_id`, `project_area_id`) VALUES (8, 8);
 
 COMMIT;
 
