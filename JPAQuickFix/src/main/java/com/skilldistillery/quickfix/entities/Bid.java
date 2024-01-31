@@ -1,6 +1,7 @@
 package com.skilldistillery.quickfix.entities;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -163,6 +164,26 @@ public class Bid {
 
 	public void setProvider(Provider provider) {
 		this.provider = provider;
+	}
+	public void addBidComments(BidComment bidComment) {
+		if (bidComments == null) {
+			bidComments = new ArrayList<>();
+		
+		}
+		if (!bidComments.contains(bidComment)) {
+			bidComments.add(bidComment);
+			if (bidComment.getBid() != null) {
+				bidComment.getBid().removeBidComment(bidComment);
+			}
+		}
+
+	}
+
+	public void removeBidComment(BidComment bidComment) {
+		if (bidComments != null && bidComments.contains(bidComment)) {
+			bidComments.remove(bidComment);
+			bidComment.setBid(null);
+		}
 	}
 
 	@Override

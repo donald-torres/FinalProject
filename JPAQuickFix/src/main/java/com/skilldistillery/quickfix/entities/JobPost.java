@@ -229,6 +229,24 @@ public class JobPost {
 
 		}
 	}
+	public void addSpecialty(Specialty specialty) {
+		if (specialties == null) {
+			specialties = new ArrayList<>();
+		}
+		if (!specialties.contains(specialty)) {
+			specialties.add(specialty);
+			specialty.addJobPost(this);
+		}
+		
+	}
+	
+	public void removeSpecialty(Specialty specialty) {
+		if (specialties != null && specialties.contains(specialty)) {
+			specialties.remove(specialty);
+			specialty.removeJobPost(this);
+			
+		}
+	}
 
 	public List<Bid> getBids() {
 		return bids;

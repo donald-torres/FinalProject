@@ -1,6 +1,7 @@
 package com.skilldistillery.quickfix.entities;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -117,6 +118,42 @@ public class Trade {
 	public void setSpecialties(List<Specialty> specialties) {
 		this.specialties = specialties;
 	}
+	public void addSpecialties(Specialty specialty) {
+		if (specialties == null) {
+			specialties = new ArrayList<>();
+		
+		}
+		if (!specialties.contains(specialty)) {
+			specialties.add(specialty);
+			if (specialty.getTrade() != null) {
+				specialty.getTrade().removeSpecialty(specialty);
+			}
+		}
+
+	}
+
+	public void removeSpecialty(Specialty specialty) {
+		if (specialties != null && specialties.contains(specialty)) {
+			specialties.remove(specialty);
+			specialty.setTrade(null);
+		}
+	}
+	public void addProvider(Provider provider) {
+		if (providers == null) {
+			providers = new ArrayList<>();
+		}
+		if (!providers.contains(provider)) {
+			providers.add(provider);
+			provider.addTrade(this);
+		}	}
+	
+	public void removeProvider(Provider provider) {
+		if (providers != null && providers.contains(provider)) {
+			providers.remove(provider);
+			provider.removeTrade(this);
+		}
+	}
+	
 
 	@Override
 	public int hashCode() {
