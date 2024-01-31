@@ -1,5 +1,6 @@
 package com.skilldistillery.quickfix.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -55,12 +56,19 @@ public class ProjectArea {
 	}
 
 	public void addJobPost(JobPost jobPost) {
-		// FIXME
-	}
+		if (jobPosts == null) {
+			jobPosts = new ArrayList<>();
+		}
+		if (!jobPosts.contains(jobPost)) {
+			jobPosts.add(jobPost);
+			jobPost.addProjectArea(this);
+		}	}
 
 	public void removeJobPost(JobPost jobPost) {
-		// FIXME
-
+		if (jobPosts != null && jobPosts.contains(jobPost)) {
+			jobPosts.remove(jobPost);
+			jobPost.removeProjectArea(this);
+		}
 	}
 
 	@Override
