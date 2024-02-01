@@ -1,13 +1,40 @@
 <div class="image-overlay-container">
-  <img src="assets/heroindex.png" alt="Hero Image" style="width: 100%; height: auto;">
+  <img
+    src="assets/heroindex.png"
+    alt="Hero Image"
+    style="width: 100%; height: auto"
+  />
   <div class="button-container">
-      <button class="btn btn-search" *ngIf="!loggedIn()" [routerLink]="['/login']">Find a Provider</button>
-      <button class="btn btn-search" *ngIf="!loggedIn()" [routerLink]="['/login']">Post a Project</button>
-      <button class="btn btn-search" *ngIf="loggedIn()" [routerLink]="['/search']">Find a Provider</button>
-      <button class="btn btn-search" *ngIf="loggedIn()" [routerLink]="['/dashboard']">Post a Project</button>
+    <button
+      class="btn btn-search"
+      *ngIf="!loggedIn()"
+      [routerLink]="['/login']"
+    >
+      Find a Provider
+    </button>
+    <button
+      class="btn btn-search"
+      *ngIf="!loggedIn()"
+      [routerLink]="['/login']"
+    >
+      Post a Project
+    </button>
+    <button
+      class="btn btn-search"
+      *ngIf="loggedIn()"
+      [routerLink]="['/search']"
+    >
+      Find a Provider
+    </button>
+    <button
+      class="btn btn-search"
+      *ngIf="loggedIn()"
+      [routerLink]="['/dashboard']"
+    >
+      Post a Project
+    </button>
   </div>
 </div>
-
 
 <!-- <div class="container-fluid">
   <div class="row">
@@ -108,39 +135,40 @@
         alt="Painted Wall"
       />
     </div>
-    <a id="achortext" href="www.google">See All</a>
+
   </div>
 
   <br />
   <div>
-    <h1>Meet Our Featured Contractors</h1>
+    <h1 class = "text-center">Meet Our Featured Contractors</h1>
   </div>
   <div class="container-fluid">
     <div class="row">
-      <div class="col-4">
+      <div class="col-6">
         <div id="indexBlockquote" class="card">
           <div class="card-body">
-            <h5 class="card-title">Card title</h5>
+            <h5 class="card-title">HandyGill</h5>
             <h6 class="card-subtitle mb-2 text-body-secondary">
-              Card subtitle
+             Est: 2005
+            </h6>
+            <h6 class="card-subtitle mb-2 text-body-secondary">
+             Founder: Gill Bert
             </h6>
             <p class="card-text">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
+              "Gill is the man! He helped with project around my home and kept me updated with all the work he was doing." -Thomas
             </p>
           </div>
         </div>
       </div>
-      <div class="col-8">
+
+      <div class="col-6">
         <div id="indexBlockquote" class="card">
           <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <h6 class="card-subtitle mb-2 text-body-secondary">
-              Card subtitle
-            </h6>
+            <h5 class="card-title">Springfield Painting</h5>
+            <h6 class="card-subtitle mb-2 text-body-secondary">Est: 1999</h6>
+            <h6 class="card-subtitle mb-2 text-body-secondary">Founder: Bob Sae</h6>
             <p class="card-text">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
+              "Springfield Painting Co. came to our home and turn made our dreams to reality! I love the attention to detail." -Sarah
             </p>
           </div>
         </div>
@@ -151,12 +179,15 @@
   <section class="bg-light mt-5">
     <div class="container-fluid">
       <div class="text-center">
-        <h5>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </h5>
+        <h5>Lets find the right person for your project</h5>
         <p class="lead text-muted">
-          Lets find the right person for your project
+          Quick Fix HomeHub is a client-centric online platform, surpassing the
+          capabilities of Angie's List and Thumbtack. With a personalized
+          interface, clients can easily post service requests, and advanced
+          algorithms connect them with the most suitable professionals. The
+          platform prioritizes transparency, allowing clients to make informed
+          decisions through detailed profiles and direct communication with
+          service providers.
         </p>
       </div>
     </div>
