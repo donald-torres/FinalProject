@@ -5,7 +5,6 @@
 
                 <div class="col-lg-12 card mb-3 " style="min-height: 5rem">
                     <h1 *ngIf="loggedInUser.role === 'Client'" class="mx-auto my-auto">{{loggedInUser.biography}}</h1>
-                    <!-- <h1 *ngIf="loggedInUser.role === 'Provider'" class="mx-auto my-auto">{{loggedInUser.provider}}</h1> -->
                     <h3 class="mx-auto my-auto" style="color: red;" *ngIf="editUser">--------Edit your account
                         here-------</h3>
                     <div class="container-fluid" *ngIf="editUser">
@@ -186,9 +185,20 @@
 
                     <li>Bid: ${{bid.amount}}</li>
                     <li>From: {{bid.provider.company}}</li>
-                    <input type="checkbox"  (change)="updateBid(bid.jobPost.id,bid.id, bid)" name="accepted" [(ngModel)]="bid.accepted">Accepted
+                    <input type="checkbox"  (change)="toggleAcceptBid($event,bid.jobPost.id,bid.id)" name="accepted" [(ngModel)]="bid.accepted">Accepted
                 </div>
             </div>
 
+        </div>
+    </div>
+
+
+    <div *ngIf="loggedInUser.providers">
+        <div *ngFor="let provider of loggedInUser.providers">
+            <p>{{provider.company}}</p>
+            <div *ngFor="let bid of provider.bids">
+                <p>{{bid.jobPost.title}}</p>
+                <p>{{bid.amount}}</p>
+            </div>
         </div>
     </div>

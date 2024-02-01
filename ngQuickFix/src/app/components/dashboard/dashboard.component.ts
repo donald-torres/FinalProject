@@ -88,14 +88,31 @@ export class DashboardComponent implements OnInit {
   updateBid(postId: number, bidId: number, bid: Bid) {
     console.log(bid);
     this.jobPostService.updateBid(postId, bidId, bid).subscribe({
-      next: (result) => {
-        
-      },
+      next: (result) => {},
       error: (problem) => {
         console.error('DashboardComponent.updateBid(): error updateing Bid:');
         console.error(problem);
       },
     });
+  }
+  toggleAcceptBid(event: any, postId: number, bidId: number) {
+    if (event.target.checked) {
+      this.jobPostService.acceptBid(postId, bidId).subscribe({
+        next: (result) => {},
+        error: (problem) => {
+          console.error('DashboardComponent.updateBid(): error updateing Bid:');
+          console.error(problem);
+        },
+      });
+    } else {
+      this.jobPostService.unAcceptBid(postId, bidId).subscribe({
+        next: (result) => {},
+        error: (problem) => {
+          console.error('DashboardComponent.updateBid(): error updateing Bid:');
+          console.error(problem);
+        },
+      });
+    }
   }
 
   viewPost(post: JobPost) {
@@ -143,7 +160,7 @@ export class DashboardComponent implements OnInit {
         console.error(problem);
       },
     });
-  
+
     // this.providerService.show(this.loggedInUser.provider[0].id).subscribe({
     //   next: (data) => {
     //     this.editProvider = data;

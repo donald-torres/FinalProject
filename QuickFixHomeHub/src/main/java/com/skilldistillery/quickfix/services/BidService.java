@@ -16,4 +16,7 @@ public interface BidService {
 
 	public boolean destroy(String username, int jobPostId, int bidId);
 
+	public boolean acceptBid(String username, int postId, int bidId);
+
+	public boolean unAcceptBid(String username, int postId, int bidId);
 }

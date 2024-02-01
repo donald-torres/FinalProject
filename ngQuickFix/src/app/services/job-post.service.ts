@@ -183,6 +183,26 @@ export class JobPostService {
           })
         );
       }
+      acceptBid(postId: number, bidId: number): Observable<Bid> {
+        return this.http.post<Bid>(`${this.url}/${postId}/bids/${bidId}`, null, this.getHttpOptions()).pipe(
+          catchError((err: any) => {
+            console.log(err);
+            return throwError(
+              () => new Error('JobPostService.acceptBid(): error accepting Bid: ' + err)
+            );
+          })
+        );
+      }
+      unAcceptBid(postId: number, bidId: number): Observable<Bid> {
+        return this.http.delete<Bid>(`${this.url}/${postId}/bids/${bidId}`, this.getHttpOptions()).pipe(
+          catchError((err: any) => {
+            console.log(err);
+            return throwError(
+              () => new Error('JobPostService.unAcceptBid(): error accepting Bid: ' + err)
+            );
+          })
+        );
+      }
 
       destroy(id: number): Observable<void> {
         return this.http.delete<void>(this.url +'/'+ id, this.getHttpOptions());

@@ -8,6 +8,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -65,9 +66,9 @@ public class User {
 	@JoinColumn(name = "address_id")
 	private Address address;
 
-	@JsonIgnore
+	@JsonIgnoreProperties({"user", "trades", "specialties", "appointments"})
 	@OneToMany(mappedBy = "user")
-	private List<Provider> provider;
+	private List<Provider> providers;
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "user")
@@ -197,12 +198,12 @@ public class User {
 		this.address = address;
 	}
 
-	public List<Provider> getProvider() {
-		return provider;
+	public List<Provider> getProviders() {
+		return providers;
 	}
 
-	public void setProvider(List<Provider> provider) {
-		this.provider = provider;
+	public void setProviders(List<Provider> provider) {
+		this.providers = provider;
 	}
 
 	public List<JobPost> getJobPosts() {
