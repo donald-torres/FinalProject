@@ -22,7 +22,7 @@ public class JobPostServiceImpl implements JobPostService {
 
 	@Autowired
 	private JobPostRepository jpRepo;
-	
+
 	@Autowired
 	private UserRepository userRepo;
 	@Autowired
@@ -38,19 +38,21 @@ public class JobPostServiceImpl implements JobPostService {
 	public List<JobPost> index(String username) {
 		return jpRepo.findByUser_Username(username);
 	}
+
 	@Override
 	public List<Trade> indexTrade() {
 		return tradeRepo.findAll();
 	}
+
 	@Override
 	public List<ProjectArea> indexProject() {
 		return paRepo.findAll();
 	}
+
 	@Override
 	public List<Specialty> indexSpecialty() {
 		return specRepo.findAll();
 	}
-	
 
 	@Override
 	public List<JobPost> indexNotComplete(String username) {
@@ -61,6 +63,7 @@ public class JobPostServiceImpl implements JobPostService {
 	public JobPost show(String username, int id) {
 		return jpRepo.findByUser_UsernameAndId(username, id);
 	}
+
 	@Override
 	public JobPost showOne(String username) {
 		return jpRepo.searchByUser_Username(username);
@@ -89,11 +92,6 @@ public class JobPostServiceImpl implements JobPostService {
 		updated.setImageUrl(jobPost.getImageUrl());
 		updated.setBudgetMax(jobPost.getBudgetMax());
 		updated.setBidBy(jobPost.getBidBy());
-		updated.setProjectAreas(jobPost.getProjectAreas());
-		updated.setAppointments(jobPost.getAppointments());
-		updated.setTrades(jobPost.getTrades());
-		updated.setSpecialties(jobPost.getSpecialties());
-		updated.setBids(jobPost.getBids());
 		updated.setEnabled(jobPost.getEnabled());
 		jpRepo.save(updated);
 		return updated;
@@ -101,13 +99,13 @@ public class JobPostServiceImpl implements JobPostService {
 
 	@Override
 	public boolean destroy(String username, int id) {
-			JobPost toDelete = jpRepo.findByUser_UsernameAndId(username, id);
-			if (toDelete != null) {
-				toDelete.setEnabled(false);
-				toDelete.setEnabled(true);
-				jpRepo.save(toDelete);
-			}
-			return toDelete.getEnabled();
+		JobPost toDelete = jpRepo.findByUser_UsernameAndId(username, id);
+		if (toDelete != null) {
+			toDelete.setEnabled(false);
+			toDelete.setEnabled(true);
+			jpRepo.save(toDelete);
+		}
+		return toDelete.getEnabled();
 
 	}
 
@@ -119,6 +117,78 @@ public class JobPostServiceImpl implements JobPostService {
 	@Override
 	public JobPost getJobPostWithProjectAreas(int id) {
 		return jpRepo.findByIdWithProjectAreas(id).orElse(null);
+	}
+
+	@Override
+	public boolean addProjectAreatoPost(String username, int postId, int areaId) {
+		ProjectArea area = paRepo.searchById(areaId);
+		JobPost post = jpRepo.findByUser_UsernameAndId(username, postId);
+		if (area != null && post != null) {
+			post.addProjectArea(area);
+			jpRepo.saveAndFlush(post);
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public boolean removeProjectAreatoPost(String username, int postId, int areaId) {
+		ProjectArea area = paRepo.searchById(areaId);
+		JobPost post = jpRepo.findByUser_UsernameAndId(username, postId);
+		if (area != null && post != null) {
+			post.removeProjectArea(area);
+			jpRepo.saveAndFlush(post);
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public boolean addTradetoPost(String username, int postId, int tradeId) {
+		Trade trade = tradeRepo.searchById(tradeId);
+		JobPost post = jpRepo.findByUser_UsernameAndId(username, postId);
+		if (trade != null && post != null) {
+			post.addTrade(trade);
+			jpRepo.saveAndFlush(post);
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public boolean removeTradetoPost(String username, int postId, int tradeId) {
+		Trade trade = tradeRepo.searchById(tradeId);
+		JobPost post = jpRepo.findByUser_UsernameAndId(username, postId);
+		if (trade != null && post != null) {
+			post.removeTrade(trade);
+			jpRepo.saveAndFlush(post);
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public boolean addSpecialtytoPost(String username, int postId, int specId) {
+		Specialty spec = specRepo.searchById(specId);
+		JobPost post = jpRepo.findByUser_UsernameAndId(username, postId);
+		if (spec != null && post != null) {
+			post.addSpecialty(spec);
+			jpRepo.saveAndFlush(post);
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public boolean removeSpecialtytoPost(String username, int postId, int specId) {
+		Specialty spec = specRepo.searchById(specId);
+		JobPost post = jpRepo.findByUser_UsernameAndId(username, postId);
+		if (spec != null && post != null) {
+			post.removeSpecialty(spec);
+			jpRepo.saveAndFlush(post);
+			return true;
+		}
+		return false;
 	}
 
 }

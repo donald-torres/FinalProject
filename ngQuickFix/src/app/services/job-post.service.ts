@@ -104,7 +104,71 @@ export class JobPostService {
           })
         );
       }
-      update(post: JobPost): Observable<JobPost> {
+      createArea(postId: number, areaId: number): Observable<void> {
+        return this.http.post<void>(`${this.url}/${postId}/projectAreas/${areaId}`, null, this.getHttpOptions()).pipe(
+          catchError((err: any) => {
+            console.log(err);
+            return throwError(
+              () => new Error('JobPostService.create(): error creating Post: ' + err)
+            );
+          })
+        );
+      }
+      deleteArea(postId: number, areaId: number): Observable<void> {
+        return this.http.delete<void>(`${this.url}/${postId}/projectAreas/${areaId}`, this.getHttpOptions()).pipe(
+          catchError((err: any) => {
+            console.log(err);
+            return throwError(
+              () => new Error('JobPostService.create(): error creating Post: ' + err)
+            );
+          })
+        );
+      }
+      createSpecialty(postId: number, specId: number): Observable<void> {
+        return this.http.post<void>(`${this.url}/${postId}/specialties/${specId}`, null, this.getHttpOptions()).pipe(
+          catchError((err: any) => {
+            console.log(err);
+            return throwError(
+              () => new Error('JobPostService.create(): error creating Post: ' + err)
+            );
+          })
+        );
+      }
+      deleteSpecialty(postId: number, specId: number): Observable<void> {
+        return this.http.delete<void>(`${this.url}/${postId}/specialties/${specId}`, this.getHttpOptions()).pipe(
+          catchError((err: any) => {
+            console.log(err);
+            return throwError(
+              () => new Error('JobPostService.create(): error creating Post: ' + err)
+            );
+          })
+        );
+      }
+      createTrade(postId: number, tradeId: number): Observable<void> {
+        return this.http.post<void>(`${this.url}/${postId}/trades/${tradeId}`, null, this.getHttpOptions()).pipe(
+          catchError((err: any) => {
+            console.log(err);
+            return throwError(
+              () => new Error('JobPostService.create(): error creating Post: ' + err)
+            );
+          })
+        );
+      }
+      deleteTrade(postId: number, tradeId: number): Observable<void> {
+        return this.http.delete<void>(`${this.url}/${postId}/trades/${tradeId}`, this.getHttpOptions()).pipe(
+          catchError((err: any) => {
+            console.log(err);
+            return throwError(
+              () => new Error('JobPostService.create(): error creating Post: ' + err)
+            );
+          })
+        );
+      }
+      update(updatingPost: JobPost): Observable<JobPost> {
+        let post = Object.assign({}, updatingPost);
+        delete post.projectAreas;
+        delete post.trades;
+        delete post.specialties;
         return this.http.put<JobPost>(this.url +'/'+ post.id, post, this.getHttpOptions());
       }
 

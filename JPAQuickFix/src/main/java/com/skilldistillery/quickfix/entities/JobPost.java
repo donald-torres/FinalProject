@@ -10,6 +10,8 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -67,6 +69,7 @@ public class JobPost {
 	@Column(name = "bid_by")
 	private LocalDateTime bidBy;
 
+	
 	@ManyToMany
 	@JoinTable(name = "job_post_has_project_area", joinColumns = @JoinColumn(name = "job_post_id"), inverseJoinColumns = @JoinColumn(name = "project_area_id"))
 	private List<ProjectArea> projectAreas;

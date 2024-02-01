@@ -20,10 +20,10 @@ export class JobPost {
     user: User;
     budgetMax: number;
     bidBy: string;
-    projectAreas: ProjectArea[];
+    projectAreas: ProjectArea[] | undefined;
     appointments: Appointment[];
-    trades: Trade[];
-    specialties: Specialty[];
+    trades: Trade[] | undefined;
+    specialties: Specialty[] | undefined;
     bids: Bid[];
 
     constructor(

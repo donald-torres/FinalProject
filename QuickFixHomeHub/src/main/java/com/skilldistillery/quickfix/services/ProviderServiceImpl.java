@@ -1,10 +1,12 @@
 package com.skilldistillery.quickfix.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.skilldistillery.quickfix.entities.Provider;
 import com.skilldistillery.quickfix.repositories.ProviderRepository;
 
+@Service
 public class ProviderServiceImpl implements ProviderService {
 	
 	@Autowired
@@ -40,5 +42,11 @@ public class ProviderServiceImpl implements ProviderService {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+//	@Override
+//	public Provider index(String username) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 
 }

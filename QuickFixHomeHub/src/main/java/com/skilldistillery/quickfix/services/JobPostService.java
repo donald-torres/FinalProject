@@ -13,7 +13,7 @@ public interface JobPostService {
 
 	public List<JobPost> indexNotComplete(String username);
 
-	public JobPost show(String username, int id); 
+	public JobPost show(String username, int id);
 
 	public JobPost create(String username, JobPost jobPost);
 
@@ -32,4 +32,16 @@ public interface JobPostService {
 	List<ProjectArea> indexProject();
 
 	List<Specialty> indexSpecialty();
+
+	public boolean addProjectAreatoPost(String username, int postId, int areaId);
+
+	public boolean removeProjectAreatoPost(String username, int postId, int areaId);
+
+	public boolean addTradetoPost(String username, int postId, int tradeId);
+
+	public boolean removeTradetoPost(String username, int postId, int tradeId);
+
+	public boolean addSpecialtytoPost(String username, int postId, int specId);
+
+	public boolean removeSpecialtytoPost(String username, int postId, int specId);
 }

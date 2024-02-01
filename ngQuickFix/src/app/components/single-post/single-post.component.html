@@ -55,8 +55,8 @@
                 <div *ngFor="let trade of trades" class="checkbox">
                     <div class="card-body">
                         <label>{{trade.name}}</label>
-                        <input type="checkbox" name="name" placeholder="Trade Name" [checked]="postHasArea(trade.id)"
-                            (change)="toggleArea($event, trade.id)">
+                        <input type="checkbox" name="name" placeholder="Trade Name" [checked]="postHasTrade(trade.id)"
+                            (change)="toggleTrade($event, trade.id)">
                     </div>
                 </div>
             </div>
@@ -68,8 +68,8 @@
                 <div *ngFor="let spec of specialties">
                     <div class="col">
                         <label>{{spec.name}} </label>
-                        <input type="checkbox" name="name" placeholder="Specailty Name" [checked]="postHasArea(spec.id)"
-                            (change)="toggleArea($event, spec.id)"><br><br>
+                        <input type="checkbox" name="name" placeholder="Specailty Name" [checked]="postHasSpecailty(spec.id)"
+                            (change)="toggleSpecialty($event, spec.id)"><br><br>
                     </div>
                 </div>
             </div>
