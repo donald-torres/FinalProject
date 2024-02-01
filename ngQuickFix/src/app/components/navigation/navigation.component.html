@@ -6,8 +6,8 @@
     </a>
 
     <!-- Centered Search Bar -->
-    <form class="d-flex mx-auto" style="width: 500px;" (ngSubmit)="performSearch()">
-      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" [(ngModel)]="searchQuery" name="searchQuery">
+    <form class="searchbar d-flex mx-auto" style="width: 600px;" (ngSubmit)="performSearch()">
+      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" [(ngModel)]="searchQuery" name="searchQuery" style="width: 2000px;">
 
       <!-- Dropdown for selecting search type -->
       <select [(ngModel)]="searchType" name="searchType" class="form-control me-2">
@@ -29,7 +29,7 @@
         <a class="nav-link" *ngIf="!loggedIn()" [routerLink]="['/login']">Login</a>
       </li>
       <li class="nav-nav">
-        <a class="nav-link" *ngIf="!loggedIn()" [routerLink]="['/register']">Sign Up</a>
+        <a class="nav-link" *ngIf="!loggedIn()" [routerLink]="['/register']" style="padding-right: 100px;">Sign Up</a>
       </li>
     </ul>
 
@@ -38,21 +38,16 @@
         <a class="nav-link" *ngIf="loggedIn()" [routerLink]="['/dashboard']">Dashboard</a>
       </li>
       <li class="nav-nav">
-        <a class="nav-link" *ngIf="loggedIn()" [routerLink]="['/posts']">Posts</a>
+        <a class="nav-link" *ngIf="loggedIn() && (loggedInUser.role === 'Client' || loggedInUser.role === 'admin')" [routerLink]="['/posts']">Posts</a>
       </li>
       <li class="nav-nav">
-        <a class="nav-link" *ngIf="loggedIn()" [routerLink]="['/jobs']">Jobs</a>
+        <a class="nav-link" *ngIf="loggedIn() && (loggedInUser.role === 'Provider' || loggedInUser.role === 'admin')" [routerLink]="['/jobs']">Jobs</a>
+      </li>
+      <li class="nav-nav">
+        <app-logout *ngIf="loggedIn()"></app-logout>
+        <!-- <a class="nav-link" *ngIf="loggedIn()" [routerLink]="['/jobs']">Logout</a> -->
       </li>
     </ul>
-
-
-
-
-
-
-
-
-
 
     <button
       class="navbar-toggler"
@@ -79,15 +74,15 @@
         <a class="nav-link" [routerLink]="['/about']">About</a>
         <a class="nav-link" [routerLink]="['/contact']">Contact</a>
 
-        <a class="nav-link" *ngIf="!loggedIn()" [routerLink]="['/login']">Login</a>
-        <a class="nav-link" *ngIf="!loggedIn()" [routerLink]="['/register']">Sign Up</a>
+        <!-- <a class="nav-link" *ngIf="!loggedIn()" [routerLink]="['/login']">Login</a>
+        <a class="nav-link" *ngIf="!loggedIn()" [routerLink]="['/register']">Sign Up</a> -->
 
         <!-- if user "posts" / if provider "jobs" -->
-        <a class="nav-link disabled mx-" *ngIf="loggedIn()" [routerLink]="['/posts']">Posts</a>
+        <!-- <a class="nav-link disabled mx-" *ngIf="loggedIn()" [routerLink]="['/posts']">Posts</a>
         <a class="nav-link disabled" *ngIf="loggedIn()" [routerLink]="['/jobs']">Jobs</a>
-        <a class="nav-link disabled" *ngIf="loggedIn()" [routerLink]="['/dashboard']">Dashboard</a>
+        <a class="nav-link disabled" *ngIf="loggedIn()" [routerLink]="['/dashboard']">Dashboard</a> -->
 
-        <app-logout *ngIf="loggedIn()"></app-logout>
+        <!-- <app-logout *ngIf="loggedIn()"></app-logout> -->
 
         <!-- <form class="d-flex d-lg-none w-100 mt-2">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">

@@ -1,4 +1,4 @@
-<form >
+<form class="form-wrapper-register">
   <input class = "form-control" type="text" name="username" placeholder="Username" [(ngModel)]="newUser.username"><br><br>
   <input class = "form-control" type="password" name="password" placeholder="Password" [(ngModel)]="newUser.password"><br><br>
   <input class = "form-control" type="text" name="firstName" placeholder="First Name" [(ngModel)]="newUser.firstName"><br><br>
@@ -12,5 +12,5 @@
   <input class = "form-control" type="text" name="zip" placeholder="Zip" [(ngModel)]="newUser.address.zip"><br><br>
   <input  type="radio" name="role" placeholder="Phone" value="Client" [(ngModel)]="newUser.role">Client
   <input  type="radio" name="role" placeholder="Phone" value="Provider" [(ngModel)]="newUser.role">Provider<br><br>
-  <button (click)="register(newUser)" class=" btn btn-primary " name="submit" type="submit">Sign Up</button>
+  <button (click)="register(newUser)" class=" btn btn-login " name="submit" type="submit">Sign Up</button>
 </form>
