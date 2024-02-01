@@ -1,3 +1,4 @@
+import { User } from './../../models/user';
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -37,13 +38,16 @@ export class NavigationComponent implements OnInit {
 
   searchQuery: string = '';
   searchType: 'providers' | 'users' | 'jobposts' | '' = '';
+  loggedInUser: User = new User();
 
   constructor(
     private authService: AuthService,
     private router: Router
     ){}
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.getCurrentUser();
+  }
 
   loggedIn(){
     this.account = this.authService.checkLogin();
@@ -57,5 +61,18 @@ export class NavigationComponent implements OnInit {
       this.router.navigate(['/search'], { queryParams: { query: this.searchQuery, type: this.searchType } });
     }
   }
+
+  getCurrentUser() {
+    this.authService.getLoggedInUser().subscribe({
+      next: (data) => {
+        this.loggedInUser = data;
+      },
+      error: (problem) => {
+        console.error('UserComponent.reload(): error reloading user:');
+        console.error(problem);
+      },
+    });
+}
+
 
 }
