@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -28,7 +29,8 @@ public class Bid {
 	@ManyToOne
 	@JoinColumn(name="user_provider_id")
 	private Provider provider;
-
+//	@JsonIgnore
+	@JsonIgnoreProperties({"trades", "specialties", "appointments", "bids", "projectAreas"})
 	@ManyToOne
 	@JoinColumn(name = "post_id")
 	private JobPost jobPost;

@@ -70,10 +70,13 @@ public class BidServiceImpl implements BidService {
 				updatedBid.setProvider(p);
 				updatedBid.setJobPost(jp);
 				updatedBid.setProviderNote(bid.getProviderNote());
-				updatedBid.setProviderComment(bid.getProviderComment());;
-				updatedBid.setRatingByProvider(bid.getRatingByProvider());;
-				
-				updatedBid.setAccepted(bid.getAccepted());;
+				updatedBid.setProviderComment(bid.getProviderComment());
+				;
+				updatedBid.setRatingByProvider(bid.getRatingByProvider());
+				;
+
+				updatedBid.setAccepted(bid.getAccepted());
+				;
 				updatedBid.setAmount(bid.getAmount());
 				updatedBid.setBidDate(LocalDateTime.now());
 				bidRepo.saveAndFlush(updatedBid);
@@ -86,14 +89,30 @@ public class BidServiceImpl implements BidService {
 	}
 
 	@Override
-	public boolean destroy(String username, int jobPostId,int bid) {
-		
-		
-		
-		
+	public boolean destroy(String username, int jobPostId, int bid) {
 
+		return false;
+	}
 
-		
+	@Override
+	public boolean acceptBid(String username, int postId, int bidId) {
+		Bid bid = bidRepo.findByIdAndJobPostIdAndJobPost_User_Username(bidId, postId, username);
+		if (bid != null) {
+			bid.setAccepted(true);
+			bidRepo.saveAndFlush(bid);
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public boolean unAcceptBid(String username, int postId, int bidId) {
+		Bid bid = bidRepo.findByIdAndJobPostIdAndJobPost_User_Username(bidId, postId, username);
+		if (bid != null) {
+			bid.setAccepted(false);
+			bidRepo.saveAndFlush(bid);
+			return true;
+		}
 		return false;
 	}
 

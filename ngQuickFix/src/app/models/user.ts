@@ -19,7 +19,7 @@ export class User {
   updateDate: string;
   bidComments: BidComment[];
   address: Address;
-  provider: Provider[];
+  providers: Provider[];
   jobPosts: JobPost[];
 
   constructor(
@@ -38,7 +38,7 @@ export class User {
     updateDate: string = '',
     bidComments: Array<BidComment> = new Array(),
     address: Address = new Address(),
-    provider: Array<Provider> = new Array(),
+    providers: Array<Provider> = new Array(),
     jobPosts: Array<JobPost> = new Array()
 
   ) {
@@ -57,7 +57,7 @@ export class User {
     this.updateDate = updateDate;
     this.bidComments = bidComments;
     this.address = address;
-    this.provider = provider;
+    this.providers = providers;
     this.jobPosts = jobPosts;
   }
 

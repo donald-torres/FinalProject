@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -80,5 +81,17 @@ public class BidController {
 		return updatedBid;
 
 	}
-
+	
+	@PostMapping({ "jobPosts/{postId}/bids/{bidId}" })
+	public void acceptBid(HttpServletResponse res, @PathVariable("postId") int postId, @PathVariable("bidId") int bidId, Principal principal) {
+		if(!bidService.acceptBid(principal.getName(), postId, bidId)) {
+			res.setStatus(404);
+		}
+	}
+	@DeleteMapping({ "jobPosts/{postId}/bids/{bidId}" })
+	public void unAcceptBid(HttpServletResponse res, @PathVariable("postId") int postId, @PathVariable("bidId") int bidId, Principal principal) {
+		if(!bidService.unAcceptBid(principal.getName(), postId, bidId)) {
+			res.setStatus(404);
+		}
+	}
 }

@@ -16,6 +16,8 @@ public interface BidRepository extends JpaRepository<Bid, Integer> {
 	
 	Bid findByIdAndJobPost_Id(int  id, int jobPostId);
 	
-	 Bid findByIdAndJobPost_IdAndProvider_User_Username(int id, int jobPostId, String username);
+	Bid findByIdAndJobPost_IdAndProvider_User_Username(int id, int jobPostId, String username);
+	 
+	Bid findByIdAndJobPostIdAndJobPost_User_Username(int id, int jobPostId, String username); 
 
 }

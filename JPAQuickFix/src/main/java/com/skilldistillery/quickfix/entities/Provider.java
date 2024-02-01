@@ -51,7 +51,8 @@ public class Provider {
 	@ManyToOne
 	@JoinColumn(name = "address_id")
 	private Address address;
-
+	@JsonIgnore
+//	@JsonIgnoreProperties({"user"})
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
@@ -73,7 +74,8 @@ public class Provider {
 	@OneToMany(mappedBy = "provider")
 	private List<Appointment> appointments;
 
-	@JsonIgnore
+//	@JsonIgnore
+	@JsonIgnoreProperties({"provider", "user", "bidComments"})
 	@OneToMany(mappedBy = "provider")
 	private List<Bid> bids;
 
