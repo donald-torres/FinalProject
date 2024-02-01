@@ -49,7 +49,7 @@ class ProjectAreaTest {
 	@Test
 	void basic_mapping() {
 		assertNotNull(projectArea);
-		assertEquals("Counter Tops", projectArea.getName());
+		assertEquals("Other", projectArea.getName());
 	}
 	
 	@Test

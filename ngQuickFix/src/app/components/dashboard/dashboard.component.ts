@@ -10,6 +10,7 @@ import { AuthService } from '../../services/auth.service';
 import { SinglePostComponent } from '../single-post/single-post.component';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Bid } from '../../models/bid';
+import { ProviderService } from '../../services/provider.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -19,21 +20,21 @@ import { Bid } from '../../models/bid';
   styleUrl: './dashboard.component.css',
 })
 export class DashboardComponent implements OnInit {
-
   jobPosts: JobPost[] = [];
   loggedInUser: User = new User();
   newPost: JobPost = new JobPost();
   editUser: User | null = null;
   editProvider: Provider | null = null;
   selected: JobPost | null = null;
-  bids: Bid[] = []
+  bids: Bid[] = [];
 
   constructor(
     private userService: UserService,
     private jobPostService: JobPostService,
     private authService: AuthService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private providerService: ProviderService
   ) {}
 
   getPostCount(): number {
@@ -45,15 +46,15 @@ export class DashboardComponent implements OnInit {
     this.getCurrentUser();
   }
   getCurrentUser() {
-      this.authService.getLoggedInUser().subscribe({
-        next: (data) => {
-          this.loggedInUser = data;
-        },
-        error: (problem) => {
-          console.error('UserComponent.reload(): error reloading user:');
-          console.error(problem);
-        },
-      });
+    this.authService.getLoggedInUser().subscribe({
+      next: (data) => {
+        this.loggedInUser = data;
+      },
+      error: (problem) => {
+        console.error('UserComponent.reload(): error reloading user:');
+        console.error(problem);
+      },
+    });
   }
   addPost(newPost: JobPost) {
     this.jobPostService.create(newPost).subscribe({
@@ -68,11 +69,11 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  setEditUser(){
+  setEditUser() {
     this.editUser = Object.assign({}, this.loggedInUser);
   }
 
-  updateUser(editUser : User){
+  updateUser(editUser: User) {
     this.userService.update(editUser).subscribe({
       next: (result) => {
         this.getCurrentUser();
@@ -80,7 +81,7 @@ export class DashboardComponent implements OnInit {
       },
       error: (problem) => {
         console.error('DashboardComponent.updateUser(): error updateing User:');
-          console.error(problem);
+        console.error(problem);
       },
     });
   }
@@ -88,7 +89,7 @@ export class DashboardComponent implements OnInit {
   viewPost(post: JobPost) {
     this.router.navigateByUrl('singlePost/' + post.id);
   }
-  getBids(postId: number){
+  getBids(postId: number) {
     this.jobPostService.indexBids(postId).subscribe({
       next: (data) => {
         this.bids = data;
@@ -101,11 +102,24 @@ export class DashboardComponent implements OnInit {
       },
     });
   }
+  getPost(postId: number) {
+    this.jobPostService.show(postId).subscribe({
+      next: (data) => {
+        this.selected = data;
+      },
+      error: (problem) => {
+        console.error(
+          'SinglePostComponent.reload(): error reloading projectAreas:'
+        );
+        console.error(problem);
+      },
+    });
+  }
 
   showBids(post: JobPost) {
-   this.getBids(post.id);
-   console.log(this.bids);
-    }
+    this.getBids(post.id);
+    console.log(this.bids);
+  }
 
   reload() {
     this.jobPostService.index().subscribe({
@@ -117,11 +131,15 @@ export class DashboardComponent implements OnInit {
         console.error(problem);
       },
     });
-  }
-
-
-
-
-
   
+    // this.providerService.show(this.loggedInUser.provider[0].id).subscribe({
+    //   next: (data) => {
+    //     this.editProvider = data;
+    //   },
+    //   error: (problem) => {
+    //     console.error('DashboardComponent.reload(): error reloading jobPosts:');
+    //     console.error(problem);
+    //   },
+    // });
+  }
 }

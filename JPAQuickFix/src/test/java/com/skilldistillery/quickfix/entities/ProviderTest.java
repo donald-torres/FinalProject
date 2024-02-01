@@ -51,6 +51,11 @@ class ProviderTest {
 		assertNotNull(provider);
 		assertEquals("Gills Handy Service", provider.getCompany());
 	}
+	@Test
+	void test_user() {
+		assertNotNull(provider);
+		assertNotNull(provider.getUser());
+	}
 
 	@Test
 	void OTM_Bid() {

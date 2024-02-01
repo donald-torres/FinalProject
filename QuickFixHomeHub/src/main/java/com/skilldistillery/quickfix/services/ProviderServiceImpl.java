@@ -43,10 +43,6 @@ public class ProviderServiceImpl implements ProviderService {
 		return false;
 	}
 
-//	@Override
-//	public Provider index(String username) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
+
 
 }

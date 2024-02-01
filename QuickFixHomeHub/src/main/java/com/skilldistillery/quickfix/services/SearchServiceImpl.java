@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.skilldistillery.quickfix.entities.JobPost;
 import com.skilldistillery.quickfix.entities.Provider;
-import com.skilldistillery.quickfix.entities.Trade;
 import com.skilldistillery.quickfix.entities.User;
 import com.skilldistillery.quickfix.repositories.JobPostRepository;
 import com.skilldistillery.quickfix.repositories.ProviderRepository;

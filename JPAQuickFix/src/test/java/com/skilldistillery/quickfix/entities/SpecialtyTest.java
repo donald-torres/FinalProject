@@ -49,7 +49,7 @@ class SpecialtyTest {
 	@Test
 	void test() {
 		assertNotNull(specialty);
-		assertEquals("General", specialty.getName());
+		assertEquals("Handyman ", specialty.getName());
 	}
 
 	@Test

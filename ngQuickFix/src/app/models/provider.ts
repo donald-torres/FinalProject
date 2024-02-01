@@ -32,7 +32,7 @@ export class Provider {
         createDate: string = '',
         updateDate: string = '',
         enabled: boolean = true,
-        address: Address = new Address,
+        address: Address = new Address(),
         user: User = new User,
         description: string = '',
         logoUrl: string = '', 

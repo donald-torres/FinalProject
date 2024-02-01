@@ -176,4 +176,5 @@ export class JobPostService {
         return this.http.delete<void>(this.url +'/'+ id, this.getHttpOptions());
       }
 
+      
 }
