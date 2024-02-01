@@ -122,4 +122,36 @@ public class JobPostController {
 		}
 	}
 
+	@PostMapping(path = "jobPosts/{postId}/trades/{tradeId}")
+	public void addTrade(HttpServletResponse res, @PathVariable("postId") int postId,
+			@PathVariable("tradeId") int tradeId, Principal principal) {
+		if (!jobPostService.addTradetoPost(principal.getName(), postId, tradeId)) {
+			res.setStatus(404);
+		}
+	}
+
+	@DeleteMapping(path = "jobPosts/{postId}/trades/{tradeId}")
+	public void removeTrade(HttpServletResponse res, @PathVariable("postId") int postId,
+			@PathVariable("tradeId") int tradeId, Principal principal) {
+		if (!jobPostService.removeTradetoPost(principal.getName(), postId, tradeId)) {
+			res.setStatus(404);
+		}
+	}
+
+	@PostMapping(path = "jobPosts/{postId}/specialties/{specId}")
+	public void addSpecialty(HttpServletResponse res, @PathVariable("postId") int postId,
+			@PathVariable("specId") int specId, Principal principal) {
+		if (!jobPostService.addSpecialtytoPost(principal.getName(), postId, specId)) {
+			res.setStatus(404);
+		}
+	}
+
+	@DeleteMapping(path = "jobPosts/{postId}/specialties/{specId}")
+	public void removeSpecialty(HttpServletResponse res, @PathVariable("postId") int postId,
+			@PathVariable("specId") int specId, Principal principal) {
+		if (!jobPostService.removeSpecialtytoPost(principal.getName(), postId, specId)) {
+			res.setStatus(404);
+		}
+	}
+
 }

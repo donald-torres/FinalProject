@@ -103,7 +103,7 @@ export class SinglePostComponent implements OnInit {
   }
 
   postHasArea(areaId: number) {
-    return this.editPost.projectAreas.some((area) => {
+    return this.editPost.projectAreas?.some((area) => {
       return area.id === areaId;
     });
   }
@@ -126,26 +126,50 @@ export class SinglePostComponent implements OnInit {
     }
   }
   postHasTrade(tradeId: number) {
-    return this.editPost.trades.some((trade) => {
+    return this.editPost.trades?.some((trade) => {
       return trade.id === tradeId;
     });
   }
 
   toggleTrade(event: any, tradeId: number) {
-    // TODO event.target.checked
-    console.log(event);
-    console.log(tradeId);
+    if (event.target.checked) {
+      this.jobPostService.createTrade(this.editPost.id, tradeId).subscribe({
+        next: () => {},
+        error: (problem) => {
+          console.log(problem);
+        },
+      });
+    } else {
+      this.jobPostService.deleteTrade(this.editPost.id, tradeId).subscribe({
+        next: () => {},
+        error: (problem) => {
+          console.log(problem);
+        },
+      });
+    }
   }
   postHasSpecailty(specId: number) {
-    return this.editPost.specialties.some((spec) => {
+    return this.editPost.specialties?.some((spec) => {
       return spec.id === specId;
     });
   }
 
   toggleSpecialty(event: any, specId: number) {
-    // TODO event.target.checked
-    console.log(event);
-    console.log(specId);
+    if (event.target.checked) {
+      this.jobPostService.createSpecialty(this.editPost.id, specId).subscribe({
+        next: () => {},
+        error: (problem) => {
+          console.log(problem);
+        },
+      });
+    } else {
+      this.jobPostService.deleteSpecialty(this.editPost.id, specId).subscribe({
+        next: () => {},
+        error: (problem) => {
+          console.log(problem);
+        },
+      });
+    }
   }
 
   reload() {
