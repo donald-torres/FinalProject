@@ -85,6 +85,18 @@ export class DashboardComponent implements OnInit {
       },
     });
   }
+  updateBid(postId: number, bidId: number, bid: Bid) {
+    console.log(bid);
+    this.jobPostService.updateBid(postId, bidId, bid).subscribe({
+      next: (result) => {
+        
+      },
+      error: (problem) => {
+        console.error('DashboardComponent.updateBid(): error updateing Bid:');
+        console.error(problem);
+      },
+    });
+  }
 
   viewPost(post: JobPost) {
     this.router.navigateByUrl('singlePost/' + post.id);

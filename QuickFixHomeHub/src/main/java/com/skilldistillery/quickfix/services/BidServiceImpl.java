@@ -73,6 +73,7 @@ public class BidServiceImpl implements BidService {
 				updatedBid.setProviderComment(bid.getProviderComment());;
 				updatedBid.setRatingByProvider(bid.getRatingByProvider());;
 				
+				updatedBid.setAccepted(bid.getAccepted());;
 				updatedBid.setAmount(bid.getAmount());
 				updatedBid.setBidDate(LocalDateTime.now());
 				bidRepo.saveAndFlush(updatedBid);
