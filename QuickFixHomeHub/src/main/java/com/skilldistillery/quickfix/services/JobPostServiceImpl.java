@@ -52,8 +52,8 @@ public class JobPostServiceImpl implements JobPostService {
 	}
 
 	@Override
-	public List<JobPost> indexNotComplete(String username) {
-		return jpRepo.findByUser_UsernameAndCompleteFalse(username);
+	public List<JobPost> indexNotComplete() {
+		return jpRepo.findByCompleteFalse();
 	}
 
 	@Override

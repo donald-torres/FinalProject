@@ -9,6 +9,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { SearchComponent } from './components/search/search.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SinglePostComponent } from './components/single-post/single-post.component';
+import { JobPostsComponent } from './components/job-posts/job-posts.component';
 
 
   export const routes: Routes = [
@@ -21,6 +22,7 @@ import { SinglePostComponent } from './components/single-post/single-post.compon
     { path: 'logout', component: LogoutComponent },
     { path: 'search', component: SearchComponent },
     { path: 'dashboard', component: DashboardComponent },
+    { path: 'jobPosts', component: JobPostsComponent },
     { path: 'singlePost/:postId', component: SinglePostComponent },
     { path: '**', component: NotFoundComponent },
   ];

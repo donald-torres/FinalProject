@@ -133,7 +133,9 @@ export class SearchComponent implements OnInit {
    return this.account;
   }
 
-
+  viewPost(post: JobPost) {
+    this.router.navigateByUrl('singlePost/' + post.id);
+  }
 
 
 

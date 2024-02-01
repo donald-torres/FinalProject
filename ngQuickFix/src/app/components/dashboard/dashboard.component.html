@@ -385,9 +385,11 @@
           <div *ngFor="let provider of loggedInUser.providers">
             <!-- <p>{{provider.company}}</p> -->
             <div *ngFor="let bid of provider.bids">
+
               <p>Title: {{ bid.jobPost.title }}</p>
               <p>Bid Price: ${{ bid.amount }}</p>
               <p>User Rating: {{ bid.ratingByUser }}</p>
+
             </div>
           </div>
         </div>
