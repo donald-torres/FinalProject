@@ -9,6 +9,8 @@ import { Specialty } from '../../models/specialty';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Bid } from '../../models/bid';
 import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
+import { User } from '../../models/user';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-single-post',
@@ -25,11 +27,13 @@ export class SinglePostComponent implements OnInit {
   specialties: Specialty[] = [];
   bids: Bid[] = [];
   isCollapsed = true;
+  loggedInUser: User = new User();
 
   constructor(
     private jobPostService: JobPostService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
   ngOnInit(): void {
     this.route.paramMap.subscribe({
@@ -46,8 +50,19 @@ export class SinglePostComponent implements OnInit {
       },
     });
     this.reload();
+    this.getCurrentUser()
   }
-
+  getCurrentUser() {
+    this.authService.getLoggedInUser().subscribe({
+      next: (data) => {
+        this.loggedInUser = data;
+      },
+      error: (problem) => {
+        console.error('UserComponent.reload(): error reloading user:');
+        console.error(problem);
+      },
+    });
+  }
   setEditPost() {
     this.editPost = Object.assign({}, this.selected);
   }
@@ -170,6 +185,10 @@ export class SinglePostComponent implements OnInit {
         },
       });
     }
+  }
+
+  bidOnPost(amount: number){
+    //FIXME
   }
 
   reload() {

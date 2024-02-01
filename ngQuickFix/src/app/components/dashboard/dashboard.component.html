@@ -186,7 +186,7 @@
 
                     <li>Bid: ${{bid.amount}}</li>
                     <li>From: {{bid.provider.company}}</li>
-                    <li>Comment: {{bid.userComment}}</li>
+                    <input type="checkbox"  (change)="updateBid(bid.jobPost.id,bid.id, bid)" name="accepted" [(ngModel)]="bid.accepted">Accepted
                 </div>
             </div>
 

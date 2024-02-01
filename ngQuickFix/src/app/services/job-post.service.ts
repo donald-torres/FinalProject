@@ -171,6 +171,18 @@ export class JobPostService {
         delete post.specialties;
         return this.http.put<JobPost>(this.url +'/'+ post.id, post, this.getHttpOptions());
       }
+      updateBid(postId: number, bidId: number, bid: Bid): Observable<Bid> {
+        console.log(bid);
+        
+        return this.http.put<Bid>(`${this.url}/${postId}/bids/${bidId}`, bid, this.getHttpOptions()).pipe(
+          catchError((err: any) => {
+            console.log(err);
+            return throwError(
+              () => new Error('JobPostService.updateBid(): error updating Bid: ' + err)
+            );
+          })
+        );
+      }
 
       destroy(id: number): Observable<void> {
         return this.http.delete<void>(this.url +'/'+ id, this.getHttpOptions());

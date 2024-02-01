@@ -1,103 +1,132 @@
-<div class="card" *ngIf="editPost">
-    <h3>{{editPost.title}}</h3>
-    <div class="card-body">
-        <h6>{{editPost.description}}</h6>
-        <li>{{editPost.enabled}}</li>
-        <li>{{editPost.complete}}</li>
-    </div>
-</div>
+<div *ngIf="loggedInUser.role === 'Provider'">
 
-<div class="container-fluid" *ngIf="editPost">
-    <form>
-        <label>Title: </label>
-        <input class="form-control" type="text" name="title" placeholder="Title" [(ngModel)]="editPost!.title"><br><br>
-
-        <label>Description: </label>
-        <textarea class="form-control" type="text" name="description" placeholder="Description"
-            value={{selected?.description}} [(ngModel)]="editPost!.description"></textarea><br><br>
-
-        <label>Start Date: </label>
-        <input class="form-control" type="date" name="startDate" placeholder="Start Date"
-            [(ngModel)]="editPost!.startDate"><br><br>
-
-        <label>Special Instructions: </label>
-        <textarea class="form-control" type="text" name="specialInstructions" placeholder="Special Instructions"
-            [(ngModel)]="editPost!.specialInstructions"></textarea><br><br>
-
-        <label>Image Url: </label>
-        <input class="form-control" type="text" name="imageUrl" placeholder="Image URL"
-            [(ngModel)]="editPost!.imageUrl"><br><br>
-
-        <label>Max Budget: </label>
-        <input class="form-control" type="number" name="budgetMax" placeholder="Max Budget"
-            [(ngModel)]="editPost!.budgetMax"><br><br>
-
-        <label>Bid By: </label>
-        <input class="form-control" type="datetime-local" name="bidBy" placeholder="Bid By"
-            [(ngModel)]="editPost!.bidBy"><br><br>
-        <div class="container">
-            <div class="card"
-                style="display: grid; grid-template-columns: repeat(5,1fr); max-width: 100%; align-items: stretch;">
-                <label>Project Areas:</label>
-                <div *ngFor="let area of projectAreas">
-                    <div class="card-body">
-                        <label>{{area.name}}</label>
-                        <input type="checkbox" name="name" placeholder="Project Area Name"
-                            [checked]="postHasArea(area.id)" (change)="toggleArea($event, area.id)"><br><br>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="card"
-                style="display: grid; grid-template-columns: repeat(5,1fr); max-width: 100%; align-items: stretch;">
-                <label>Trades:</label>
-                <div *ngFor="let trade of trades" class="checkbox">
-                    <div class="card-body">
-                        <label>{{trade.name}}</label>
-                        <input type="checkbox" name="name" placeholder="Trade Name" [checked]="postHasTrade(trade.id)"
-                            (change)="toggleTrade($event, trade.id)">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="card"
-                style="display: grid; grid-template-columns: repeat(5,1fr); max-width: 100%; align-items: stretch;">
-                <label>Specialties:</label>
-                <div *ngFor="let spec of specialties">
-                    <div class="col">
-                        <label>{{spec.name}} </label>
-                        <input type="checkbox" name="name" placeholder="Specailty Name" [checked]="postHasSpecailty(spec.id)"
-                            (change)="toggleSpecialty($event, spec.id)"><br><br>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <label>Complete: </label>
-        <input type="checkbox" name="complete" [(ngModel)]="editPost!.complete"><br><br>
-
-
-        <input type="button" class="btn btn-outline-success" (click)="updatePost(editPost)" value="Edit">
-        <input type="button" class="btn btn-outline-danger" (click)="deletePost(editPost.id)" value="Delete">
-        <button type="button" class="btn btn-outline-warning" (click)="collapse.toggle()"
+    <div class="card" *ngIf="editPost">
+        <img  src={{editPost.imageUrl}} class="img-thumbnail me-3"
+        style="max-width: 250px; max-height: 250px;" alt="No Image">
+        <h3>{{editPost.title}}</h3>
+        <div class="card-body">
+            <h6>{{editPost.description}}</h6>
+            <li *ngIf="editPost.materialsProvided"> Materials Provided: Yes</li>
+            <li *ngIf="!editPost.materialsProvided">Materials Provided: No</li>
+            <li  *ngIf="editPost.specialInstructions">Special Instructions: {{editPost.specialInstructions}}</li>
+            <li>Max Budget: ${{editPost.budgetMax}}</li>
+         
+            
+            <button type="button" class="btn btn-outline-warning" (click)="collapse.toggle()"
             [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
-            Bids
+            Bid
         </button>
         <div style="min-height: 100px">
             <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed" [horizontal]="true" style="max-width: 300px">
-                <div class="container-fluid" *ngFor="let bid of bids">
+                <div class="container-fluid">
                     <div class="card" style="width: 300px;">
-                        <p>Bid: ${{bid.amount}}</p>
-                        <div class="card-body">
-                            <li>Bid Date: {{bid.bidDate | date: 'shortDate'}}</li>
-                            <li>Bid By: {{bid.provider.company}}</li>
+                        
+                        <input type="number" class="form-control" placeholder="CurrentBid">
+                        
+                        <!-- <button class="btn btn-info" (click)="bidOnPost(amount)">Place Bid</button> -->
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
-    </form>
+<div *ngIf="loggedInUser.role === 'Client' ">
+    <div class="container-fluid" *ngIf="editPost">
+        <form>
+            <label>Title: </label>
+            <input class="form-control" type="text" name="title" placeholder="Title"
+                [(ngModel)]="editPost!.title"><br><br>
+
+            <label>Description: </label>
+            <textarea class="form-control" type="text" name="description" placeholder="Description"
+                value={{selected?.description}} [(ngModel)]="editPost!.description"></textarea><br><br>
+
+            <label>Start Date: </label>
+            <input class="form-control" type="date" name="startDate" placeholder="Start Date"
+                [(ngModel)]="editPost!.startDate"><br><br>
+
+            <label>Special Instructions: </label>
+            <textarea class="form-control" type="text" name="specialInstructions" placeholder="Special Instructions"
+                [(ngModel)]="editPost!.specialInstructions"></textarea><br><br>
+
+            <label>Image Url: </label>
+            <input class="form-control" type="text" name="imageUrl" placeholder="Image URL"
+                [(ngModel)]="editPost!.imageUrl"><br><br>
+
+            <label>Max Budget: </label>
+            <input class="form-control" type="number" name="budgetMax" placeholder="Max Budget"
+                [(ngModel)]="editPost!.budgetMax"><br><br>
+
+            <label>Bid By: </label>
+            <input class="form-control" type="datetime-local" name="bidBy" placeholder="Bid By"
+                [(ngModel)]="editPost!.bidBy"><br><br>
+            <div class="container">
+                <div class="card"
+                    style="display: grid; grid-template-columns: repeat(5,1fr); max-width: 100%; align-items: stretch;">
+                    <label>Project Areas:</label>
+                    <div *ngFor="let area of projectAreas">
+                        <div class="card-body">
+                            <label>{{area.name}}</label>
+                            <input type="checkbox" name="name" placeholder="Project Area Name"
+                                [checked]="postHasArea(area.id)" (change)="toggleArea($event, area.id)"><br><br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="card"
+                    style="display: grid; grid-template-columns: repeat(5,1fr); max-width: 100%; align-items: stretch;">
+                    <label>Trades:</label>
+                    <div *ngFor="let trade of trades" class="checkbox">
+                        <div class="card-body">
+                            <label>{{trade.name}}</label>
+                            <input type="checkbox" name="name" placeholder="Trade Name"
+                                [checked]="postHasTrade(trade.id)" (change)="toggleTrade($event, trade.id)">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="card"
+                    style="display: grid; grid-template-columns: repeat(5,1fr); max-width: 100%; align-items: stretch;">
+                    <label>Specialties:</label>
+                    <div *ngFor="let spec of specialties">
+                        <div class="col">
+                            <label>{{spec.name}} </label>
+                            <input type="checkbox" name="name" placeholder="Specailty Name"
+                                [checked]="postHasSpecailty(spec.id)"
+                                (change)="toggleSpecialty($event, spec.id)"><br><br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <label>Complete: </label>
+            <input type="checkbox" name="complete" [(ngModel)]="editPost!.complete"><br><br>
+
+
+            <input type="button" class="btn btn-outline-success" (click)="updatePost(editPost)" value="Edit">
+            <input type="button" class="btn btn-outline-danger" (click)="deletePost(editPost.id)" value="Delete">
+            <button type="button" class="btn btn-outline-warning" (click)="collapse.toggle()"
+                [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+                Bids
+            </button>
+            <div style="min-height: 100px">
+                <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed" [horizontal]="true" style="max-width: 300px">
+                    <div class="container-fluid" *ngFor="let bid of bids">
+                        <div class="card" style="width: 300px;">
+                            <p>Bid: ${{bid.amount}}</p>
+                            <div class="card-body">
+                                <li>Bid Date: {{bid.bidDate | date: 'shortDate'}}</li>
+                                <li>Bid By: {{bid.provider.company}}</li>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
 </div>
