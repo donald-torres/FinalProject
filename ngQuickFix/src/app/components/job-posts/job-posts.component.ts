@@ -8,18 +8,19 @@ import { JobPost } from '../../models/job-post';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { User } from '../../models/user';
+import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-job-posts',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule,  NgbCollapseModule],
   templateUrl: './job-posts.component.html',
   styleUrl: './job-posts.component.css'
 })
 export class JobPostsComponent implements OnInit{
   jobPosts: JobPost[] = [];
   loggedInUser: User = new User();
-
+  isCollapsed = true;
   constructor(
     private userService: UserService,
     private jobPostService: JobPostService,
