@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,6 +39,22 @@ public class ProviderController {
 		}
 
 		return provider;
+	}
+	@PostMapping(path = "providers")
+	public Provider create(HttpServletRequest req, HttpServletResponse res, @RequestBody Provider provider,
+			Principal principal) {
+		Provider newProvider;
+		try {
+			newProvider = providerService.create(principal.getName(), provider);
+			res.setStatus(201);
+			res.setHeader("Location", "http://localhost:8090/api/providers/" + newProvider.getId());
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setStatus(400);
+			newProvider = null;
+		}
+
+		return newProvider;
 	}
 
 	@PutMapping(path = "providers/{id}")

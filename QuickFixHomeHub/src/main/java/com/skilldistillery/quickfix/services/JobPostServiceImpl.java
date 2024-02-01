@@ -10,7 +10,6 @@ import com.skilldistillery.quickfix.entities.ProjectArea;
 import com.skilldistillery.quickfix.entities.Specialty;
 import com.skilldistillery.quickfix.entities.Trade;
 import com.skilldistillery.quickfix.entities.User;
-import com.skilldistillery.quickfix.repositories.BidRepository;
 import com.skilldistillery.quickfix.repositories.JobPostRepository;
 import com.skilldistillery.quickfix.repositories.ProjectAreaRepository;
 import com.skilldistillery.quickfix.repositories.SpecialtyRepository;
@@ -25,8 +24,6 @@ public class JobPostServiceImpl implements JobPostService {
 
 	@Autowired
 	private UserRepository userRepo;
-	@Autowired
-	private BidRepository bidRepo;
 	@Autowired
 	private TradeRepository tradeRepo;
 	@Autowired
