@@ -197,7 +197,7 @@
         <div *ngFor="let provider of loggedInUser.providers">
             <p>{{provider.company}}</p>
             <div *ngFor="let bid of provider.bids">
-                <p>{{bid.jobPost.title}}</p>
+                <p (click)="viewPost(bid.jobPost)">{{bid.jobPost.title}}</p>
                 <p>{{bid.amount}}</p>
             </div>
         </div>

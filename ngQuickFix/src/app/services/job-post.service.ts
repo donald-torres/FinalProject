@@ -208,5 +208,15 @@ export class JobPostService {
         return this.http.delete<void>(this.url +'/'+ id, this.getHttpOptions());
       }
 
+      indexActive(): Observable<JobPost[]> {
+        return this.http.get<JobPost[]>(environment.baseUrl + 'api/activeJobPosts', this.getHttpOptions()).pipe(
+          catchError((err: any) => {
+            console.log(err);
+            return throwError(
+              () => new Error('JobPostService.indexActive(): error retrieving JobPosts: ' + err)
+              );
+            })
+            );
+          }
       
 }

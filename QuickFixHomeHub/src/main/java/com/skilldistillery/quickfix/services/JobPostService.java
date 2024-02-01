@@ -11,7 +11,7 @@ public interface JobPostService {
 
 	public List<JobPost> index(String username);
 
-	public List<JobPost> indexNotComplete(String username);
+	public List<JobPost> indexNotComplete();
 
 	public JobPost show(String username, int id);
 

@@ -39,7 +39,7 @@ public class JobPostController {
 
 	@GetMapping(path = { "activeJobPosts", "activeJobPosts/" })
 	public List<JobPost> indexNotCompleted(HttpServletRequest req, HttpServletResponse res, Principal principal) {
-		List<JobPost> jobPosts = jobPostService.indexNotComplete(principal.getName());
+		List<JobPost> jobPosts = jobPostService.indexNotComplete();
 		if (jobPosts == null) {
 			res.setStatus(404);
 		}

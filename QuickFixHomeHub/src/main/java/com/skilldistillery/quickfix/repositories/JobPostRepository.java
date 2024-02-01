@@ -28,7 +28,7 @@ public interface JobPostRepository extends JpaRepository<JobPost, Integer> {
 	@Query("SELECT jp FROM JobPost jp LEFT JOIN FETCH jp.projectAreas WHERE jp.id = :id")
 	Optional<JobPost> findByIdWithProjectAreas(int id);
 
-	List<JobPost> findByUser_UsernameAndCompleteFalse(String username);
+	List<JobPost> findByCompleteFalse();
 
 	boolean existsByEnabledAndId(JobPost jobPost, int id);
 

@@ -38,10 +38,10 @@
         <a class="nav-link" *ngIf="loggedIn()" [routerLink]="['/dashboard']">Dashboard</a>
       </li>
       <li class="nav-nav">
-        <a class="nav-link" *ngIf="loggedIn() && (loggedInUser.role === 'Client' || loggedInUser.role === 'admin')" [routerLink]="['/posts']">Posts</a>
+        <a class="nav-link" *ngIf="loggedIn() && (loggedInUser.role === 'Client' || loggedInUser.role === 'admin')" [routerLink]="['/jobPosts']">Posts</a>
       </li>
       <li class="nav-nav">
-        <a class="nav-link" *ngIf="loggedIn() && (loggedInUser.role === 'Provider' || loggedInUser.role === 'admin')" [routerLink]="['/jobs']">Jobs</a>
+        <a class="nav-link" *ngIf="loggedIn() && (loggedInUser.role === 'Provider' || loggedInUser.role === 'admin')" [routerLink]="['/jobPosts']">Jobs</a>
       </li>
       <li class="nav-nav">
         <app-logout *ngIf="loggedIn()"></app-logout>

@@ -53,7 +53,7 @@
           <p>Hourly Rate: {{ item.ratePerHour | currency }}</p>
         </div>
         <div *ngIf="searchType === 'jobposts'">
-          <h3>{{ item.title }}</h3>
+          <h3 (click)="viewPost(item)">{{ item.title }}</h3>
           <p>Posted By: {{ item.user.firstName }} {{ item.user.lastName }}</p>
           <p>Projected Budget: ${{ item.budgetMax }}</p>
           <p>Description: {{ item.description }}</p>
