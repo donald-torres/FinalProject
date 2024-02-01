@@ -4,7 +4,7 @@
             <div class="row">
 
                 <div class="col-lg-12 card mb-3 " style="min-height: 5rem">
-                    <h1 *ngIf="loggedInUser.role === 'Client'" class="mx-auto my-auto">{{loggedInUser.biography}}</h1>
+                    <h1 class="mx-auto my-auto">{{loggedInUser.biography}}</h1>
                     <h3 class="mx-auto my-auto" style="color: red;" *ngIf="editUser">--------Edit your account
                         here-------</h3>
                     <div class="container-fluid" *ngIf="editUser">
@@ -53,23 +53,22 @@
 
                 <div class="col-lg-4 card mb-3 gx-5">
                     <img class="bd-placeholder-img rounded-circle mx-auto my-auto" width="140" height="140"
-                        src={{loggedInUser.imageUrl}} role="img" aria-label="Placeholder" (click)="setEditUser()">
-                    <p class="mx-auto"><small>click to edit</small></p>
+                        src={{loggedInUser.imageUrl}} role="img" aria-label="Placeholder" >
                 </div>
                 <div class="col-lg-8 card mb-3">
                     <div class="card-body">
                         <h5 class="card-title"> {{loggedInUser.firstName}} {{loggedInUser.lastName}}</h5>
                         <h6 class="card-subtitle mb-2 text-body-secondary">Rating</h6>
                         <p class="card-text">{{loggedInUser.email}}</p>
-                        <button class="btn btn-dark col-lg-4 me-5">Message</button>
+                        <button class="btn btn-dark col-lg-4 me-5" (click)="setEditUser()">Edit</button>
                         <button class="btn btn-dark col-lg-4">Share</button>
 
                     </div>
                 </div>
 
-                <div class="col-lg-12 card mb-3" style="height: 15rem; overflow-x: auto;">
-                    <h2 *ngIf="loggedInUser.role === 'Client'">Post History</h2>
-                    <h2 *ngIf="loggedInUser.role === 'Provider'">Job History</h2>
+                <div class="col-lg-12 card mb-3" style="height: 15rem; overflow-x: auto;"
+                    *ngIf="loggedInUser.role === 'Client'">
+                    <h2>Post History</h2>
                     <a href="#">See all</a>
 
                     <div class="col mx-auto">
@@ -82,6 +81,30 @@
                                         <img (click)="viewPost(post)" src={{post.imageUrl}} class="img-thumbnail me-3"
                                             style="max-width: 150px; max-height: 150px;" alt="No Image">
 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-12 card mb-3" style="height: 15rem; overflow-x: auto;"
+                    *ngIf="loggedInUser.role === 'Provider'">
+                    <h2>Job History</h2>
+                    <a href="#">See all</a>
+
+                    <div class="col mx-auto">
+                        <div class="container">
+                            <div *ngFor="let provider of loggedInUser.providers">
+                                <div class="card"
+                                    style="display: grid; grid-template-columns: repeat(4,1fr); max-width: 100%; align-items: stretch;">
+                                    <div *ngFor="let bid of provider.bids">
+                                        <div *ngIf="bid.jobPost.enabled">
+                                            <img (click)="viewPost(bid.jobPost)" src={{bid.jobPost.imageUrl}}
+                                                class="img-thumbnail me-3" style="max-width: 150px; max-height: 150px;"
+                                                alt="No Image">
+
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -159,46 +182,64 @@
             *ngIf="loggedInUser.role === 'Provider'">
 
             <h1>Active Jobs</h1>
-            <div class="card" *ngFor="let post of jobPosts">
-                <div *ngFor="let bid of post.bids">
-                    <div *ngIf="bid.provider.id === loggedInUser.id">
-                    <div *ngIf="post.complete === false">
-                            <img src={{post.imageUrl}} class="img-thumbnail me-3" style="max-width: 150px;"
-                                alt="No Image">
-                            <div class="card-body" (click)="showBids(post)">
-                                <h6 class="nav-link"><u>{{post.title}}</u></h6>
-                                <hr>
-                                <p>{{post.description}}</p>
-                            </div>
-                            <button class="btn btn-outline-warning" value="edit" (click)="viewPost(post)"> View
-                                Post</button>
+            <div class="card" *ngFor="let provider of loggedInUser.providers">
+                <div *ngFor="let bid of provider.bids">
+                    <div *ngIf="bid.jobPost.complete === false">
+                        <img src={{bid.jobPost.imageUrl}} class="img-thumbnail me-3" style="max-width: 150px;"
+                            alt="No Image">
+                        <div class="card-body" (click)="showBids(bid.jobPost)">
+                            <h6 class="nav-link"><u>{{bid.jobPost.title}}</u></h6>
+                            <hr>
+                            <p>{{bid.jobPost.description}}</p>
                         </div>
+                        <button class="btn btn-outline-warning" value="edit" (click)="viewPost(bid.jobPost)"> View
+                            Post</button>
                     </div>
                 </div>
             </div>
-
         </div>
-        <div class="col-lg-5 card mb-3" style="height: 20rem">
+
+        <div class="col-lg-5 card mb-3" style="height: 20rem" *ngIf="loggedInUser.role === 'Client'">
             <p>Bids </p>
             <div class="card">
                 <div class="card-body" *ngFor="let bid of bids">
 
                     <li>Bid: ${{bid.amount}}</li>
                     <li>From: {{bid.provider.company}}</li>
-                    <input type="checkbox"  (change)="toggleAcceptBid($event,bid.jobPost.id,bid.id)" name="accepted" [(ngModel)]="bid.accepted">Accepted
+                    <input type="checkbox" (change)="toggleAcceptBid($event,bid.jobPost.id,bid.id)" name="accepted"
+                        [(ngModel)]="bid.accepted">Accepted
+                </div>
+            </div>
+
+        </div>
+        <div class="col-lg-5 card mb-3" style="max-height: 20rem; overflow-y: auto;" *ngIf="loggedInUser.role === 'Provider'">
+            <p>Bids </p>
+            <div class="card">
+                <div *ngFor="let provider of loggedInUser.providers">
+                    <div class="card-body" *ngFor="let bid of provider.bids">
+                        
+                        <li>Post: ${{bid.jobPost.title}}</li>
+                        <li>Bid: ${{bid.amount}}</li>
+                        <li>From: {{provider.company}}</li>
+                        <li *ngIf="bid.accepted">Bid Accepted: Yes</li>
+                        <li *ngIf="!bid.accepted">Bid Accepted: No</li>
+                    </div>
                 </div>
             </div>
 
         </div>
     </div>
-
-
-    <div *ngIf="loggedInUser.providers">
-        <div *ngFor="let provider of loggedInUser.providers">
-            <p>{{provider.company}}</p>
-            <div *ngFor="let bid of provider.bids">
-                <p (click)="viewPost(bid.jobPost)">{{bid.jobPost.title}}</p>
-                <p>{{bid.amount}}</p>
+    <div class="col-lg-12 card mb-3" style="max-height: 20rem; overflow-y: auto;" *ngIf="loggedInUser.role === 'Provider'">
+        
+        
+        <div *ngIf="loggedInUser.providers">
+            <div *ngFor="let provider of loggedInUser.providers">
+                <p>{{provider.company}}</p>
+                <div *ngFor="let bid of provider.bids">
+                    <p (click)="viewPost(bid.jobPost)">{{bid.jobPost.title}}</p>
+                    <p>{{bid.amount}}</p>
+                </div>
             </div>
         </div>
     </div>
+</div>
